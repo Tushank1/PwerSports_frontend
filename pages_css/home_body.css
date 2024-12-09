@@ -1117,7 +1117,7 @@
                 display: flex;
                 position: relative;
                 height: 100%;
-                width: 100%;
+                width: 96%;
                 justify-content: center;
                 align-items: center;
 
@@ -1214,7 +1214,7 @@
                 display: flex;
                 position: relative;
                 height: 100%;
-                width: 100%;
+                width: 96%;
                 justify-content: center;
                 align-items: center;
 
@@ -1296,6 +1296,710 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.brands_main_outer_container {
+    display: flex;
+    /* border: 1px solid red; */
+    width: 1517px;
+    height: 6695px;
+    margin-top: 80px;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+
+    .brands_main_inner_container_first {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 98%;
+        height: 735px;
+        justify-content: center;
+        align-items: end;
+        cursor: pointer;
+
+        .brands_main_inner_container_first_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+            }
+        }
+
+        .brands_main_inner_container_first_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+
+            .brands_main_inner_container_first_content_head_up {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: large;
+                letter-spacing: 3px;
+            }
+
+            .brands_main_inner_container_first_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: larger;
+            }
+
+            .brands_main_inner_container_first_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 150px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .brands_main_inner_container_second {
+        display: flex;
+        /* border: 1px solid green; */
+        margin-top: 10px;
+        height: 735px;
+        width: 98%;
+        justify-content: center;
+        align-items: end;
+        cursor: pointer;
+
+        .brands_main_inner_container_second_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+            }
+        }
+
+        .brands_main_inner_container_second_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+
+            .brands_main_inner_container_second_content_head_up {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: large;
+                letter-spacing: 3px;
+            }
+
+            .brands_main_inner_container_second_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: larger;
+            }
+
+            .brands_main_inner_container_second_content_head_down {
+                display: flex;
+                /* border: 1px solid #fff; */
+                width: 330px;
+                justify-content: space-between;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                
+                .brands_main_inner_container_second_content_head_down_first {
+                    display: flex;
+                    border: 2px solid #fff;
+                    width: 150px;
+                    height: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 2px;
+                }
+
+                .brands_main_inner_container_second_content_head_down_second {
+                    display: flex;
+                    border: 2px solid #fff;
+                    width: 150px;
+                    height: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+
+    .brands_main_inner_container_third {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 98%;
+        height: 735px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        cursor: pointer;
+
+        .brands_main_inner_container_third_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+            }
+        }
+
+        .brands_main_inner_container_third_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-top: 10px;
+
+            .brands_main_inner_container_third_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: x-large;
+            }
+
+            .brands_main_inner_container_third_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 150px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .brands_main_inner_container_fourth {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 98%;
+        height: 735px;
+        justify-content: center;
+        align-items: end;
+        margin-top: 10px;
+        cursor: pointer;
+
+        .brands_main_inner_container_fourth_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+            }
+        }
+
+        .brands_main_inner_container_fourth_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+            margin-top: 10px;
+
+            .brands_main_inner_container_fourth_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: x-large;
+            }
+
+            .brands_main_inner_container_fourth_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 150px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .brands_main_inner_container_five {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 98%;
+        height: 735px;
+        justify-content: center;
+        align-items: end;
+        margin-top: 10px;
+        cursor: pointer;
+
+        .brands_main_inner_container_five_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+            }
+        }
+
+        .brands_main_inner_container_five_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+
+            .brands_main_inner_container_five_content_head_up {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: larger;
+                letter-spacing: 5px;
+            }
+
+            .brands_main_inner_container_five_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .brands_main_inner_container_five_content_heading_extra {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                height: 35px;
+                /* width: 300px; */
+                font-size:23px;
+                margin-bottom: 10px;
+                letter-spacing: 1px;
+            }
+
+            .brands_main_inner_container_five_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 200px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .brands_main_inner_container_six {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 98%;
+        height: 735px;
+        justify-content: center;
+        align-items: end;
+        margin-top: 10px;
+        cursor: pointer;
+
+        .brands_main_inner_container_six_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(70%);
+            }
+        }
+
+        .brands_main_inner_container_six_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+
+            .brands_main_inner_container_six_content_head_up {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: larger;
+                letter-spacing: 5px;
+                font-weight: 600;
+            }
+
+            .brands_main_inner_container_six_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .brands_main_inner_container_six_content_heading_extra {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                height: 35px;
+                /* width: 300px; */
+                font-size:23px;
+                margin-bottom: 10px;
+                letter-spacing: 1px;
+            }
+
+            .brands_main_inner_container_six_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 200px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .brands_main_inner_container_seven {
+        display: flex;
+        /* border: 1px solid green; */
+        margin-top: 10px;
+        height: 735px;
+        width: 98%;
+        justify-content: center;
+        align-items: end;
+        cursor: pointer;
+
+        .brands_main_inner_container_seven_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(70%);
+            }
+        }
+
+        .brands_main_inner_container_seven_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+
+            .brands_main_inner_container_seven_content_head_up {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: larger;
+                letter-spacing: 3px;
+            }
+
+            .brands_main_inner_container_seven_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: large;
+                letter-spacing: 2px;
+            }
+
+            .brands_main_inner_container_seven_content_head_down {
+                display: flex;
+                /* border: 1px solid #fff; */
+                width: 330px;
+                justify-content: space-between;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                
+                .brands_main_inner_container_seven_content_head_down_first {
+                    display: flex;
+                    border: 2px solid #fff;
+                    width: 150px;
+                    height: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 2px;
+                }
+
+                .brands_main_inner_container_seven_content_head_down_second {
+                    display: flex;
+                    border: 2px solid #fff;
+                    width: 150px;
+                    height: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+
+    .brands_main_inner_container_eight {
+        display: flex;
+        /* border: 1px solid green; */
+        margin-top: 10px;
+        height: 735px;
+        width: 98%;
+        justify-content: center;
+        align-items: end;
+        cursor: pointer;
+
+        .brands_main_inner_container_eight_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(70%);
+            }
+        }
+
+        .brands_main_inner_container_eight_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+
+            .brands_main_inner_container_eight_content_head_up {
+                display: flex;
+                /* border: 1px solid red; */
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: x-large;
+                letter-spacing: 3px;
+            }
+
+            .brands_main_inner_container_eight_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: larger;
+                letter-spacing: 2px;
+            }
+
+            .brands_main_inner_container_eight_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 150px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .brands_main_inner_container_nine {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 98%;
+        height: 735px;
+        justify-content: center;
+        align-items: end;
+        margin-top: 10px;
+        cursor: pointer;
+
+        .brands_main_inner_container_nine_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* justify-content: center;
+            align-items: center; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+            }
+        }
+
+        .brands_main_inner_container_nine_content {
+            display: flex;
+            position: absolute;
+            /* border: 1px solid yellow; */
+            flex-direction: column;
+            height: 300px;
+            width: 500px;
+            justify-content: end;
+            align-items: center;
+            color: #fff;
+            margin-top: 10px;
+
+            .brands_main_inner_container_nine_content_heading {
+                display: flex;
+                /* border: 1px solid #ebe628; */
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                height: 40px;
+                margin-bottom: 10px;
+                font-size: x-large;
+            }
+
+            .brands_main_inner_container_nine_content_head_down {
+                display: flex;
+                border: 2px solid #fff;
+                width: 150px;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
             }
         }
     }

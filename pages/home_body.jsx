@@ -289,6 +289,159 @@ function Home_body() {
           </div>
         </div>
       </div>
+      <div className="brands_main_outer_container">
+        <div className="brands_main_inner_container_first">
+          <div className="brands_main_inner_container_first_img">
+            <img src="/mt_helmet.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_first_content">
+            <div className="brands_main_inner_container_first_content_head_up">
+              <span>ECE, DOT & ISI CERTFIED</span>
+            </div>
+            <div className="brands_main_inner_container_first_content_heading">
+              <h1>MT HELMETS</h1>
+            </div>
+            <div className="brands_main_inner_container_first_content_head_down">
+              <span>SHOP MT</span>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_second">
+          <div className="brands_main_inner_container_second_img">
+            <img src="/motorcycle_lifestyle.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_second_content">
+            <div className="brands_main_inner_container_second_content_head_up">
+              <span>MOTORCYCLE LIFESTYLE</span>
+            </div>
+            <div className="brands_main_inner_container_second_content_heading">
+              <h1>KORDA</h1>
+            </div>
+            <div className="brands_main_inner_container_second_content_head_down">
+              <div className="brands_main_inner_container_second_content_head_down_first">
+                <span>SHOP THIS</span>
+              </div>
+              <div className="brands_main_inner_container_second_content_head_down_second">
+                <span>SHOP KORDA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_third">
+          <div className="brands_main_inner_container_third_img">
+            <img src="/nkh_helmet.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_third_content">
+            <div className="brands_main_inner_container_third_content_heading">
+              <h1>NKH HELMETS</h1>
+            </div>
+            <div className="brands_main_inner_container_third_content_head_down">
+              <span>SHOP NHK</span>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_fourth">
+          <div className="brands_main_inner_container_fourth_img">
+            <img src="/axxis_helmet.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_fourth_content">
+            <div className="brands_main_inner_container_fourth_content_heading">
+              <h1>AXXIS HELMETS</h1>
+            </div>
+            <div className="brands_main_inner_container_fourth_content_head_down">
+              <span>SHOP AXXIS</span>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_five">
+          <div className="brands_main_inner_container_five_img">
+            <img src="/midland.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_five_content">
+            <div className="brands_main_inner_container_five_content_head_up">
+              <span>DESIGNED IN EUROPE</span>
+            </div>
+            <div className="brands_main_inner_container_five_content_heading">
+              <h1>MIDLAND</h1>
+            </div>
+            <div className="brands_main_inner_container_five_content_heading_extra">
+              <span>Bluetooth Communication System</span>
+            </div>
+            <div className="brands_main_inner_container_five_content_head_down">
+              <span>SHOP MIDLAND</span>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_six">
+          <div className="brands_main_inner_container_six_img">
+            <img src="/macna.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_six_content">
+            <div className="brands_main_inner_container_six_content_head_up">
+              <span>TECHNICAL APPAREL</span>
+            </div>
+            <div className="brands_main_inner_container_six_content_heading">
+              <h1>MACNA</h1>
+            </div>
+            <div className="brands_main_inner_container_six_content_heading_extra">
+              <span>From Netherlands</span>
+            </div>
+            <div className="brands_main_inner_container_six_content_head_down">
+              <span>SHOP MACNA</span>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_seven">
+          <div className="brands_main_inner_container_seven_img">
+            <img src="/ryo_riding_boot.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_seven_content">
+            <div className="brands_main_inner_container_seven_content_head_up">
+              <h1>RYO</h1>
+            </div>
+            <div className="brands_main_inner_container_seven_content_heading">
+              <span>Riding Boots</span>
+            </div>
+            <div className="brands_main_inner_container_seven_content_head_down">
+              <div className="brands_main_inner_container_seven_content_head_down_first">
+                <span>SHOP RYO</span>
+              </div>
+              <div className="brands_main_inner_container_seven_content_head_down_second">
+                <span>SHOP ALL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_eight">
+          <div className="brands_main_inner_container_eight_img">
+            <img src="/forma_performance_boot.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_eight_content">
+            <div className="brands_main_inner_container_eight_content_head_up">
+              <h1>FORMA</h1>
+            </div>
+            <div className="brands_main_inner_container_eight_content_heading">
+              <span>Performance Boots</span>
+            </div>
+            <div className="brands_main_inner_container_eight_content_head_down">
+              <span>SHOP FORMA</span>
+            </div>
+          </div>
+        </div>
+        <div className="brands_main_inner_container_nine">
+          <div className="brands_main_inner_container_nine_img">
+            <img src="/hjc_helmet.png" alt="" />
+          </div>
+          <div className="brands_main_inner_container_nine_content">
+            <div className="brands_main_inner_container_nine_content_heading">
+              <h1>HJC HELMETS</h1>
+            </div>
+            <div className="brands_main_inner_container_nine_content_head_down">
+              <span>SHOP HJC</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
