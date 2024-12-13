@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home_body from "../pages/home_body";
-import Header from "../pages/header";
+import Helmets from "../pages/helmets";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./App.css";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home_body />} />
-          {/* <Route path="/" element={<Header />} /> */}
+          <Route path="/helmets" element={<Helmets />} />
         </Routes>
       </Router>
     </>
