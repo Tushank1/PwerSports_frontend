@@ -1,20 +1,17 @@
 import Header from "./header";
 import "../pages_css/home_body.css";
 import React from "react";
-import Slider from "react-slick";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function Home_body() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
   return (
     <>
       <Header />
-      <div className="slider_outer">
+      {/* <div className="slider_outer">
         <div className="slider_inner">
           <div className="slider_outer_first">
             <div className="slider_outer_first_img">
@@ -84,6 +81,100 @@ function Home_body() {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className="slider_outer">
+        <Swiper
+          spaceBetween={20}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          // navigation={true}
+          modules={[Autoplay, Pagination]} //,Navigation => for enable arrow
+          className="slider_inner"
+        >
+          <SwiperSlide>
+            <div className="slider_outer_first">
+              <div className="slider_outer_first_img">
+                <img src="/nkh_helmet.png" alt="helmet" />
+              </div>
+              <div className="slider_outer_first_txt">
+                <div className="slider_outer_first_txt_heading">
+                  <h1>NHK HELMETS</h1>
+                </div>
+                <div className="slider_outer_first_txt_content">
+                  <span>Starts From Rs. 5,799</span>
+                </div>
+                <div className="slider_outer_first_txt_content_explore">
+                  <span>EXPLORE NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="slider_outer_second">
+              <div className="slider_outer_second_img">
+                <img src="/tourMaster.jpg" alt="Tour Master" />
+              </div>
+              <div className="slider_outer_second_txt">
+                <span>SHOP NOW</span>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="slider_outer_third">
+              <div className="slider_outer_third_img">
+                <img src="/Lokui.png" alt="Lokui" />
+              </div>
+              <div className="slider_outer_third_txt">
+                <div className="slider_outer_third_txt_heading">
+                  <h1>LOKUI K10</h1>
+                </div>
+                <div className="slider_outer_third_txt_content">
+                  <span>By Midland</span>
+                </div>
+                <div className="slider_outer_third_txt_shop">
+                  <span>SHOP NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="slider_outer_fourth">
+              <div className="slider_outer_fourth_img">
+                <img src="/Glavaro.png" alt="glavaro" />
+              </div>
+              <div className="slider_outer_fourth_txt">
+                <div className="slider_outer_fourth_txt_intro">
+                  <span>INTRODUCING</span>
+                </div>
+                <div className="slider_outer_fourth_txt_heading">
+                  <h1>GLOVARO</h1>
+                </div>
+                <div className="slider_outer_fourth_txt_content">
+                  <span>Urban Gloves</span>
+                </div>
+                <div className="slider_outer_fourth_txt_shop">
+                  <span>SHOP NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="slider_outer_five">
+              <div className="slider_outer_five_img">
+                <img src="/Macna_Velocity_Jacket.png" alt="Tour Master" />
+              </div>
+              <div className="slider_outer_five_txt">
+                <span>SHOP NOW</span>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
       <div className="attributes_type">
         <div className="attributes_type_main_container">
@@ -166,7 +257,7 @@ function Home_body() {
           <h1>NEW ARRIVALS</h1>
         </div>
       </div>
-      <div className="new_arrival_slider_outer">
+      {/* <div className="new_arrival_slider_outer">
         <div className="new_arrival_slider_inner">
           <div className="new_arrival_slider_inner_first">
             <div className="new_arrival_slider_inner_first_img">
@@ -242,6 +333,104 @@ function Home_body() {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className="new_arrival_slider_outer">
+        <Swiper
+          spaceBetween={20}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          // navigation={true}
+          modules={[Autoplay, Pagination]} //,Navigation => for enable arrow
+          className="new_arrival_slider_inner"
+        >
+          <SwiperSlide>
+            <div className="new_arrival_slider_inner_first">
+              <div className="new_arrival_slider_inner_first_img">
+                <img src="/korda_jacket.png" alt="" />
+              </div>
+              <div className="new_arrival_slider_inner_first_txt">
+                <div className="new_arrival_slider_inner_first_txt_company">
+                  <span>KORDA</span>
+                </div>
+                <div className="new_arrival_slider_inner_first_txt_heading">
+                  <h1>EDGE 2.0</h1>
+                </div>
+                <div className="new_arrival_slider_inner_first_txt_content">
+                  <span>Riding Jacket</span>
+                </div>
+                <div className="new_arrival_slider_inner_first_txt_shop">
+                  <span>SHOP NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="new_arrival_slider_inner_second">
+              <div className="new_arrival_slider_inner_second_img">
+                <img src="/motorcycle_helmet.png" alt="" />
+              </div>
+              <div className="new_arrival_slider_inner_second_txt">
+                <div className="new_arrival_slider_inner_second_txt_heading">
+                  <h1>NHK</h1>
+                </div>
+                <div className="new_arrival_slider_inner_second_txt_content">
+                  <span>Motorcycle Helmets</span>
+                </div>
+                <div className="new_arrival_slider_inner_second_txt_shop">
+                  <span>SHOP NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="new_arrival_slider_inner_third">
+              <div className="new_arrival_slider_inner_third_img">
+                <img src="/tourMaster.png" alt="" />
+              </div>
+              <div className="new_arrival_slider_inner_third_txt">
+                <div className="new_arrival_slider_inner_third_txt_company">
+                  <span>KORDA</span>
+                </div>
+                <div className="new_arrival_slider_inner_third_txt_heading">
+                  <h1>TOURMASTER</h1>
+                </div>
+                <div className="new_arrival_slider_inner_third_txt_content">
+                  <span>Riding Boots</span>
+                </div>
+                <div className="new_arrival_slider_inner_third_txt_shop">
+                  <span>SHOP NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="new_arrival_slider_inner_fourth">
+              <div className="new_arrival_slider_inner_fourth_img">
+                <img src="/street.png" alt="" />
+              </div>
+              <div className="new_arrival_slider_inner_fourth_txt">
+                <div className="new_arrival_slider_inner_fourth_txt_company">
+                  <span>KORDA</span>
+                </div>
+                <div className="new_arrival_slider_inner_fourth_txt_heading">
+                  <h1>STREET 2.0 & AERO</h1>
+                </div>
+                <div className="new_arrival_slider_inner_fourth_txt_content">
+                  <span>Everyday Riding Gloves</span>
+                </div>
+                <div className="new_arrival_slider_inner_fourth_txt_shop">
+                  <span>SHOP NOW</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
       <div className="extra_last_attribute">
         <div className="extra_last_attribute_inner">

@@ -9,10 +9,10 @@
     .product_main_left {
         display: flex;
         /* border: 1px solid green; */
-        width: 30%;
-        justify-content: center;
+        width: 25%;
         align-items: center;
-        height: 400px;
+        margin-top: 100px;
+        height: 800px;
         overflow-y: auto; /* Enable scrolling if content overflows */
         flex-direction: column; /* Ensure content stacks vertically */
 
@@ -21,7 +21,6 @@
             /* border: 1px solid red; */
             height: auto;
             width: 70%;
-            position: sticky;
             top: 0;
             flex-direction: column;
             align-items: center;
@@ -36,6 +35,7 @@
                 /* align-items: center; */
                 flex-direction: column;
                 margin-top: 10px;
+                position: sticky;
 
                 .product_main_left_inner_brand_heading {
                     display: flex;
@@ -159,9 +159,184 @@
 
     .product_main_right {
         display: flex;
-        border: 1px solid blue;
-        width: 70%;
+        /* border: 1px solid blue; */
+        width: 73%;
         float: right;
-        height: 1500px;
+        height: auto;
+        flex-direction: column;
+
+        .product_main_right_heading_outer {
+            display: flex;
+            /* border: 1px solid red; */
+            width: 100%;
+            height: 40px;
+            margin-top: 40px;
+            justify-content: center;
+            
+            .product_main_right_heading_inner {
+                display: flex;
+                /* border: 1px solid purple; */
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: auto;
+                
+                h1 {
+                    font-weight: 400px;  
+                }
+            }
+
+        }
+        .product_main_right_description {
+            display: flex;
+            /* border: 1px solid green; */
+            margin-top: 30px;
+            width: 100%;
+            height: auto;
+            padding: 10px 0;
+            line-height: 20px;
+        }
+
+        .product_main_right_helmets_sub {
+            display: flex;
+            width: 100%;
+            /* border: 1px solid red; */
+            margin-top: 20px;
+            height: 250px;
+            justify-content: space-between;
+
+            .product_main_right_helmets_sub_first_container {
+                display: flex;
+                height: 100%;
+                width: 250px;
+                /* border: 1px solid green; */
+                justify-content: center;
+                align-items: center;
+
+                .product_main_right_helmets_sub_first_container_img {
+                    display: flex;
+                    height: 100%;
+                    width: 100%;
+                    position: relative;
+                    /* justify-content: center;
+                    align-items: center; */
+                    overflow: hidden;
+                    transition: transform 1.2s ease;
+
+                    img  {
+                        object-fit: cover;
+                        width: 100%;
+                        height: 100%;
+                        filter: brightness(90%);
+                        transition: transform 1.2s ease;
+                    }
+                }
+
+                .product_main_right_helmets_sub_first_container_content {
+                    display: flex;
+                    position: absolute;
+                    /* border: 1px solid yellow; */
+                    height: auto;
+                    width: 180px;
+                    color: #fff;
+                    font-size: larger;
+                    justify-content: center;
+                    align-items: center;
+                    letter-spacing: 2px;
+                }
+
+                &:hover .product_main_right_helmets_sub_first_container_img img {
+                    transform: scale(1.1); /* Increase the size of the image on hover */
+                    filter: brightness(80%);
+                }
+            }
+        }
+
+        .product_main_right_product {
+            display: flex;
+            /* border: 1px solid red; */
+            /* padding: 20px; */
+            height: auto;
+            width: 100%;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .product_main_right_product_cart {
+                display: flex;
+                /* border: 1px solid blue; */
+                height: 300px;
+                width: 200px;
+                margin: 20px 10px;
+                flex-direction: column;
+                cursor: pointer;
+
+                .product_main_right_product_cart_img {
+                    display: flex;
+                    /* border: 1px solid green; */
+                    width: 100%;
+                    height: 200px;
+                    position: relative;
+                    justify-content: center;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        background: none;
+                    }
+
+                    .product_main_right_product_cart_img_button {
+                        display: flex;
+                        position: absolute;
+                        width: 90%;
+                        /* border: 1px solid red; */
+                        /* color: #fff; */
+                        bottom: 0;
+                        justify-content: center;
+                        align-items: center;
+                        height: 30px;
+                        background-color: #d2ec15;
+                        transition: transform 0.6s ease, opacity 0.3s ease, visibility 0.3s ease;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+
+                .product_main_right_product_cart_content {
+                    display: flex;
+                    /* border: 1px solid red; */
+                    width: 100%;
+                    height: 100px;
+                    flex-direction: column;
+
+                    .product_main_right_product_cart_content_name {
+                        display: flex;
+                        text-align: center;
+                        width: 100%;
+                        font-size: medium;
+                        /* border: 1px solid blue; */
+                        margin-top: 10px;
+                        letter-spacing: 2px;
+                        color: rgb(84, 82, 82);
+                    }
+
+                    .product_main_right_product_cart_content_price {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        /* border: 1px solid purple; */
+                        color: red;
+                        margin-top: 5px;
+                    }
+                }
+
+                &:hover .product_main_right_product_cart_img_button {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(-10px);
+                }
+            }
+        }
     }
 }

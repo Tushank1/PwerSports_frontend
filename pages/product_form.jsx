@@ -125,7 +125,6 @@ function ProductForm() {
           placeholder="Enter category description"
           rows="4" // Adjust rows for height
           cols="50" // Adjust cols for width or use CSS for better control
-          required
         ></textarea>
       </div>
 

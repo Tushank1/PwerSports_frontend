@@ -4,6 +4,7 @@ import Helmets from "../pages/helmets";
 import ProductForm from "../pages/product_form";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
+import Product from "../pages/product_page";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home_body />} />
           <Route path="/helmets" element={<Helmets />} />
           <Route path="/dashboard" element={<ProductForm />} />
+          <Route path="/product" element={<Product />} />
         </Routes>
       </Router>
     </>
