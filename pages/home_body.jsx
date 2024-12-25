@@ -1,4 +1,5 @@
 import Header from "./header";
+import Footer from "./footer";
 import "../pages_css/home_body.css";
 import React from "react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -6,6 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import { GoShieldCheck } from "react-icons/go";
+import { FaRegThumbsUp } from "react-icons/fa";
 
 function Home_body() {
   return (
@@ -631,6 +635,50 @@ function Home_body() {
           </div>
         </div>
       </div>
+      <div className="why_powersports">
+        <div className="why_powersports_heading">
+          <h1>WHY POWERSPORTS?</h1>
+        </div>
+        <div className="why_powersports_container">
+          <div className="why_powersports_left">
+            <div className="why_powersports_left_icon">
+              <LiaShippingFastSolid fontSize="larger" />
+            </div>
+            <div className="why_powersports_left_head">
+              <span>FREE SHIPPING</span>
+            </div>
+            <div className="why_powersports_left_content">
+              <span>We offer free shipping across India on all orders.</span>
+            </div>
+          </div>
+          <div className="why_powersports_middle">
+            <div className="why_powersports_middle_icon">
+              <GoShieldCheck />
+            </div>
+            <div className="why_powersports_middle_head">
+              <span>GENUINE PRODUCTS</span>
+            </div>
+            <div className="why_powersports_middle_content">
+              <span>
+                We are the sole distributors in India for the brands we
+                represent. So, all the products sold by us are genuine.
+              </span>
+            </div>
+          </div>
+          <div className="why_powersports_right">
+            <div className="why_powersports_right_icon">
+              <FaRegThumbsUp />
+            </div>
+            <div className="why_powersports_right_head">
+              <span>WARRAANTY</span>
+            </div>
+            <div className="why_powersports_right_content">
+              <span>All our products carry 6 months to 2-years warranty.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

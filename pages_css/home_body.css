@@ -2020,3 +2020,161 @@
         }
     }
 }
+
+.why_powersports {
+    display: flex;
+    /* border: 1px solid red; */
+    margin-top: 50px;
+    width: 100vw;
+    height: 400px;
+    align-items: center;
+    flex-direction: column;
+
+    .why_powersports_heading {
+        display: flex;
+        /* border: 1px solid purple; */
+        margin-top: 20px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+    }
+
+    .why_powersports_container {
+        display: flex;
+        flex-direction: row;
+        /* border: 1px solid blue; */
+        margin-top: 30px;
+        width: 90%;
+        height: 500px;
+        justify-content: space-between;
+
+        .why_powersports_left {
+            display: flex;
+            /* border: 1px solid green; */
+            height: 100%;
+            width: 400px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .why_powersports_left_icon {
+                display: flex;
+                border: 1px solid red;
+                height: 40px;
+                width: 60px;
+            }
+
+            .why_powersports_left_icon LiaShippingFastSolid{
+                font-size: xx-large;
+            }
+
+            .why_powersports_left_head {
+                display: flex;
+                /* border: 1px solid green; */
+                height: 30px;
+                width: auto;
+                font-size: larger;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                letter-spacing: 1px;
+            }
+
+            .why_powersports_left_content {
+                display: flex;
+                /* border: 1px solid green; */
+                height: 30px;
+                width: auto;
+                font-size: medium;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                letter-spacing: 1px;
+            }
+        }
+    
+        .why_powersports_middle {
+            display: flex;
+            /* border: 1px solid green; */
+            height: 100%;
+            width: 400px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .why_powersports_middle_icon {
+                display: flex;
+                border: 1px solid red;
+                height: 40px;
+                width: 60px;
+            }
+
+            .why_powersports_middle_head {
+                display: flex;
+                /* border: 1px solid green; */
+                height: 30px;
+                width: auto;
+                font-size: larger;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                letter-spacing: 1px;
+            }
+
+            .why_powersports_middle_content {
+                display: flex;
+                /* border: 1px solid green; */
+                height: 60px;
+                width: 90%;
+                font-size: medium;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                letter-spacing: 1px;
+                line-height: 20px;
+            }
+        }
+    
+        .why_powersports_right {
+            display: flex;
+            /* border: 1px solid green; */
+            height: 100%;
+            width: 400px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .why_powersports_right_icon {
+                display: flex;
+                border: 1px solid red;
+                height: 40px;
+                width: 60px;
+            }
+
+            .why_powersports_right_head {
+                display: flex;
+                /* border: 1px solid green; */
+                height: 30px;
+                width: auto;
+                font-size: larger;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                letter-spacing: 1px;
+            }
+
+            .why_powersports_right_content {
+                display: flex;
+                /* border: 1px solid green; */
+                height: 30px;
+                width: auto;
+                font-size: medium;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
