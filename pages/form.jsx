@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../pages_css/product_form.css";
 import axios from "axios";
+import { FaPlus } from "react-icons/fa6";
+import Modal from "./Modal";
 
 function Form() {
   const [category, setCategory] = useState([]);
@@ -11,6 +13,7 @@ function Form() {
   const [brands, setBrands] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState(""); // For selected brand
   const [newBrand, setNewBrand] = useState(""); // For new category input
+  const [isNewBrand, setIsNewBrand] = useState(false);
   const [models, setModels] = useState([]);
   const [selectedModel, setSelectedModel] = useState("");
   const [newModel, setNewModel] = useState("");
@@ -20,6 +23,43 @@ function Form() {
   const [images, setImages] = useState([""]);
   const [colors, setColors] = useState([""]);
   const [sizes, setSizes] = useState([""]);
+  const [showModal, updateShowModal] = React.useState(false);
+
+  const colors_name = [
+    "Beige",
+    "Black",
+    "Blue",
+    "Bronze",
+    "Burgundy",
+    "Charcoal",
+    "Copper",
+    "Crimson",
+    "Emerald",
+    "Gold",
+    "Gray",
+    "Green",
+    "Ivory",
+    "Lavender",
+    "Lemon",
+    "Lime",
+    "Maroon",
+    "Mint",
+    "Mustard",
+    "Navy",
+    "Olive",
+    "Orange",
+    "Peach",
+    "Pink",
+    "Purple",
+    "Red",
+    "Scarlet",
+    "Silver",
+    "Sky Blue",
+    "Teal",
+    "Turquoise",
+    "White",
+    "Yellow",
+  ];
 
   // Fetch categories from API
   useEffect(() => {
@@ -27,8 +67,8 @@ function Form() {
       try {
         const response = await axios.get(
           "http://127.0.0.1:8000/dashboard/categories"
-        ); // Update with your endpoint
-        setCategory(response.data); // Set categories directly from the response
+        );
+        setCategory(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error.message || error);
         alert("An error occurred while fetching categories.");
@@ -66,9 +106,18 @@ function Form() {
   };
 
   const handleBrandChange = (e) => {
-    const selectedId = e.target.value; // Get the selected brand_id
-    setSelectedBrand(selectedId); // Set selected brand_id to state
-    fetchModels(selectedId); // Fetch models based on brand_id
+    const selectedId = e.target.value;
+    setSelectedBrand(selectedId);
+    if (selectedId === "add-new") {
+      setIsNewBrand(true);
+      setSelectedModel("");
+      setModels([]);
+      setNewModel("");
+    } else {
+      setIsNewBrand(false);
+      setSelectedModel("");
+      fetchModels(selectedId);
+    }
   };
 
   const fetchModels = async (brand_id) => {
@@ -76,7 +125,6 @@ function Form() {
       const response = await axios.get(
         `http://127.0.0.1:8000/dashboard/models?brand_id=${brand_id}`
       );
-      console.log(response.data);
       setModels(response.data);
     } catch (error) {
       console.error(
@@ -113,90 +161,174 @@ function Form() {
     setter((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!selectedCategory) {
-      alert("Please select a category.");
-      return;
-    }
-
-    // if (!selectedBrand) {
-    //   alert("Please select a brand.");
-    //   return;
-    // }
-
-    const data = {
-      name: selectedCategory === "add-new" ? newCategory : selectedCategory,
-      brand: selectedBrand === "add-new" ? newBrand : selectedBrand,
+  const handleAddCategory = async () => {
+    // Prepare category data
+    const category_data = {
+      new_category: selectedCategory === "add-new" ? newCategory : undefined,
       category_description: isNewCategory ? categoryDescription : undefined,
     };
 
-    if (newCategory) {
-      try {
-        const response = await axios.post(
-          "http://127.0.0.1:8000/dashboard/categories",
-          data,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (response.status === 200) {
-          alert("Form submitted successfully!");
-          setSelectedCategory("");
-          setIsNewCategory(false);
-        }
-      } catch (error) {
-        console.error("Error adding new category:", error.message || error);
-        alert("An error occurred while adding the new category.");
-      }
-    } else {
-      try {
-        // Prepare the data to be submitted (including new category if added)
+    // If the selected category is 'add-new', send a POST request to create the category
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/dashboard/categories",
+        category_data
+      );
+      console.log("Category added successfully:", response.data);
 
+      const categoryId = response.data.id;
+
+      // Now, use categoryId for adding a new brand
+      //handleAddBrand(categoryId); // Call the brand creation function and pass the categoryId
+      // console.log("start");
+      return categoryId;
+    } catch (error) {
+      console.error("Error adding categories:", error.message || error);
+      alert("An error occurred while adding categories.");
+      throw error;
+    }
+  };
+
+  const handleAddBrand = async (categoryId) => {
+    // console.log(categoryId, "selcted_bvrnad iskmknjnn");
+    const brand_data = {
+      new_brand: selectedBrand === "add-new" || newBrand ? newBrand : undefined,
+      category_id: categoryId,
+    };
+    // console.log(newBrand, "jhgggggggggggg");
+
+    if (selectedBrand === "add-new" || selectedCategory === "add-new") {
+      try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/dashboard",
-          data,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+          "http://127.0.0.1:8000/dashboard/brands",
+          brand_data
         );
-        if (response.status === 200) {
-          alert("Form submitted successfully!");
-          setSelectedCategory("");
-          setSelectedBrand("");
-          setIsNewCategory(false);
-        }
+        console.log("Brand added successfully:", response.data);
+        const brandId = response.data.id;
+        return brandId;
       } catch (error) {
-        console.error("Error:", error.message || error);
-        alert("An error occurred while submitting the form.");
+        console.error("Error adding brand:", error.message || error);
+        alert("An error occurred while adding brand.");
+        throw error;
       }
     }
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    console.log("newModel before submitting:", newModel);
+
+    try {
+      let categoryId = selectedCategory;
+      if (selectedCategory === "add-new") {
+        categoryId = await handleAddCategory();
+      }
+
+      let brandId = selectedBrand;
+      if (
+        (selectedBrand === "add-new" && categoryId) ||
+        selectedCategory === "add-new"
+      ) {
+        brandId = await handleAddBrand(categoryId);
+      }
+
+      const form_data = {
+        category_id: parseInt(categoryId),
+        brand_id: parseInt(brandId),
+        model_id: parseInt(
+          selectedModel !== "add-new" && selectedModel
+            ? selectedModel
+            : undefined
+        ),
+        new_model:
+          (selectedModel === "add-new" ||
+            selectedCategory === "add-new" ||
+            selectedBrand === "add-new") &&
+          newModel
+            ? newModel
+            : undefined,
+        images: images.filter((image) => image !== ""),
+        price: parseFloat(price),
+        name,
+        colors: colors.filter((color) => color !== ""),
+        sizes: sizes.filter((size) => size !== ""),
+        stock_qty: parseInt(quantity, 10),
+      };
+
+      console.log("Submitting form data:", form_data);
+
+      const response = await axios.post(
+        "http://127.0.0.1:8000/dashboard",
+        form_data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Form submitted successfully!");
+        // Reset input states
+        setSelectedCategory("");
+        setNewCategory("");
+        setIsNewCategory(false);
+        setCategoryDescription("");
+
+        setSelectedBrand("");
+        setNewBrand("");
+        setIsNewBrand(false);
+
+        setSelectedModel("");
+        setNewModel("");
+
+        setName("");
+        setPrice("");
+        setQuantity("");
+        setImages([""]);
+        setColors([""]);
+        setSizes([""]);
+
+        // Fetch updated data for dropdowns
+        fetchCategories();
+        fetchBrands();
+        fetchModels();
+      }
+    } catch (error) {
+      console.error("Error:", error.message || error);
+      alert("An error occurred while submitting the form.");
+    }
+  };
+
+  const toggleModal = () => updateShowModal((state) => !state);
 
   return (
     <form onSubmit={handleSubmit} className="product-form">
       <div className="form-group">
         <label htmlFor="category">Category</label>
-        <select
-          id="category"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-          required
-        >
-          <option value="">Select a category</option>
-          {category.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
+        <div className="outer_container">
+          <select
+            id="category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            required
+          >
+            <option value="" disabled>
+              Select a category
             </option>
-          ))}
-          <option value="add-new">Add New Category</option>
-        </select>
-
+            {category.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+            <option value="add-new">Add New Category</option>
+          </select>
+          <div className="plus">
+            <FaPlus onClick={toggleModal} />
+            <Modal canShow={showModal} updateModalState={toggleModal} />
+          </div>
+        </div>
         {selectedCategory === "add-new" && (
           <div className="new-category-input">
             <input
@@ -224,29 +356,36 @@ function Form() {
       )}
       <div className="form-group">
         <label htmlFor="brand">Brand</label>
-        {!isNewCategory && (
-          <>
-            <select
-              id="brand"
-              value={selectedBrand}
-              onChange={handleBrandChange}
-              required
-              disabled={brands.length === 0}
-            >
-              <option value="">Select a brand</option>
-              {brands.length > 0 ? (
-                brands.map((brand) => (
-                  <option key={brand.id} value={brand.id}>
-                    {brand.name}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No brands available</option>
-              )}
-              <option value="add-new">Add New Brand</option>
-            </select>
-          </>
-        )}
+        <div className="outer_container">
+          {!isNewCategory && (
+            <>
+              <select
+                id="brand"
+                value={selectedBrand}
+                onChange={handleBrandChange}
+                required
+                disabled={brands.length === 0}
+              >
+                <option value="" disabled>
+                  Select a brand
+                </option>
+                {brands.length > 0 ? (
+                  brands.map((brand) => (
+                    <option key={brand.id} value={brand.id}>
+                      {brand.brand_name}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No brands available</option>
+                )}
+                <option value="add-new">Add New Brand</option>
+              </select>
+              <div className="plus">
+                <FaPlus />
+              </div>
+            </>
+          )}
+        </div>
         {(selectedBrand === "add-new" || isNewCategory) && (
           <div className="new-Brand-input">
             <input
@@ -261,37 +400,41 @@ function Form() {
       </div>
       <div className="form-group">
         <label htmlFor="model">Model</label>
-        {!isNewCategory && (
-          <>
-            <select
-              id="model"
-              type="text"
-              value={selectedModel}
-              onChange={(e) => setSelectedModel(e.target.value)}
-              placeholder="Enter model name"
-              disabled={brands.length === 0}
-              required
-            >
-              <option value="">Select a model</option>
-              {/* {models.map((model) => (
-                <option key={model.id} value={model.id}>
-                  {model.model}
+        <div className="outer_container">
+          {!isNewCategory && selectedBrand !== "add-new" && (
+            <>
+              <select
+                id="model"
+                type="text"
+                value={selectedModel}
+                onChange={(e) => setSelectedModel(e.target.value)}
+                placeholder="Enter model name"
+                disabled={brands.length === 0}
+                required
+              >
+                <option value="" disabled>
+                  Select a model
                 </option>
-              ))} */}
-              {models.length > 0 ? (
-                models.map((model) => (
-                  <option key={model.id} value={model.id}>
-                    {model.model}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No models available</option>
-              )}
-              <option value="add-new">Add New Model</option>
-            </select>
-          </>
-        )}
-        {(selectedModel === "add-new" || isNewCategory) && (
+                {models.length > 0 ? (
+                  models.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.model}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No models available</option>
+                )}
+                <option value="add-new">Add New Model</option>
+              </select>
+              <div className="plus">
+                <FaPlus />
+              </div>
+            </>
+          )}
+        </div>
+        {(selectedModel === "add-new" ||
+          isNewCategory ||
+          selectedBrand === "add-new") && (
           <div className="new-Model-input">
             <input
               type="text"
@@ -332,7 +475,7 @@ function Form() {
           type="number"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
-          placeholder="Enter Quantity of the product"
+          placeholder="Enter Quantity greater than 1"
           min="1"
           required
         />
@@ -372,13 +515,22 @@ function Form() {
         <label>Colors</label>
         {colors.map((color, index) => (
           <div key={index} className="input-group">
-            <input
+            <select
+              id={`color-${index}`}
               type="text"
               value={color}
               onChange={(e) => handleColorChange(index, e.target.value)}
-              placeholder="Enter color"
               required
-            />
+            >
+              <option value="" disabled>
+                Select a color :
+              </option>
+              {colors_name.map((name, index) => (
+                <option key={index} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
             {index > 0 && (
               <button
                 type="button"
@@ -402,13 +554,25 @@ function Form() {
         <label>Sizes</label>
         {sizes.map((size, index) => (
           <div key={index} className="input-group">
-            <input
+            <select
+              id={`size-${index}`}
               type="text"
               value={size}
               onChange={(e) => handleSizeChange(index, e.target.value)}
-              placeholder="Enter size"
+              placeholder="Select Size"
               required
-            />
+            >
+              <option value="" disabled>
+                Select a Size :
+              </option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+              <option value="XXXL">XXXL</option>
+            </select>
             {index > 0 && (
               <button
                 type="button"

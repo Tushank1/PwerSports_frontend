@@ -1,0 +1,107 @@
+.outer {
+    display: flex;
+    position: absolute;
+    /* justify-content: center; */
+    align-items: center;
+    width: 400px;
+    height: auto;
+    top: 10%;
+    left: 20%;
+    border: 1px solid #ddd;
+    background-color: black;
+    z-index: 999999;
+    color: white;
+    flex-direction: column;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.inner_container {
+    display: flex;
+    border: 1px solid #fff;
+    height: auto;
+    width: 350px;
+    flex-direction: column;
+
+    .inner_container_heading {
+        display: flex;
+        /* border: 1px solid #fff; */
+        margin-top: 5px;
+        flex-direction: column;
+        padding-left: 9px;
+        width: 100%;
+
+        .category-input, input[type="text"] {
+            display: flex;
+            width: 320px;
+            margin-top: 5px;
+            /* border: 1px solid #ddd; */
+            border-radius: 4px;
+            font-size: 12px;
+            /* margin-left: 3px; */
+
+        }
+    }
+
+    .inner_container_description {
+        display: flex;
+        width: 100%;
+        /* border: 1px solid blueviolet; */
+        margin-top: 10px;
+        height: auto;
+        flex-direction: column;
+
+        .inner_container_description_heading {
+            display: flex;
+            width: 100%;
+            /* border: 1px solid yellow; */
+            height: 20px;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        .inner_container_description_desc {
+            display: flex;
+            width: 91%;
+            border-radius: 5px;
+            height: auto;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    width: 85%;
+    height: 50px;
+    /* border: 1px solid red; */
+    margin: 10px 0;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .hide {
+        display: flex;
+        width: 80px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .create {
+        display: flex;
+        width: 80px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+}
