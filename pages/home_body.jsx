@@ -1,5 +1,5 @@
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./Header";
+import Footer from "./Footer";
 import "../pages_css/home_body.css";
 import React from "react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -10,82 +10,19 @@ import "swiper/css/navigation";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { GoShieldCheck } from "react-icons/go";
 import { FaRegThumbsUp } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Home_body() {
+  let navigate = useNavigate();
+
+  const routeChange = (category) => {
+    let path = `/products/${category}`;
+    navigate(path);
+  };
+
   return (
     <>
       <Header />
-      {/* <div className="slider_outer">
-        <div className="slider_inner">
-          <div className="slider_outer_first">
-            <div className="slider_outer_first_img">
-              <img src="/nkh_helmet.png" alt="helmet" />
-            </div>
-            <div className="slider_outer_first_txt">
-              <div className="slider_outer_first_txt_heading">
-                <h1>NHK HELMETS</h1>
-              </div>
-              <div className="slider_outer_first_txt_content">
-                <span>Starts From Rs. 5,799</span>
-              </div>
-              <div className="slider_outer_first_txt_content_explore">
-                <span>EXPLORE NOW</span>
-              </div>
-            </div>
-          </div>
-          <div className="slider_outer_second">
-            <div className="slider_outer_second_img">
-              <img src="/tourMaster.jpg" alt="Tour Master" />
-            </div>
-            <div className="slider_outer_second_txt">
-              <span>SHOP NOW</span>
-            </div>
-          </div>
-          <div className="slider_outer_third">
-            <div className="slider_outer_third_img">
-              <img src="/Lokui.png" alt="Lokui" />
-            </div>
-            <div className="slider_outer_third_txt">
-              <div className="slider_outer_third_txt_heading">
-                <h1>LOKUI K10</h1>
-              </div>
-              <div className="slider_outer_third_txt_content">
-                <span>By Midland</span>
-              </div>
-              <div className="slider_outer_third_txt_shop">
-                <span>SHOP NOW</span>
-              </div>
-            </div>
-          </div>
-          <div className="slider_outer_fourth">
-            <div className="slider_outer_fourth_img">
-              <img src="/Glavaro.png" alt="glavaro" />
-            </div>
-            <div className="slider_outer_fourth_txt">
-              <div className="slider_outer_fourth_txt_intro">
-                <span>INTRODUCING</span>
-              </div>
-              <div className="slider_outer_fourth_txt_heading">
-                <h1>GLOVARO</h1>
-              </div>
-              <div className="slider_outer_fourth_txt_content">
-                <span>Urban Gloves</span>
-              </div>
-              <div className="slider_outer_fourth_txt_shop">
-                <span>SHOP NOW</span>
-              </div>
-            </div>
-          </div>
-          <div className="slider_outer_five">
-            <div className="slider_outer_five_img">
-              <img src="/Macna_Velocity_Jacket.png" alt="Tour Master" />
-            </div>
-            <div className="slider_outer_five_txt">
-              <span>SHOP NOW</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="slider_outer">
         <Swiper
           spaceBetween={20}
@@ -183,7 +120,10 @@ function Home_body() {
       <div className="attributes_type">
         <div className="attributes_type_main_container">
           <div className="attributes_type_main_container_first_row">
-            <div className="attributes_type_main_container_first">
+            <div
+              className="attributes_type_main_container_first"
+              onClick={() => routeChange("helmets")}
+            >
               <div className="attributes_type_main_container_first_img">
                 <img src="/helmets.png" alt="HELMETS" />
               </div>
@@ -261,83 +201,6 @@ function Home_body() {
           <h1>NEW ARRIVALS</h1>
         </div>
       </div>
-      {/* <div className="new_arrival_slider_outer">
-        <div className="new_arrival_slider_inner">
-          <div className="new_arrival_slider_inner_first">
-            <div className="new_arrival_slider_inner_first_img">
-              <img src="/korda_jacket.png" alt="" />
-            </div>
-            <div className="new_arrival_slider_inner_first_txt">
-              <div className="new_arrival_slider_inner_first_txt_company">
-                <span>KORDA</span>
-              </div>
-              <div className="new_arrival_slider_inner_first_txt_heading">
-                <h1>EDGE 2.0</h1>
-              </div>
-              <div className="new_arrival_slider_inner_first_txt_content">
-                <span>Riding Jacket</span>
-              </div>
-              <div className="new_arrival_slider_inner_first_txt_shop">
-                <span>SHOP NOW</span>
-              </div>
-            </div>
-          </div>
-          <div className="new_arrival_slider_inner_second">
-            <div className="new_arrival_slider_inner_second_img">
-              <img src="/motorcycle_helmet.png" alt="" />
-            </div>
-            <div className="new_arrival_slider_inner_second_txt">
-              <div className="new_arrival_slider_inner_second_txt_heading">
-                <h1>NHK</h1>
-              </div>
-              <div className="new_arrival_slider_inner_second_txt_content">
-                <span>Motorcycle Helmets</span>
-              </div>
-              <div className="new_arrival_slider_inner_second_txt_shop">
-                <span>SHOP NOW</span>
-              </div>
-            </div>
-          </div>
-          <div className="new_arrival_slider_inner_third">
-            <div className="new_arrival_slider_inner_third_img">
-              <img src="/tourMaster.png" alt="" />
-            </div>
-            <div className="new_arrival_slider_inner_third_txt">
-              <div className="new_arrival_slider_inner_third_txt_company">
-                <span>KORDA</span>
-              </div>
-              <div className="new_arrival_slider_inner_third_txt_heading">
-                <h1>TOURMASTER</h1>
-              </div>
-              <div className="new_arrival_slider_inner_third_txt_content">
-                <span>Riding Boots</span>
-              </div>
-              <div className="new_arrival_slider_inner_third_txt_shop">
-                <span>SHOP NOW</span>
-              </div>
-            </div>
-          </div>
-          <div className="new_arrival_slider_inner_fourth">
-            <div className="new_arrival_slider_inner_fourth_img">
-              <img src="/street.png" alt="" />
-            </div>
-            <div className="new_arrival_slider_inner_fourth_txt">
-              <div className="new_arrival_slider_inner_fourth_txt_company">
-                <span>KORDA</span>
-              </div>
-              <div className="new_arrival_slider_inner_fourth_txt_heading">
-                <h1>STREET 2.0 & AERO</h1>
-              </div>
-              <div className="new_arrival_slider_inner_fourth_txt_content">
-                <span>Everyday Riding Gloves</span>
-              </div>
-              <div className="new_arrival_slider_inner_fourth_txt_shop">
-                <span>SHOP NOW</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="new_arrival_slider_outer">
         <Swiper
           spaceBetween={20}

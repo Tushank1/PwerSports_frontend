@@ -1,8 +1,10 @@
-import "../pages_css/helmets.css";
-import Header from "./header";
-import { useState } from "react";
+import axios from "axios";
+import "../pages_css/Products.css";
+import Header from "./Header";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function Helmets() {
+function Products() {
   const [visibility, setVisibility] = useState({
     brands: false,
     models: false,
@@ -13,6 +15,54 @@ function Helmets() {
   const models = ["Model1", "Model2", "Model3"];
   const size = ["Small", "Medium", "Large"];
   const colors = ["Red", "Blue", "Green"];
+
+  const { category } = useParams();
+  // console.log(category);
+
+  useEffect(() => {
+    const forCategory_ID = async (category_param) => {
+      try {
+        const result = await axios.post(
+          `http://127.0.0.1:8000/dashboard/category/${category_param}`
+        );
+        const id = result.data.id;
+        return id;
+        // console.log(id, "Success");
+      } catch (error) {
+        console.error("Error fetching categorie ID:", error.message || error);
+        alert("An error occurred while fetching categories.");
+      }
+    };
+
+    const fetchData = async () => {
+      if (category) {
+        const id = await forCategory_ID(category);
+        if (id) {
+          const responseData = await data(id);
+          if (responseData) {
+            console.log(responseData);
+            return responseData;
+          }
+        }
+      }
+    };
+
+    fetchData();
+  }, [category]);
+
+  const data = async (id) => {
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/collections/${id}`
+      );
+      const response_data = response.data;
+      console.log(response_data.category.description);
+      return response_data;
+    } catch (erro) {
+      console.error("Error fetching data:", error.message || error);
+      alert("An error occurred while fetching data.");
+    }
+  };
 
   const toggleVisibility = (section) => {
     setVisibility((prev) => ({
@@ -146,74 +196,60 @@ function Helmets() {
         <div className="product_main_right">
           <div className="product_main_right_heading_outer">
             <div className="product_main_right_heading_inner">
-              <h1>HELMETS</h1>
+              <h1>{responseData.category.name}</h1>
             </div>
           </div>
           <div className="product_main_right_description">
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores,
-              distinctio dolorum libero officia dolor ab nobis accusamus porro
-              excepturi possimus consequatur numquam eum repellendus itaque
-              aliquam. Illum amet velit et molestiae dicta, quibusdam incidunt
-              totam autem quia odit placeat minima iste. Autem, mollitia dolorum
-              adipisci ex reiciendis at asperiores perspiciatis! Quaerat quas
-              culpa iste nihil tempora, nisi autem blanditiis maxime, sed,
-              consequuntur aut. Voluptatem laborum, voluptas suscipit adipisci
-              est velit a dolore alias nisi iusto officia consequuntur
-              exercitationem hic molestias repudiandae aliquid ab facere
-              expedita vitae? Id non nulla veritatis nisi vitae minus earum
-              inventore provident assumenda, architecto labore animi, est beatae
-              aspernatur. Pariatur autem minus id hic ipsam veritatis incidunt
-              maxime possimus at recusandae rem eligendi, voluptates cupiditate
-              itaque dignissimos aut ea odio ab unde mollitia dicta harum ut.
-            </span>
+            <span>{responseData.category.description}</span>
           </div>
-          <div className="product_main_right_helmets_sub">
-            <div className="product_main_right_helmets_sub_first_container">
-              <div className="product_main_right_helmets_sub_first_container_img">
-                <img
-                  src="https://powersports.in/cdn/shop/collections/axxis-mobile.jpg?v=1677575261&width=540"
-                  alt=""
-                />
+          {category === "helmets" && (
+            <div className="product_main_right_helmets_sub">
+              <div className="product_main_right_helmets_sub_first_container">
+                <div className="product_main_right_helmets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/axxis-mobile.jpg?v=1677575261&width=540"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_helmets_sub_first_container_content">
+                  <span>FULL-FACE</span>
+                </div>
               </div>
-              <div className="product_main_right_helmets_sub_first_container_content">
-                <span>FULL-FACE</span>
+              <div className="product_main_right_helmets_sub_first_container">
+                <div className="product_main_right_helmets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/Mt-viale-helmet.jpg?v=1679484258&width=540"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_helmets_sub_first_container_content">
+                  <span>OPEN-FACE</span>
+                </div>
+              </div>
+              <div className="product_main_right_helmets_sub_first_container">
+                <div className="product_main_right_helmets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/korda_discovery_mobile.jpg?v=1677575889&width=540"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_helmets_sub_first_container_content">
+                  <span>MODULAR</span>
+                </div>
+              </div>
+              <div className="product_main_right_helmets_sub_first_container">
+                <div className="product_main_right_helmets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/DS..2.jpg?v=1682503533&width=540"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_helmets_sub_first_container_content">
+                  <span>DUAL SPORT & MOTORCROSS</span>
+                </div>
               </div>
             </div>
-            <div className="product_main_right_helmets_sub_first_container">
-              <div className="product_main_right_helmets_sub_first_container_img">
-                <img
-                  src="https://powersports.in/cdn/shop/collections/Mt-viale-helmet.jpg?v=1679484258&width=540"
-                  alt=""
-                />
-              </div>
-              <div className="product_main_right_helmets_sub_first_container_content">
-                <span>OPEN-FACE</span>
-              </div>
-            </div>
-            <div className="product_main_right_helmets_sub_first_container">
-              <div className="product_main_right_helmets_sub_first_container_img">
-                <img
-                  src="https://powersports.in/cdn/shop/collections/korda_discovery_mobile.jpg?v=1677575889&width=540"
-                  alt=""
-                />
-              </div>
-              <div className="product_main_right_helmets_sub_first_container_content">
-                <span>MODULAR</span>
-              </div>
-            </div>
-            <div className="product_main_right_helmets_sub_first_container">
-              <div className="product_main_right_helmets_sub_first_container_img">
-                <img
-                  src="https://powersports.in/cdn/shop/collections/DS..2.jpg?v=1682503533&width=540"
-                  alt=""
-                />
-              </div>
-              <div className="product_main_right_helmets_sub_first_container_content">
-                <span>DUAL SPORT & MOTORCROSS</span>
-              </div>
-            </div>
-          </div>
+          )}
           <div className="product_main_right_product">
             {Array.from({ length: 5 }).map((_, i) => (
               <div className="product_main_right_product_cart" key={i}>
@@ -243,4 +279,4 @@ function Helmets() {
   );
 }
 
-export default Helmets;
+export default Products;

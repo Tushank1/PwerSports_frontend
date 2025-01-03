@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "../pages_css/header.css";
 import { IoSearch } from "react-icons/io5";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <div className="header">
       <div className="header_main">
@@ -27,7 +29,7 @@ function Header() {
         <div className="header_lower">
           <div className="header_lower_inner">
             <div className="header_lower_inner_home">
-              <span>Home</span>
+              <span onClick={() => navigate("/")}>Home</span>
             </div>
             <div className="header_lower_inner_product">
               <span>Products</span>

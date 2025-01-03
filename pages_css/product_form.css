@@ -4,10 +4,11 @@ body {
     align-items: center; /* Centers vertically */
     /* height: 100vh; Full viewport height */
     margin: 0; /* Removes default body margin */
+    /* background-image: url("https://img.freepik.com/free-vector/podium-background_1017-2249.jpg?semt=ais_hybrid"); */
   }
 
 .product-form {
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -28,7 +29,8 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    /* color: #333; */
+    color: black;
     /* border: 1px solid red; */
   }
 
@@ -38,14 +40,24 @@ body {
   }
   
   input[type="text"],
-  input[type="url"],
   select {
     /* display: flex; */
-    width: 430px;
+    width: 390px;
     padding: 8px;
     border: 1px solid #ddd;
     /* position: relative; */
-    /* border: 1px solid green; */
+    border: 1px solid green;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  input[type="url"] {
+    /* display: flex; */
+    width: 650px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    /* position: relative; */
+    border: 1px solid green;
     border-radius: 4px;
     font-size: 14px;
   }
@@ -62,12 +74,25 @@ body {
   .outer_container {
     display: flex;
     flex-direction: row;
+    /* border: 1px solid red; */
+    width: 430px;
+  }
+
+  .outer_inner {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 400px;
+
+    select {
+      width: 400px;
+    }
   }
 
   .new-category-input,.new-Brand-input,.new-Model-input {
     display: flex;
-    width: 420px;
-    margin-top: 10px;
+    width: 400px;
+    /* margin-top: 10px; */
     /* padding: 8px; */
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -81,6 +106,9 @@ body {
     align-items: center;
     cursor: pointer;
     margin-left: 10px;
+    height: 33px;
+    width: 50px;
+    /* margin-top: 10px; */
   }
   
   select {
@@ -94,6 +122,7 @@ body {
   .input-group {
     display: flex;
     margin-bottom: 10px;
+    width: 415px;
   }
   
   .input-group input {

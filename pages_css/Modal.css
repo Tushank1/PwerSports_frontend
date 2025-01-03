@@ -8,15 +8,19 @@
     top: 10%;
     left: 20%;
     border: 1px solid #ddd;
-    background-color: black;
+    border-radius: 10px;
+    /* background-color: black; */
+    background-color: rgba(160, 217, 240, 0.806);
     z-index: 999999;
     color: white;
     flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 h2 {
     margin-top: 20px;
     margin-bottom: 10px;
+    color: black;
 }
 
 .inner_container {
@@ -33,6 +37,7 @@ h2 {
         flex-direction: column;
         padding-left: 9px;
         width: 100%;
+        color: black;
 
         .category-input, input[type="text"] {
             display: flex;
@@ -61,6 +66,7 @@ h2 {
             height: 20px;
             padding-left: 10px;
             margin-bottom: 10px;
+            color: black;
         }
 
         .inner_container_description_desc {
@@ -69,7 +75,61 @@ h2 {
             border-radius: 5px;
             height: auto;
             padding-left: 10px;
-            margin-bottom: 20px;
+            font-size: 12px;
+            /* margin-bottom: 20px; */
+        }
+    }
+
+    .inner_container_brand {
+        display: flex;
+        /* border: 1px solid red; */
+        flex-direction: column;
+        margin-top: 10px;
+
+        .inner_container_brand_heading {
+            display: flex;
+            color: black;
+            width: 100%;
+            height: 20px;
+            padding-left: 10px;
+        }
+
+        .inner_container_brand_input, input[type="text"] {
+            display: flex;
+            width: 320px;
+            margin-top: 5px;
+            /* border: 1px solid red; */
+            /* margin-left: 10px; */
+            padding-left: 10px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+    }
+
+    .inner_container_model {
+        display: flex;
+        /* border: 1px solid red; */
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .inner_container_model_heading {
+            display: flex;
+            color: black;
+            width: 100%;
+            height: 20px;
+            padding-left: 10px;
+        }
+
+        .inner_container_model_input, input[type="text"] {
+            display: flex;
+            width: 320px;
+            margin-top: 5px;
+            /* border: 1px solid red; */
+            /* margin-left: 10px; */
+            padding-left: 10px;
+            font-size: 12px;
+            border-radius: 4px;
         }
     }
 }

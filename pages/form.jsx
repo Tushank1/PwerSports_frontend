@@ -23,7 +23,7 @@ function Form() {
   const [images, setImages] = useState([""]);
   const [colors, setColors] = useState([""]);
   const [sizes, setSizes] = useState([""]);
-  const [showModal, updateShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const colors_name = [
     "Beige",
@@ -62,19 +62,18 @@ function Form() {
   ];
 
   // Fetch categories from API
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/dashboard/categories"
+      );
+      setCategory(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error.message || error);
+      alert("An error occurred while fetching categories.");
+    }
+  };
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/dashboard/categories"
-        );
-        setCategory(response.data);
-      } catch (error) {
-        console.error("Error fetching categories:", error.message || error);
-        alert("An error occurred while fetching categories.");
-      }
-    };
-
     fetchCategories();
   }, []);
 
@@ -249,7 +248,7 @@ function Form() {
             ? newModel
             : undefined,
         images: images.filter((image) => image !== ""),
-        price: parseFloat(price),
+        price: parseFloat(price.replace(",", "")),
         name,
         colors: colors.filter((color) => color !== ""),
         sizes: sizes.filter((size) => size !== ""),
@@ -292,8 +291,6 @@ function Form() {
 
         // Fetch updated data for dropdowns
         fetchCategories();
-        fetchBrands();
-        fetchModels();
       }
     } catch (error) {
       console.error("Error:", error.message || error);
@@ -301,47 +298,53 @@ function Form() {
     }
   };
 
-  const toggleModal = () => updateShowModal((state) => !state);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="product-form">
       <div className="form-group">
         <label htmlFor="category">Category</label>
         <div className="outer_container">
-          <select
-            id="category"
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            required
-          >
-            <option value="" disabled>
-              Select a category
-            </option>
-            {category.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-            <option value="add-new">Add New Category</option>
-          </select>
+          <div className="outer_inner">
+            {!showModal && (
+              <select
+                id="category"
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                required
+              >
+                <option value="" disabled>
+                  Select a category
+                </option>
+                {category.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
+                <option value="add-new">Add New Category</option>
+              </select>
+            )}
+            {(selectedCategory === "add-new" || showModal) && (
+              <div className="new-category-input">
+                <input
+                  type="text"
+                  placeholder="Enter new category"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  required
+                />
+              </div>
+            )}
+          </div>
           <div className="plus">
             <FaPlus onClick={toggleModal} />
             <Modal canShow={showModal} updateModalState={toggleModal} />
           </div>
         </div>
-        {selectedCategory === "add-new" && (
-          <div className="new-category-input">
-            <input
-              type="text"
-              placeholder="Enter new category"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              required
-            />
-          </div>
-        )}
       </div>
-      {isNewCategory && (
+      {(isNewCategory || showModal) && (
         <div className="form-group">
           <label htmlFor="description">Category Description</label>
           <textarea
@@ -357,94 +360,103 @@ function Form() {
       <div className="form-group">
         <label htmlFor="brand">Brand</label>
         <div className="outer_container">
-          {!isNewCategory && (
-            <>
-              <select
-                id="brand"
-                value={selectedBrand}
-                onChange={handleBrandChange}
-                required
-                disabled={brands.length === 0}
-              >
-                <option value="" disabled>
-                  Select a brand
-                </option>
-                {brands.length > 0 ? (
-                  brands.map((brand) => (
-                    <option key={brand.id} value={brand.id}>
-                      {brand.brand_name}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No brands available</option>
-                )}
-                <option value="add-new">Add New Brand</option>
-              </select>
-              <div className="plus">
-                <FaPlus />
+          <div className="outer_inner">
+            {!isNewCategory && !showModal && (
+              <>
+                <select
+                  id="brand"
+                  value={selectedBrand}
+                  onChange={handleBrandChange}
+                  required
+                  disabled={brands.length === 0}
+                >
+                  <option value="" disabled>
+                    Select a brand
+                  </option>
+                  {brands.length > 0 ? (
+                    brands.map((brand) => (
+                      <option key={brand.id} value={brand.id}>
+                        {brand.brand_name}
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>No brands available</option>
+                  )}
+                  <option value="add-new">Add New Brand</option>
+                </select>
+              </>
+            )}
+            {(selectedBrand === "add-new" || showModal || isNewCategory) && (
+              <div className="new-Brand-input">
+                <input
+                  type="text"
+                  placeholder="Enter new brand"
+                  value={newBrand}
+                  onChange={(e) => setNewBrand(e.target.value)}
+                  required
+                />
               </div>
-            </>
+            )}
+          </div>
+          {!showModal && (
+            <div className="plus">
+              <FaPlus />
+            </div>
           )}
         </div>
-        {(selectedBrand === "add-new" || isNewCategory) && (
-          <div className="new-Brand-input">
-            <input
-              type="text"
-              placeholder="Enter new brand"
-              value={newBrand}
-              onChange={(e) => setNewBrand(e.target.value)}
-              required
-            />
-          </div>
-        )}
       </div>
       <div className="form-group">
         <label htmlFor="model">Model</label>
         <div className="outer_container">
-          {!isNewCategory && selectedBrand !== "add-new" && (
-            <>
-              <select
-                id="model"
-                type="text"
-                value={selectedModel}
-                onChange={(e) => setSelectedModel(e.target.value)}
-                placeholder="Enter model name"
-                disabled={brands.length === 0}
-                required
-              >
-                <option value="" disabled>
-                  Select a model
-                </option>
-                {models.length > 0 ? (
-                  models.map((model) => (
-                    <option key={model.id} value={model.id}>
-                      {model.model}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No models available</option>
-                )}
-                <option value="add-new">Add New Model</option>
-              </select>
-              <div className="plus">
-                <FaPlus />
+          <div className="outer_inner">
+            {!isNewCategory && selectedBrand !== "add-new" && !showModal && (
+              <>
+                <select
+                  id="model"
+                  type="text"
+                  value={selectedModel}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  placeholder="Enter model name"
+                  disabled={brands.length === 0}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a model
+                  </option>
+                  {models.length > 0 ? (
+                    models.map((model) => (
+                      <option key={model.id} value={model.id}>
+                        {model.model}
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>No models available</option>
+                  )}
+                  <option value="add-new">Add New Model</option>
+                </select>
+              </>
+            )}
+            {(selectedModel === "add-new" ||
+              showModal ||
+              isNewCategory ||
+              selectedBrand === "add-new") && (
+              <div className="new-Model-input">
+                <input
+                  type="text"
+                  placeholder="Enter new model"
+                  value={newModel}
+                  onChange={(e) => setNewModel(e.target.value)}
+                  required
+                />
               </div>
-            </>
+            )}
+          </div>
+          {!showModal && (
+            <div className="plus">
+              <FaPlus />
+            </div>
           )}
         </div>
-        {(selectedModel === "add-new" ||
-          isNewCategory ||
-          selectedBrand === "add-new") && (
-          <div className="new-Model-input">
-            <input
-              type="text"
-              placeholder="Enter new model"
-              value={newModel}
-              onChange={(e) => setNewModel(e.target.value)}
-              required
-            />
-          </div>
-        )}
       </div>
       <div className="form-group">
         <label htmlFor="name">Product Name</label>

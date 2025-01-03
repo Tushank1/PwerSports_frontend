@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home_body from "../pages/home_body";
-import Helmets from "../pages/helmets";
-import Footer from "../pages/footer";
+import Home_body from "../pages/Home_body";
+import Products from "../pages/Products";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
-import Product from "../pages/product_page";
-import Form from "../pages/form";
+import Product_item from "../pages/Product_page";
+import Form from "../pages/Form";
 
 function App() {
   return (
@@ -13,10 +12,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home_body />} />
-          <Route path="/helmets" element={<Helmets />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:category" element={<Products />} />
+          <Route path="/product_item" element={<Product_item />} />
           <Route path="/form" element={<Form />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/footer" element={<Footer />} />
         </Routes>
       </Router>
     </>

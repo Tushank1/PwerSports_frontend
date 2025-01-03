@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "../pages_css/Modal.css";
+import PropTypes from "prop-types";
 
 const Modal = ({ canShow, updateModalState }) => {
+  const [newCategory, setNewCategory] = useState("");
+  const [categoryDescription, setCategoryDescription] = useState("");
+
+  const handleCreate = () => {
+    if (newCategory && categoryDescription) {
+      console.log({ name: newCategory, description: categoryDescription });
+      updateModalState(); // Close modal after submission
+    } else {
+      alert("Please fill all the fields");
+    }
+  };
   if (canShow) {
     return (
-      <div className="outer">
+      <div
+        // className={`outer ${canShow ? "hidden" : "visible"}`}
+        className={"outer"}
+        // aria-hidden={canShow}
+        aria-modal="true"
+        role="dialog"
+      >
         <h2>ADD NEW CATEGORY</h2>
         <div className="inner_container">
           <div className="inner_container_heading">
@@ -13,9 +31,8 @@ const Modal = ({ canShow, updateModalState }) => {
               <input
                 type="text"
                 placeholder="Enter new category"
-                // value={newBrand}
-                // onChange={(e) => setNewBrand(e.target.value)}
-                required
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
               />
             </div>
           </div>
@@ -26,26 +43,45 @@ const Modal = ({ canShow, updateModalState }) => {
             <div className="inner_container_description_desc">
               <textarea
                 id="description"
-                // value={categoryDescription}
-                // onChange={(e) => setCategoryDescription(e.target.value)}
+                value={categoryDescription}
+                onChange={(e) => setCategoryDescription(e.target.value)}
                 placeholder="Enter category description"
-                //rows="4" // Adjust rows for height
-                //cols="50" // Adjust cols for width or use CSS for better control
               ></textarea>
+            </div>
+          </div>
+          <div className="inner_container_brand">
+            <div className="inner_container_brand_heading">
+              <h4>Brand</h4>
+            </div>
+            <div className="inner_container_brand_input">
+              <input type="text" placeholder="Enter new brand" />
+            </div>
+          </div>
+          <div className="inner_container_model">
+            <div className="inner_container_model_heading">
+              <h4>Model</h4>
+            </div>
+            <div className="inner_container_model_input">
+              <input type="text" placeholder="Enter new model" />
             </div>
           </div>
         </div>
         <div className="buttons">
           <button className="hide" onClick={updateModalState}>
-            Hide Me
+            Close
           </button>
-          <button className="create">Create</button>
+          <button className="create" onClick={handleCreate}>
+            Create
+          </button>
         </div>
       </div>
     );
   }
+};
 
-  return null;
+Modal.propTypes = {
+  canShow: PropTypes.bool.isRequired,
+  updateModalState: PropTypes.func.isRequired,
 };
 
 export default Modal;

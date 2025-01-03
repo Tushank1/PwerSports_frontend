@@ -1,12 +1,12 @@
 import "../pages_css/product_page.css";
-import Header from "./header";
+import Header from "./Header";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { LuStar } from "react-icons/lu";
 import { LiaTapeSolid } from "react-icons/lia";
 import { FiTruck } from "react-icons/fi";
 
-function Product() {
+function Product_item() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -153,4 +153,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Product_item;
