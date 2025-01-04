@@ -13,7 +13,7 @@
         display: flex;
         /* border: 1px solid blue; */
         margin-left: 30px;
-        width: 100px;
+        width: 140px;
         height: auto;
         flex-direction: column;
         overflow-y: auto;
@@ -26,9 +26,10 @@
 
         .product_left_container_left_img_sub {
             display: flex;
-            width: 100%;
-            height: 80px;
-            /* border: 1px solid gold; */
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid black; */
+            cursor: pointer;
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
@@ -44,7 +45,7 @@
     .product_left_container_right_img {
         display: flex;
         /* border: 1px solid purple; */
-        margin-left: 15px;
+        /* margin-left: auto; */
         width: 100%;
         height: 100%;
         justify-content: center;
@@ -226,19 +227,19 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                gap: 20px;
+                gap: 10px;
 
                 .product_right_container_other_stuff_size_box {
                     display: flex;
                     border: 2px dotted black;
-                    width: auto;
+                    width: 10px;
                     padding: 0px 10px;
                     height: 30px;
                     align-items: center;
                     justify-content: center;
                     margin-top: 10px;
                     letter-spacing: 1px;
-                    /* flex-direction: column; */
+                    /* flex-direction: row; */
     
                     span {
                         font-weight: 100;
