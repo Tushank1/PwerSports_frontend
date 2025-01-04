@@ -12,9 +12,13 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home_body />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:category" element={<Products />} />
+          {/* <Route path="/products" element={<Products />} /> */}
+          <Route path="/collections/:category" element={<Products />} />
           <Route path="/product_item" element={<Product_item />} />
+          <Route
+            path="/collections/:category/products/:productIDName"
+            element={<Product_item />}
+          />
           <Route path="/form" element={<Form />} />
         </Routes>
       </Router>

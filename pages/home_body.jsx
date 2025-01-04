@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import axios from "axios";
 import "../pages_css/home_body.css";
 import React from "react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -15,9 +16,26 @@ import { useNavigate } from "react-router-dom";
 function Home_body() {
   let navigate = useNavigate();
 
-  const routeChange = (category) => {
-    let path = `/products/${category}`;
-    navigate(path);
+  const routeChange = async (category) => {
+    let path = `/collections/${category}`;
+    const id = await forCategory_ID(category);
+    if (id) {
+      navigate(path, { state: { categoryID: id } });
+    }
+  };
+
+  const forCategory_ID = async (category_param) => {
+    try {
+      const result = await axios.post(
+        `http://127.0.0.1:8000/dashboard/category/${category_param}`
+      );
+      const id = result.data.id;
+      // console.log(id, "Success");
+      return id;
+    } catch (error) {
+      console.error("Error fetching categorie ID:", error.message || error);
+      alert("An error occurred while fetching categories.");
+    }
   };
 
   return (
@@ -122,7 +140,7 @@ function Home_body() {
           <div className="attributes_type_main_container_first_row">
             <div
               className="attributes_type_main_container_first"
-              onClick={() => routeChange("helmets")}
+              onClick={() => routeChange("Helmets".toLowerCase())}
             >
               <div className="attributes_type_main_container_first_img">
                 <img src="/helmets.png" alt="HELMETS" />

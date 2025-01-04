@@ -60,10 +60,14 @@
                     display: flex;
                     flex-direction: row;
                     padding-left: 10px;
-                    margin-bottom: 8px;
+                    /* margin-bottom: 4px; */
+                    /* border: 1px solid red; */
 
                     & label {
                         padding-left: 5px;
+                        padding-top: 5px;
+                        letter-spacing: 0.5px;
+                        font-weight: 400;
                     }
                 }
             }
@@ -92,10 +96,13 @@
                     display: flex;
                     flex-direction: row;
                     padding-left: 10px;
-                    margin-bottom: 8px;
+                    /* margin-bottom: 8px; */
 
                     & label {
                         padding-left: 5px;
+                        padding-top: 5px;
+                        letter-spacing: 0.5px;
+                        font-weight: 400;
                     }
                 }
             }
@@ -124,10 +131,12 @@
                     display: flex;
                     flex-direction: row;
                     padding-left: 10px;
-                    margin-bottom: 8px;
+                    /* margin-bottom: 8px; */
 
                     & label {
                         padding-left: 5px;
+                        padding-top: 5px;
+                        font-weight: 500;
                     }
                 }
             }
@@ -200,7 +209,7 @@
         .product_main_right_description {
             display: flex;
             /* border: 1px solid green; */
-            margin-top: 30px;
+            margin-top: 20px;
             width: 100%;
             height: auto;
             padding: 10px 0;
@@ -270,14 +279,14 @@
             width: 100%;
             margin-top: 30px;
             flex-wrap: wrap;
-            justify-content: center;
+            /* justify-content: center; */
 
             .product_main_right_product_cart {
                 display: flex;
                 /* border: 1px solid blue; */
                 height: 300px;
                 width: 200px;
-                margin: 20px 10px;
+                margin: 20px 11px;
                 flex-direction: column;
                 cursor: pointer;
 
@@ -288,12 +297,14 @@
                     height: 200px;
                     position: relative;
                     justify-content: center;
+                    overflow: hidden;
 
                     img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         background: none;
+                        transition: transform 0.3s ease, opacity 0.3s ease;
                     }
 
                     .product_main_right_product_cart_img_button {

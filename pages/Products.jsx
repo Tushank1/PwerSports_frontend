@@ -2,165 +2,250 @@ import axios from "axios";
 import "../pages_css/Products.css";
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 function Products() {
   const [visibility, setVisibility] = useState({
     brands: false,
     models: false,
     size: false,
-    colors: false,
   });
-  const brands = ["AXXIS", "BRAND2", "BRAND3", "BRAND4", "BRAND5"];
-  const models = ["Model1", "Model2", "Model3"];
-  const size = ["Small", "Medium", "Large"];
-  const colors = ["Red", "Blue", "Green"];
 
+  const [hovered, setHovered] = useState(false);
+  const [categoryData, setCategoryData] = useState(null);
   const { category } = useParams();
-  // console.log(category);
+  const location = useLocation();
+  const categoryID = location.state?.categoryID;
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedModels, setSelectedModels] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  // console.log("Category:", category);
+  // console.log("Category ID:", categoryID);
+
+  let navigate = useNavigate();
+
+  const routeChange = async (productIDName, ID) => {
+    let path = `/collections/${category}/products/${productIDName}`;
+
+    navigate(path, { state: { productID: ID } });
+  };
 
   useEffect(() => {
-    const forCategory_ID = async (category_param) => {
+    const fetchData = async (id) => {
       try {
-        const result = await axios.post(
-          `http://127.0.0.1:8000/dashboard/category/${category_param}`
+        const response = await axios.post(
+          `http://127.0.0.1:8000/collections/${id}`
         );
-        const id = result.data.id;
-        return id;
-        // console.log(id, "Success");
+        const response_data = response.data;
+        // console.log(response_data.category.description);
+        setCategoryData(response_data);
+        // console.log("First:", categoryData);
+        return response_data;
       } catch (error) {
-        console.error("Error fetching categorie ID:", error.message || error);
-        alert("An error occurred while fetching categories.");
+        console.error("Error fetching data:", error.message || error);
+        alert("An error occurred while fetching data.");
       }
     };
+    fetchData(categoryID);
+  }, [categoryID]);
 
-    const fetchData = async () => {
-      if (category) {
-        const id = await forCategory_ID(category);
-        if (id) {
-          const responseData = await data(id);
-          if (responseData) {
-            console.log(responseData);
-            return responseData;
-          }
-        }
-      }
-    };
+  // console.log("Second:", categoryData);
 
-    fetchData();
-  }, [category]);
-
-  const data = async (id) => {
-    try {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/collections/${id}`
-      );
-      const response_data = response.data;
-      console.log(response_data.category.description);
-      return response_data;
-    } catch (erro) {
-      console.error("Error fetching data:", error.message || error);
-      alert("An error occurred while fetching data.");
+  // Log updated categoryData
+  useEffect(() => {
+    if (categoryData) {
+      console.log("Updated categoryData:", categoryData);
     }
-  };
+  }, [categoryData]);
+
+  // Render based on the data
+  if (!categoryData) {
+    return <div>Loading...</div>; // Or any loading spinner/placeholder
+  }
 
   const toggleVisibility = (section) => {
     setVisibility((prev) => ({
       ...prev,
-      [section]: !prev[section], // Toggle the visibility of the specified section
+      [section]: !prev[section],
     }));
   };
+
+  // Handle brand selection
+  const handleBrandSelection = (brandId) => {
+    setSelectedBrands(
+      (prev) =>
+        prev.includes(brandId)
+          ? prev.filter((id) => id !== brandId) // Remove if already selected
+          : [...prev, brandId] // Add if not selected
+    );
+  };
+
+  // Handle model selection
+  const handleModelSelection = (modelId) => {
+    setSelectedModels(
+      (prev) =>
+        prev.includes(modelId)
+          ? prev.filter((id) => id !== modelId) // Remove if already selected
+          : [...prev, modelId] // Add if not selected
+    );
+  };
+
+  // Handle size selection
+  const handleSizeSelection = (sizeId) => {
+    setSelectedSizes((prev) =>
+      prev.includes(sizeId)
+        ? prev.filter((id) => id !== sizeId)
+        : [...prev, sizeId]
+    );
+  };
+  // Filter brands based on selected models
+  const filterBrands =
+    selectedModels.length > 0
+      ? categoryData.models
+          .filter((model) => selectedModels.includes(model.id))
+          .map((model) => model.brand_id)
+      : categoryData.brands.map((brand) => brand.id);
+
+  // Filter models based on selected brands
+  const filteredModels =
+    selectedBrands.length > 0
+      ? categoryData.models.filter((model) =>
+          selectedBrands.includes(model.brand_id)
+        )
+      : categoryData.models;
+
+  // Filter sizes based on selected models or brands
+  // const filterSizes =
+  //   selectedModels.length > 0
+  //     ? categoryData.
+  //     : categoryData.sizes;
+
+  // Filter products based on selected brands and models
+  const filteredProducts = categoryData.products.filter(
+    (product) =>
+      (selectedBrands.length === 0 ||
+        selectedBrands.includes(product.brand_id)) &&
+      (selectedModels.length === 0 || selectedModels.includes(product.model_id))
+    // (selectedSizes.length === 0 ||
+    //   categoryData.sizes
+    //     .filter((size) => selectedSizes.includes(size.sizes))
+    //     .some((size) => size.products_id === product.id))
+  );
+
   return (
     <>
       <Header />
       <div className="product_main">
         <div className="product_main_left">
           <div className="product_main_left_inner">
-            <div className="product_main_left_inner_brand">
-              <div
-                className="product_main_left_inner_brand_heading"
-                onClick={() => toggleVisibility("brands")}
-              >
-                <span>Brand</span>
-                <i
-                  className={`fa-solid ${
-                    visibility.brands ? "fa-angle-up" : "fa-angle-down"
-                  }`}
-                ></i>
+            {categoryData.brands && (
+              <div className="product_main_left_inner_brand">
+                <div
+                  className="product_main_left_inner_brand_heading"
+                  onClick={() => toggleVisibility("brands")}
+                >
+                  <span>Brand</span>
+                  <i
+                    className={`fa-solid ${
+                      visibility.brands ? "fa-angle-up" : "fa-angle-down"
+                    }`}
+                  ></i>
+                </div>
+                {visibility.brands && // Ensure brands are visible before rendering
+                  categoryData.brands
+                    .filter((brand) => filterBrands.includes(brand.id))
+                    .map((brand) => (
+                      <div
+                        className="product_main_left_inner_brand_subparts"
+                        key={brand.id}
+                      >
+                        <input
+                          type="checkbox"
+                          id={`brand${brand.id}`}
+                          name={`brand${brand.id}`}
+                          value={brand.id}
+                          checked={selectedBrands.includes(brand.id)} // Check if selected
+                          onChange={() => handleBrandSelection(brand.id)}
+                        />
+                        <label htmlFor={`brand${brand.id}`}>
+                          {brand.brand_name.toUpperCase()}
+                        </label>
+                      </div>
+                    ))}
               </div>
-              {visibility.brands && // Conditionally render the checkboxes
-                brands.map((brand, index) => (
-                  <div
-                    className="product_main_left_inner_brand_subparts"
-                    key={index}
-                  >
-                    <input
-                      type="checkbox"
-                      id={`brand${index}`}
-                      name={`brand${index}`}
-                      value={brand}
-                    />
-                    <label htmlFor={`brand${index}`}>{brand}</label>
-                  </div>
-                ))}
-            </div>
-            <div className="product_main_left_inner_model">
-              <div
-                className="product_main_left_inner_model_heading"
-                onClick={() => toggleVisibility("models")}
-              >
-                <span>Model</span>
-                <i
-                  className={`fa-solid ${
-                    visibility.models ? "fa-angle-up" : "fa-angle-down"
-                  }`}
-                ></i>
+            )}
+            {categoryData.models && (
+              <div className="product_main_left_inner_model">
+                <div
+                  className="product_main_left_inner_model_heading"
+                  onClick={() => toggleVisibility("models")}
+                >
+                  <span>Model</span>
+                  <i
+                    className={`fa-solid ${
+                      visibility.models ? "fa-angle-up" : "fa-angle-down"
+                    }`}
+                  ></i>
+                </div>
+                {visibility.models && // Conditionally render the checkboxes
+                  filteredModels.map((model) => (
+                    <div
+                      className="product_main_left_inner_model_subparts"
+                      key={model.id}
+                    >
+                      <input
+                        type="checkbox"
+                        id={`model${model.id}`}
+                        name={`model${model.id}`}
+                        value={model.id}
+                        checked={selectedModels.includes(model.id)} // Check if selected
+                        onChange={() => handleModelSelection(model.id)}
+                      />
+                      <label htmlFor={`model${model.id}`}>
+                        {model.model_name.toUpperCase()}
+                      </label>
+                    </div>
+                  ))}
               </div>
-              {visibility.models && // Conditionally render the checkboxes
-                models.map((model, index) => (
-                  <div
-                    className="product_main_left_inner_model_subparts"
-                    key={index}
-                  >
-                    <input
-                      type="checkbox"
-                      id={`model${index}`}
-                      name={`model${index}`}
-                      value={model}
-                    />
-                    <label htmlFor={`model${index}`}>{model}</label>
-                  </div>
-                ))}
-            </div>
-            <div className="product_main_left_inner_size">
-              <div
-                className="product_main_left_inner_size_heading"
-                onClick={() => toggleVisibility("size")}
-              >
-                <span>Size</span>
-                <i
-                  className={`fa-solid ${
-                    visibility.size ? "fa-angle-up" : "fa-angle-down"
-                  }`}
-                ></i>
+            )}
+            {categoryData.sizes && (
+              <div className="product_main_left_inner_size">
+                <div
+                  className="product_main_left_inner_size_heading"
+                  onClick={() => toggleVisibility("size")}
+                >
+                  <span>Size</span>
+                  <i
+                    className={`fa-solid ${
+                      visibility.size ? "fa-angle-up" : "fa-angle-down"
+                    }`}
+                  ></i>
+                </div>
+                {visibility.size && // Conditionally render the checkboxes
+                  [
+                    ...new Map(
+                      categoryData.sizes.map((size) => [size.sizes, size])
+                    ).values(),
+                  ].map((size) => (
+                    <div
+                      className="product_main_left_inner_size_subparts"
+                      key={size.id}
+                    >
+                      <input
+                        type="checkbox"
+                        id={`size${size.id}`}
+                        name={`size${size.id}`}
+                        value={size.id}
+                        onChange={() => handleSizeSelection(size.id)}
+                      />
+                      <label htmlFor={`size${size.id}`}>
+                        {size.sizes.toUpperCase()}
+                      </label>
+                    </div>
+                  ))}
               </div>
-              {visibility.size && // Conditionally render the checkboxes
-                size.map((size, index) => (
-                  <div
-                    className="product_main_left_inner_size_subparts"
-                    key={index}
-                  >
-                    <input
-                      type="checkbox"
-                      id={`size${index}`}
-                      name={`size${index}`}
-                      value={size}
-                    />
-                    <label htmlFor={`size${index}`}>{size}</label>
-                  </div>
-                ))}
-            </div>
-            <div className="product_main_left_inner_color">
+            )}
+            {/* <div className="product_main_left_inner_color">
               <div
                 className="product_main_left_inner_color_heading"
                 onClick={() => toggleVisibility("colors")}
@@ -187,20 +272,17 @@ function Products() {
                     <label htmlFor={`color${index}`}>{color}</label>
                   </div>
                 ))}
-            </div>
-            {/* <div className="product_main_left_inner_model">
-              <span>Model</span>
             </div> */}
           </div>
         </div>
         <div className="product_main_right">
           <div className="product_main_right_heading_outer">
             <div className="product_main_right_heading_inner">
-              <h1>{responseData.category.name}</h1>
+              <h1>{categoryData.category.name.toUpperCase()}</h1>
             </div>
           </div>
           <div className="product_main_right_description">
-            <span>{responseData.category.description}</span>
+            <span>{categoryData.category.description}</span>
           </div>
           {category === "helmets" && (
             <div className="product_main_right_helmets_sub">
@@ -250,29 +332,63 @@ function Products() {
               </div>
             </div>
           )}
-          <div className="product_main_right_product">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div className="product_main_right_product_cart" key={i}>
-                <div className="product_main_right_product_cart_img">
-                  <img
-                    src="https://powersports.in/cdn/shop/collections/axxis-mobile.jpg?v=1677575261&width=540"
-                    alt=""
-                  />
-                  <div className="product_main_right_product_cart_img_button">
-                    <span>Quick view</span>
+          <>
+            <div className="product_main_right_product">
+              {filteredProducts.map((product) => {
+                // Filter images for each product by product_id
+                const product_image = categoryData.img.filter(
+                  (image) => image.product_id === product.id
+                );
+
+                // Get the first image from the filtered list
+                const firstImage =
+                  product_image.length > 0 ? product_image[0].image_url : null;
+
+                const secondImage =
+                  product_image.length > 1
+                    ? product_image[1].image_url
+                    : firstImage;
+                return (
+                  <div
+                    className="product_main_right_product_cart"
+                    key={product.id}
+                    onClick={() =>
+                      routeChange(
+                        product.name.replace(/ /g, "-").toLowerCase(),
+                        product.id
+                      )
+                    }
+                  >
+                    <div
+                      className="product_main_right_product_cart_img"
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                    >
+                      <img
+                        src={firstImage}
+                        alt={`Image of ${product.name}`}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.src = secondImage)
+                        }
+                        onMouseLeave={(e) => (e.currentTarget.src = firstImage)}
+                      />
+                      <div className="product_main_right_product_cart_img_button">
+                        <span>Quick view</span>
+                      </div>
+                    </div>
+                    <div className="product_main_right_product_cart_content">
+                      <div className="product_main_right_product_cart_content_name">
+                        <span>{product.name}</span>
+                      </div>
+                      <div className="product_main_right_product_cart_content_price">
+                        <span>Rs. {product.price}.00</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="product_main_right_product_cart_content">
-                  <div className="product_main_right_product_cart_content_name">
-                    <span>SMK Typhoon Solid Gloss Black Helmet</span>
-                  </div>
-                  <div className="product_main_right_product_cart_content_price">
-                    <span>Rs. 4,950.00</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+          </>
         </div>
       </div>
     </>

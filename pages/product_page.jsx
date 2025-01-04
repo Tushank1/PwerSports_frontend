@@ -5,31 +5,44 @@ import axios from "axios";
 import { LuStar } from "react-icons/lu";
 import { LiaTapeSolid } from "react-icons/lia";
 import { FiTruck } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 
 function Product_item() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const [productData, setProductData] = useState([]);
 
-  //   // Fetch images from the database
-  //   useEffect(() => {
-  //     const fetchImages = async () => {
-  //       try {
-  //         const response = await axios.get("/api/images"); // Replace with your API endpoint
-  //         setImages(response.data.images);
-  //         if (response.data.length > 0) {
-  //           setSelectedImage(response.data[0]); // Set the first image as default
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching images:", error);
-  //       }
-  //     };
+  const location = useLocation();
+  const productID = location.state?.productID;
 
-  //     fetchImages();
-  //   }, []);
+  console.log("Loaction:", location);
+  console.log("ID:", productID);
+
+  // Fetch images from the database
+  useEffect(() => {
+    const fetchData = async (id) => {
+      try {
+        const response = await axios.post(
+          `http://127.0.0.1:8000/collections/${id}`
+        );
+        const response_data = response.data;
+        setProductData(response_data);
+        console.log(response_data);
+        return response_data;
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchData(productID);
+  }, [productID]);
+
+  if (!productData) {
+    <div>...Loading...</div>;
+  }
 
   return (
     <>
