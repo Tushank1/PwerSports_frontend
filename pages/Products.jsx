@@ -3,12 +3,14 @@ import "../pages_css/Products.css";
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 function Products() {
   const [visibility, setVisibility] = useState({
     brands: false,
     models: false,
     size: false,
+    price: false,
   });
 
   const [hovered, setHovered] = useState(false);
@@ -19,6 +21,8 @@ function Products() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedModels, setSelectedModels] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const [price, setPrice] = useState(50000);
+  const [selectedPrice, setSelectedPrice] = useState(false);
   // console.log("Category:", category);
   // console.log("Category ID:", categoryID);
 
@@ -91,46 +95,69 @@ function Products() {
   };
 
   // Handle size selection
-  const handleSizeSelection = (sizeId) => {
+  const handleSizeSelection = (sizeSizes) => {
     setSelectedSizes((prev) =>
-      prev.includes(sizeId)
-        ? prev.filter((id) => id !== sizeId)
-        : [...prev, sizeId]
+      prev.includes(sizeSizes)
+        ? prev.filter((id) => id !== sizeSizes)
+        : [...prev, sizeSizes]
     );
   };
-  // Filter brands based on selected models
+
+  // Filter products based on selected brands or models and sizes
+  const filteredProducts = categoryData.products.filter(
+    (product) =>
+      // product.price <= price &&
+      (selectedBrands.length === 0 ||
+        selectedBrands.includes(product.brand_id)) &&
+      (selectedModels.length === 0 ||
+        selectedModels.includes(product.model_id)) &&
+      (selectedSizes.length === 0 ||
+        categoryData.sizes
+          .filter((size) => selectedSizes.includes(size.sizes))
+          .some((size) => size.products_id === product.id)) &&
+      (selectedPrice ? product.price <= price : true)
+  );
+
+  // Filter brands based on selected models and sizes
   const filterBrands =
     selectedModels.length > 0
       ? categoryData.models
           .filter((model) => selectedModels.includes(model.id))
           .map((model) => model.brand_id)
+      : (selectedSizes.length > 0 || selectedPrice) &&
+        filteredProducts.length > 0
+      ? categoryData.brands
+          .filter((brand) =>
+            filteredProducts.some((product) => product.brand_id === brand.id)
+          )
+          .map((brand) => brand.id)
       : categoryData.brands.map((brand) => brand.id);
 
-  // Filter models based on selected brands
+  // Filter models based on selected brands and size
   const filteredModels =
     selectedBrands.length > 0
       ? categoryData.models.filter((model) =>
           selectedBrands.includes(model.brand_id)
         )
+      : (selectedSizes.length > 0 || selectedPrice) &&
+        filteredProducts.length > 0
+      ? categoryData.models.filter((model) =>
+          filteredProducts.some((product) => product.model_id === model.id)
+        )
       : categoryData.models;
 
   // Filter sizes based on selected models or brands
-  // const filterSizes =
-  //   selectedModels.length > 0
-  //     ? categoryData.
-  //     : categoryData.sizes;
+  const filterSizes =
+    filteredProducts.length > 0
+      ? categoryData.sizes.filter((size) =>
+          filteredProducts.some((product) => product.id === size.products_id)
+        )
+      : categoryData.sizes;
 
-  // Filter products based on selected brands and models
-  const filteredProducts = categoryData.products.filter(
-    (product) =>
-      (selectedBrands.length === 0 ||
-        selectedBrands.includes(product.brand_id)) &&
-      (selectedModels.length === 0 || selectedModels.includes(product.model_id))
-    // (selectedSizes.length === 0 ||
-    //   categoryData.sizes
-    //     .filter((size) => selectedSizes.includes(size.sizes))
-    //     .some((size) => size.products_id === product.id))
-  );
+  const handleSliderChange = (event) => {
+    setPrice(Number(event.target.value));
+    setSelectedPrice(true); // Update state with the slider value
+  };
 
   return (
     <>
@@ -224,7 +251,7 @@ function Products() {
                 {visibility.size && // Conditionally render the checkboxes
                   [
                     ...new Map(
-                      categoryData.sizes.map((size) => [size.sizes, size])
+                      filterSizes.map((size) => [size.sizes, size])
                     ).values(),
                   ].map((size) => (
                     <div
@@ -236,7 +263,7 @@ function Products() {
                         id={`size${size.id}`}
                         name={`size${size.id}`}
                         value={size.id}
-                        onChange={() => handleSizeSelection(size.id)}
+                        onChange={() => handleSizeSelection(size.sizes)}
                       />
                       <label htmlFor={`size${size.id}`}>
                         {size.sizes.toUpperCase()}
@@ -245,34 +272,35 @@ function Products() {
                   ))}
               </div>
             )}
-            {/* <div className="product_main_left_inner_color">
+            <div className="product_main_left_inner_price">
               <div
-                className="product_main_left_inner_color_heading"
-                onClick={() => toggleVisibility("colors")}
+                className="product_main_left_inner_price_heading"
+                onClick={() => toggleVisibility("price")}
               >
-                <span>Colors</span>
+                <span>Price</span>
                 <i
                   className={`fa-solid ${
-                    visibility.colors ? "fa-angle-up" : "fa-angle-down"
+                    visibility.price ? "fa-angle-up" : "fa-angle-down"
                   }`}
                 ></i>
               </div>
-              {visibility.colors && // Conditionally render the checkboxes
-                colors.map((color, index) => (
-                  <div
-                    className="product_main_left_inner_color_subparts"
-                    key={index}
-                  >
+              {visibility.price && (
+                <>
+                  <div className="product_main_left_inner_price_slidercontainer">
                     <input
-                      type="checkbox"
-                      id={`color${index}`}
-                      name={`color${index}`}
-                      value={color}
+                      type="range"
+                      min="1"
+                      max="50000"
+                      value={price}
+                      className="slider"
+                      id="myRange"
+                      onChange={handleSliderChange}
                     />
-                    <label htmlFor={`color${index}`}>{color}</label>
                   </div>
-                ))}
-            </div> */}
+                  <div className="slider-value">Selected Price: ₹ {price}</div>
+                </>
+              )}
+            </div>
           </div>
         </div>
         <div className="product_main_right">
@@ -391,6 +419,7 @@ function Products() {
           </>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

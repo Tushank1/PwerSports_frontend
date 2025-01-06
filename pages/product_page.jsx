@@ -14,6 +14,8 @@ function Product_item() {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [productData, setProductData] = useState([]);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const location = useLocation();
   const productID = location.state?.productID;
@@ -49,6 +51,27 @@ function Product_item() {
       setSelectedImage(productData.Image[0].image_url);
     }
   }, [productData]);
+
+  useEffect(() => {
+    // Automatically set the first color as the selected color on component mount
+    if (productData.Color && productData.Color.length > 0) {
+      setSelectedColor(productData.Color[0].id);
+    }
+  }, [productData.Color]);
+
+  const handleColorSelect = (id) => {
+    setSelectedColor(id);
+  };
+
+  useEffect(() => {
+    if (productData.Size && productData.Size.length > 0) {
+      setSelectedSize(productData.Size[0].id);
+    }
+  }, [productData.Size]);
+
+  const handleSizeSelect = (id) => {
+    setSelectedSize(id);
+  };
 
   return (
     <>
@@ -119,16 +142,20 @@ function Product_item() {
               <div className="product_right_container_other_stuff_color_heading">
                 <h5>COLOR</h5>
               </div>
-              {productData.Color.map((col) => (
-                <div className="product_right_container_other_stuff_color_different">
+              <div className="product_right_container_other_stuff_color_different">
+                {productData.Color.map((col) => (
                   <div
                     className="product_right_container_other_stuff_color_box"
                     key={col.id}
+                    style={{
+                      border: selectedColor === col.id && "2px solid black",
+                    }}
+                    onClick={() => handleColorSelect(col.id)}
                   >
                     <span>{col.available_colors.toUpperCase()}</span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           )}
           {productData.Size && (
@@ -141,6 +168,10 @@ function Product_item() {
                   <div
                     className="product_right_container_other_stuff_size_box"
                     key={size.id}
+                    onClick={() => handleSizeSelect(size.id)}
+                    style={{
+                      border: selectedSize === size.id && "2px solid black",
+                    }}
                   >
                     <span>{size.sizes}</span>
                   </div>
@@ -167,7 +198,7 @@ function Product_item() {
                   ×
                 </button>
                 <img
-                  src="./size_chart.png" // Replace with your size chart image URL
+                  src="/size_chart.png" // Replace with your size chart image URL
                   alt="Size Chart"
                 />
               </div>

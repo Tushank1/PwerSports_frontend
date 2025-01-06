@@ -14,6 +14,7 @@ function Form() {
   const [selectedBrand, setSelectedBrand] = useState(""); // For selected brand
   const [newBrand, setNewBrand] = useState(""); // For new category input
   const [isNewBrand, setIsNewBrand] = useState(false);
+  const [brandDescription, setBrandDescription] = useState("");
   const [models, setModels] = useState([]);
   const [selectedModel, setSelectedModel] = useState("");
   const [newModel, setNewModel] = useState("");
@@ -24,42 +25,6 @@ function Form() {
   const [colors, setColors] = useState([""]);
   const [sizes, setSizes] = useState([""]);
   const [showModal, setShowModal] = useState(false);
-
-  const colors_name = [
-    "Beige",
-    "Black",
-    "Blue",
-    "Bronze",
-    "Burgundy",
-    "Charcoal",
-    "Copper",
-    "Crimson",
-    "Emerald",
-    "Gold",
-    "Gray",
-    "Green",
-    "Ivory",
-    "Lavender",
-    "Lemon",
-    "Lime",
-    "Maroon",
-    "Mint",
-    "Mustard",
-    "Navy",
-    "Olive",
-    "Orange",
-    "Peach",
-    "Pink",
-    "Purple",
-    "Red",
-    "Scarlet",
-    "Silver",
-    "Sky Blue",
-    "Teal",
-    "Turquoise",
-    "White",
-    "Yellow",
-  ];
 
   // Fetch categories from API
   const fetchCategories = async () => {
@@ -192,6 +157,10 @@ function Form() {
     // console.log(categoryId, "selcted_bvrnad iskmknjnn");
     const brand_data = {
       new_brand: selectedBrand === "add-new" || newBrand ? newBrand : undefined,
+      brand_description:
+        selectedBrand === "add-new" || brandDescription
+          ? brandDescription
+          : undefined,
       category_id: categoryId,
     };
     // console.log(newBrand, "jhgggggggggggg");
@@ -278,6 +247,7 @@ function Form() {
         setSelectedBrand("");
         setNewBrand("");
         setIsNewBrand(false);
+        setBrandDescription("");
 
         setSelectedModel("");
         setNewModel("");
@@ -405,6 +375,19 @@ function Form() {
           )}
         </div>
       </div>
+      {(selectedBrand === "add-new" || showModal || isNewCategory) && (
+        <div className="form-group">
+          <label htmlFor="description">Brand Description</label>
+          <textarea
+            id="description"
+            value={brandDescription}
+            onChange={(e) => setBrandDescription(e.target.value)}
+            placeholder="Enter brand description"
+            rows="4" // Adjust rows for height
+            cols="50" // Adjust cols for width or use CSS for better control
+          ></textarea>
+        </div>
+      )}
       <div className="form-group">
         <label htmlFor="model">Model</label>
         <div className="outer_container">
@@ -527,22 +510,14 @@ function Form() {
         <label>Colors</label>
         {colors.map((color, index) => (
           <div key={index} className="input-group">
-            <select
-              id={`color-${index}`}
+            <input
+              id={`color-${index + 1}`}
               type="text"
-              value={color}
+              value={color.toUpperCase()}
               onChange={(e) => handleColorChange(index, e.target.value)}
+              placeholder="Enter a color like: Green, Red etc..."
               required
-            >
-              <option value="" disabled>
-                Select a color :
-              </option>
-              {colors_name.map((name, index) => (
-                <option key={index} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
+            />
             {index > 0 && (
               <button
                 type="button"
@@ -566,25 +541,14 @@ function Form() {
         <label>Sizes</label>
         {sizes.map((size, index) => (
           <div key={index} className="input-group">
-            <select
-              id={`size-${index}`}
+            <input
+              id={`size-${index + 1}`}
               type="text"
-              value={size}
+              value={size.toUpperCase()}
               onChange={(e) => handleSizeChange(index, e.target.value)}
-              placeholder="Select Size"
+              placeholder="Enter a size like: S, L , M etc..."
               required
-            >
-              <option value="" disabled>
-                Select a Size :
-              </option>
-              <option value="XS">XS</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-              <option value="XXL">XXL</option>
-              <option value="XXXL">XXXL</option>
-            </select>
+            />
             {index > 0 && (
               <button
                 type="button"
