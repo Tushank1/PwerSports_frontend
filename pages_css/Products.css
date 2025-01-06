@@ -168,7 +168,7 @@
                     margin-bottom: 8px;
 
                     .slider {
-                        -webkit-appearance: none;
+                        appearance: none;
                         width: 90%;
                         height: 5px;
                         border-radius: 5px;  
