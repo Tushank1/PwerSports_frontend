@@ -4,6 +4,7 @@ import Header from "./Header";
 import { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import Product_popup from "./Product_popup";
 
 function Products() {
   const [visibility, setVisibility] = useState({
@@ -23,6 +24,10 @@ function Products() {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [price, setPrice] = useState(50000);
   const [selectedPrice, setSelectedPrice] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 50;
+  const [selectedProductID, setSelectedProductID] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   // console.log("Category:", category);
   // console.log("Category ID:", categoryID);
 
@@ -31,7 +36,7 @@ function Products() {
   const routeChange = async (productIDName, ID) => {
     let path = `/collections/${category}/products/${productIDName}`;
 
-    navigate(path, { state: { productID: ID } });
+    navigate(path, { state: { productID: ID, category: category } });
   };
 
   useEffect(() => {
@@ -157,6 +162,37 @@ function Products() {
   const handleSliderChange = (event) => {
     setPrice(Number(event.target.value));
     setSelectedPrice(true); // Update state with the slider value
+  };
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  // Get current products for the page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
+
+  const openQuickView = (productID) => {
+    setSelectedProductID(productID);
+    setIsQuickViewOpen(true);
+    document.body.classList.add("popup-open");
+  };
+
+  const closeQuickView = () => {
+    setIsQuickViewOpen(false);
+    setSelectedProductID(null);
+    document.body.classList.remove("popup-open");
   };
 
   return (
@@ -380,12 +416,12 @@ function Products() {
                   <div
                     className="product_main_right_product_cart"
                     key={product.id}
-                    onClick={() =>
-                      routeChange(
-                        product.name.replace(/ /g, "-").toLowerCase(),
-                        product.id
-                      )
-                    }
+                    // onClick={() =>
+                    //   routeChange(
+                    //     product.name.replace(/ /g, "-").toLowerCase(),
+                    //     product.id
+                    //   )
+                    // }
                   >
                     <div
                       className="product_main_right_product_cart_img"
@@ -399,12 +435,29 @@ function Products() {
                           (e.currentTarget.src = secondImage)
                         }
                         onMouseLeave={(e) => (e.currentTarget.src = firstImage)}
+                        onClick={() =>
+                          routeChange(
+                            product.name.replace(/ /g, "-").toLowerCase(),
+                            product.id
+                          )
+                        }
                       />
-                      <div className="product_main_right_product_cart_img_button">
+                      <div
+                        className="product_main_right_product_cart_img_button"
+                        onClick={() => openQuickView(product.id)}
+                      >
                         <span>Quick view</span>
                       </div>
                     </div>
-                    <div className="product_main_right_product_cart_content">
+                    <div
+                      className="product_main_right_product_cart_content"
+                      onClick={() =>
+                        routeChange(
+                          product.name.replace(/ /g, "-").toLowerCase(),
+                          product.id
+                        )
+                      }
+                    >
                       <div className="product_main_right_product_cart_content_name">
                         <span>{product.name}</span>
                       </div>
@@ -415,8 +468,40 @@ function Products() {
                   </div>
                 );
               })}
+
+              {/* Quick View Popup */}
+              {isQuickViewOpen && (
+                <div className="quick-view-popup">
+                  <div className="quick-view-content">
+                    <button className="close-popup" onClick={closeQuickView}>
+                      ×
+                    </button>
+                    <Product_popup productID={selectedProductID} />
+                  </div>
+                </div>
+              )}
             </div>
           </>
+          {/* Pagination Controls */}
+          <div className="pagination">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="pagination_button"
+            >
+              Prev
+            </button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="pagination_button"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

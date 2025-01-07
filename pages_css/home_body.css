@@ -2060,9 +2060,12 @@
 
             .why_powersports_left_icon {
                 display: flex;
-                border: 1px solid red;
+                /* border: 1px solid red; */
                 height: 40px;
                 width: 60px;
+                font-size: 50px;
+                justify-content: center;
+                align-items: center;
             }
 
             .why_powersports_left_icon LiaShippingFastSolid{
@@ -2077,7 +2080,7 @@
                 font-size: larger;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 15px;
                 letter-spacing: 1px;
             }
 
@@ -2089,7 +2092,7 @@
                 font-size: medium;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 10px;
                 letter-spacing: 1px;
             }
         }
@@ -2105,9 +2108,12 @@
 
             .why_powersports_middle_icon {
                 display: flex;
-                border: 1px solid red;
-                height: 40px;
+                /* border: 1px solid red; */
+                height: 50px;
                 width: 60px;
+                font-size: 50px;
+                justify-content: center;
+                align-items: center;
             }
 
             .why_powersports_middle_head {
@@ -2118,7 +2124,7 @@
                 font-size: larger;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 10px;
                 letter-spacing: 1px;
             }
 
@@ -2126,11 +2132,11 @@
                 display: flex;
                 /* border: 1px solid green; */
                 height: 60px;
-                width: 90%;
+                width: 100%;
                 font-size: medium;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 10px;
                 letter-spacing: 1px;
                 line-height: 20px;
             }
@@ -2147,9 +2153,12 @@
 
             .why_powersports_right_icon {
                 display: flex;
-                border: 1px solid red;
+                /* border: 1px solid red; */
                 height: 40px;
                 width: 60px;
+                font-size: 50px;
+                justify-content: center;
+                align-items: center;
             }
 
             .why_powersports_right_head {
@@ -2172,7 +2181,7 @@
                 font-size: medium;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 10px;
                 letter-spacing: 1px;
             }
         }

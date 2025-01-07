@@ -1,14 +1,12 @@
-import "../pages_css/product_page.css";
-import Header from "./Header";
+import "../pages_css/Product_popup.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { LuStar } from "react-icons/lu";
 import { LiaTapeSolid } from "react-icons/lia";
 import { FiTruck } from "react-icons/fi";
-import { useLocation, useNavigate } from "react-router-dom";
-import { BsArrowLeft } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
 
-function Product_item() {
+function Product_popup({ productID: propProductID }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
@@ -16,15 +14,9 @@ function Product_item() {
   const [productData, setProductData] = useState([]);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
-  const navigate = useNavigate();
 
   const location = useLocation();
-  const productID = location.state?.productID;
-  const category = location.state?.category;
-
-  const goBack = () => {
-    navigate(-1);
-  };
+  const productID = propProductID;
 
   // console.log("Loaction:", location);
   // console.log("ID:", productID);
@@ -81,13 +73,12 @@ function Product_item() {
 
   return (
     <>
-      <Header />
-      <div className="product_left_container">
+      <div className="product_popup_left_container">
         {productData.Image && (
-          <div className="product_left_container_left_img">
+          <div className="product_popup_left_container_left_img">
             {productData.Image.map((image) => (
               <div
-                className="product_left_container_left_img_sub"
+                className="product_popup_left_container_left_img_sub"
                 key={image.id}
                 onClick={() => setSelectedImage(image.image_url)}
                 style={{
@@ -102,7 +93,7 @@ function Product_item() {
             ))}
           </div>
         )}
-        <div className="product_left_container_right_img">
+        <div className="product_popup_left_container_right_img">
           {selectedImage ? (
             <img src={selectedImage} alt="Selected product" />
           ) : (
@@ -110,48 +101,48 @@ function Product_item() {
           )}
         </div>
       </div>
-      <div className="product_right_container">
+      <div className="product_popup_right_container">
         {productData.Product && (
           <div
-            className="product_right_container_name"
+            className="product_popup_right_container_name"
             key={productData.Product.id}
           >
             <h2>{productData.Product.name.toUpperCase()}</h2>
           </div>
         )}
-        <div className="product_right_container_review_price">
-          <div className="product_right_container_review">
-            <div className="product_right_container_review_star">
+        <div className="product_popup_right_container_review_price">
+          <div className="product_popup_right_container_review">
+            <div className="product_popup_right_container_review_star">
               {Array.from({ length: 5 }).map((_, i) => (
                 <LuStar key={i} />
               ))}
             </div>
-            <div className="product_right_container_review_content">
+            <div className="product_popup_right_container_review_content">
               <span>No reviews</span>
             </div>
           </div>
           {productData.Product && (
             <div
-              className="product_right_container_price"
+              className="product_popup_right_container_price"
               key={productData.Product.id}
             >
               <span>Rs. {productData.Product.price}.00</span>
             </div>
           )}
-          <div className="product_right_container_review_price_content">
+          <div className="product_popup_right_container_review_price_content">
             <span>MRP is inclusive of all taxes.</span>
           </div>
         </div>
-        <div className="product_right_container_other_stuff">
+        <div className="product_popup_right_container_other_stuff">
           {productData.Color && (
-            <div className="product_right_container_other_stuff_color">
-              <div className="product_right_container_other_stuff_color_heading">
+            <div className="product_popup_right_container_other_stuff_color">
+              <div className="product_popup_right_container_other_stuff_color_heading">
                 <h5>COLOR</h5>
               </div>
-              <div className="product_right_container_other_stuff_color_different">
+              <div className="product_popup_right_container_other_stuff_color_different">
                 {productData.Color.map((col) => (
                   <div
-                    className="product_right_container_other_stuff_color_box"
+                    className="product_popup_right_container_other_stuff_color_box"
                     key={col.id}
                     style={{
                       border: selectedColor === col.id && "2px solid black",
@@ -165,14 +156,14 @@ function Product_item() {
             </div>
           )}
           {productData.Size && (
-            <div className="product_right_container_other_stuff_size">
-              <div className="product_right_container_other_stuff_size_heading">
+            <div className="product_popup_right_container_other_stuff_size">
+              <div className="product_popup_right_container_other_stuff_size_heading">
                 <h5>SIZE</h5>
               </div>
-              <div className="product_right_container_other_stuff_size_different">
+              <div className="product_popup_right_container_other_stuff_size_different">
                 {productData.Size.map((size) => (
                   <div
-                    className="product_right_container_other_stuff_size_box"
+                    className="product_popup_right_container_other_stuff_size_box"
                     key={size.id}
                     onClick={() => handleSizeSelect(size.id)}
                     style={{
@@ -186,13 +177,13 @@ function Product_item() {
             </div>
           )}
           <div
-            className="product_right_container_other_stuff_size_chart"
+            className="product_popup_right_container_other_stuff_size_chart"
             onClick={openModal}
           >
-            <div className="product_right_container_other_stuff_size_chart_txt">
+            <div className="product_popup_right_container_other_stuff_size_chart_txt">
               <span>SIZE CHART</span>
             </div>
-            <div className="product_right_container_other_stuff_size_chart_icon">
+            <div className="product_popup_right_container_other_stuff_size_chart_icon">
               <LiaTapeSolid />
             </div>
           </div>
@@ -210,27 +201,20 @@ function Product_item() {
               </div>
             </div>
           )}
-          <div className="product_right_container_other_stuff_size_shipping">
-            <div className="product_right_container_other_stuff_size_shipping_icon">
+          <div className="product_popup_right_container_other_stuff_size_shipping">
+            <div className="product_popup_right_container_other_stuff_size_shipping_icon">
               <FiTruck />
             </div>
-            <div className="product_right_container_other_stuff_size_shipping_txt">
+            <div className="product_popup_right_container_other_stuff_size_shipping_txt">
               <span>Free Shipping Across India</span>
             </div>
           </div>
-          <div className="product_right_container_other_stuff_button">
-            <div className="product_right_container_other_stuff_button_cart">
+          <div className="product_popup_right_container_other_stuff_button">
+            <div className="product_popup_right_container_other_stuff_button_cart">
               <span>ADD TO CART</span>
             </div>
-            <div className="product_right_container_other_stuff_button_buy">
+            <div className="product_popup_right_container_other_stuff_button_buy">
               <span>BUY IT NOW</span>
-            </div>
-            <div
-              className="product_right_container_other_stuff_back_button"
-              onClick={goBack}
-            >
-              <BsArrowLeft />
-              <span>BACK TO {category.toUpperCase()}</span>
             </div>
           </div>
         </div>
@@ -239,4 +223,4 @@ function Product_item() {
   );
 }
 
-export default Product_item;
+export default Product_popup;

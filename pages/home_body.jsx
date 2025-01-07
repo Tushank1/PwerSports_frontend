@@ -523,7 +523,7 @@ function Home_body() {
         <div className="why_powersports_container">
           <div className="why_powersports_left">
             <div className="why_powersports_left_icon">
-              <LiaShippingFastSolid fontSize="larger" />
+              <LiaShippingFastSolid />
             </div>
             <div className="why_powersports_left_head">
               <span>FREE SHIPPING</span>
