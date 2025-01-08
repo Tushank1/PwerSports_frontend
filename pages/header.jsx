@@ -19,7 +19,10 @@ function Header() {
           </div>
           <div className="header_upper_end">
             <div className="header_uppper_left">
-              <i className="fa-regular fa-user"></i>
+              <i
+                className="fa-regular fa-user"
+                onClick={() => navigate("/account/login")}
+              ></i>
             </div>
             <div className="header_upper_right">
               <i className="fa-solid fa-cart-shopping"></i>
@@ -154,7 +157,9 @@ function Header() {
               </div>
             </div>
             <div className="header_lower_inner_trackorders">
-              <span>Track Orders</span>
+              <span onClick={() => navigate("/apps/tracktor/track")}>
+                Track Orders
+              </span>
             </div>
             <div className="header_lower_inner_support">
               <span>Support</span>

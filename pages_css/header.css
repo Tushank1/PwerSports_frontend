@@ -100,6 +100,7 @@
 
                     & i {
                         font-size: larger;
+                        cursor: pointer;
                     }
                 }
         
@@ -114,6 +115,7 @@
 
                     & i {
                         font-size: larger;
+                        cursor: pointer;
                     }
                 }
             }

@@ -1,0 +1,104 @@
+.track_main_conatiner {
+    display: flex;
+    width: 100vw;
+    height: 600px;
+    justify-content: center;
+
+    .track_inner_conatiner {
+        display: flex;
+        /* border: 1px solid black; */
+        width: 500px;
+        height: 100%;
+        justify-content: center;
+
+        .track_working_conatiner {
+            display: flex;
+            /* border: 1px solid red; */
+            width: 400px;
+            height: 300px;
+            margin-top: 30px;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+
+            .track_working_conatiner_heading {
+                display: flex;
+                /* border: 1PX solid black; */
+                width: 100%;
+                height: 50px;
+                justify-content: center;
+                align-items: center;
+                letter-spacing: 2px;
+
+                h1 {
+                    font-weight: 549;
+                }
+            }
+
+            .track_working_conatiner_order_num {
+                display: flex;
+                /* border: 1px solid red; */
+                width: 100%;
+                height: 70px;
+                flex-direction: column;
+                align-items: center;
+                
+                .track_working_conatiner_order_num_heading {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 30px;
+                    letter-spacing: 2px;
+                    font-weight: 50;
+                }
+
+                input {
+                    width: 60%;
+                    border: 1px solid rgb(175, 172, 172);
+                    padding: 0 10px;
+                    border-radius: 2px;
+                    height: 30px;
+                }
+            }
+
+            .track_working_conatiner_email {
+                display: flex;
+                /* border: 1px solid red; */
+                width: 100%;
+                height: 70px;
+                flex-direction: column;
+                align-items: center;
+                
+                .track_working_conatiner_email_heading {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 30px;
+                    letter-spacing: 2px;
+                    font-weight: 50;
+                }
+
+                input {
+                    width: 60%;
+                    border: 1px solid rgb(175, 172, 172);
+                    padding: 0 10px;
+                    border-radius: 2px;
+                    height: 30px;
+                }
+            }
+
+            .track_working_conatiner_track_button {
+                display: flex;
+                width: 100px;
+                height: 40px;
+                background-color: #d2ec15;
+                justify-content: center;
+                align-items: center;
+                letter-spacing: 2px;
+                font-weight: 549;
+            }
+        }    
+    }
+}

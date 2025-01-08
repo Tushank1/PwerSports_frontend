@@ -1,0 +1,149 @@
+.login_main_container {
+    display: flex;
+    width: 100vw;
+    height: 600px;
+    /* border: 1px solid black; */
+    justify-content: center;
+    
+    .login_main_container_inner {
+        display: flex;
+        /* border: 1px solid red; */
+        width: 500px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .login_working_container {
+            display: flex;
+            /* border: 1px solid black; */
+            width: 400px;
+            height: 400px;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            .login_working_container_heading {
+                display: flex;
+                /* border: 1px solid purple; */
+                justify-content: center;
+                align-items: center;
+                height: 60px;
+                width: 120px;
+                top: 0;
+                letter-spacing: 2px;
+
+                h1 {
+                    font-weight: 450;
+                }
+            }
+
+            .login_working_container_email {
+                display: flex;
+                /* border: 1px solid black; */
+                width: 100%;
+                flex-direction: column;
+                height: 80px;
+                gap: 10px;
+
+                .login_working_container_email_heading {
+                    display: flex;
+                    /* border: 1px solid orchid; */
+                    width: 100px;
+                    height: 20px;
+                    font-size: 16px;
+                    font-weight: 100;
+                    letter-spacing: 3px;
+                }
+
+                input {
+                    width: auto ;
+                    border: 1px solid rgb(175, 172, 172);
+                    height: 30px;
+                    border-radius: 2px;
+                    padding: 0 10px;
+                }
+            }
+
+            .login_working_container_password {
+                display: flex;
+                /* border: 1px solid green; */
+                width: 100%;
+                height: 80px;
+                flex-direction: column;
+                gap: 10px;
+
+                .login_working_container_password_heading {
+                    display: flex;
+                    /* border: 1px solid red; */
+                    width: 100%;
+                    height: 30px;
+                    justify-content: space-between;
+
+                    .login_working_container_password_heading_left {
+                        display: flex;
+                        /* border: 1px solid yellowgreen; */
+                        width: 130px;
+                        letter-spacing: 2px;
+                        font-weight: 300;
+                        /* justify-content: center; */
+                        align-items: center;
+                        height: 100%;
+                    }
+
+                    .login_working_container_password_heading_right {
+                        display: flex;
+                        /* border: 1px solid black; */
+                        width: 115px;
+                        align-items: center;
+                        right: 0px;
+                        height: 100%;
+
+                        span {
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                input {
+                    width: auto;
+                    height: 30px;
+                    border-radius: 2px;
+                    padding: 0 10px;
+                    border: 1px solid rgb(175, 172, 172);
+                }
+            }
+
+            .login_working_container_sign_button {
+                display: flex;
+                /* border: 1px solid black; */
+                height: 40px;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                background-color: #d2ec15;
+                cursor: pointer;
+                letter-spacing: 3px;
+                font-weight: 500;
+                font-size: medium;
+
+                &:hover {
+                    filter: brightness(95%);
+                }
+            }
+
+            .login_working_container_account {
+                display: flex;
+                /* border: 1px solid black; */
+                width: 100%;
+                height: 40px;
+                justify-content: center;
+                align-items: center;
+                font-size: large;
+
+                span {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

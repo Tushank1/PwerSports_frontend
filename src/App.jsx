@@ -5,6 +5,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
 import Product_item from "../pages/Product_page";
 import Form from "../pages/Form";
+import Login_page from "../pages/Login_page";
+import Create_account from "../pages/Create_account";
+import Track from "../pages/Track";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
             element={<Product_item />}
           />
           <Route path="/form" element={<Form />} />
+          <Route path="/account/login" element={<Login_page />} />
+          <Route path="/account/register" element={<Create_account />} />
+          <Route path="/apps/tracktor/track" element={<Track />} />
         </Routes>
       </Router>
     </>
