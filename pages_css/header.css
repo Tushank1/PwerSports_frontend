@@ -2,7 +2,7 @@
     display: flex;
     /* border: 0.2px solid red; */
     background-color: #282f44;
-    height: 250px;
+    height: 200px;
     width: 100vw;
     align-items: center;
     justify-content: center;
@@ -359,7 +359,7 @@
                         align-items: center;
                         flex-direction: column;
                         cursor: pointer;
-                        transition: opacity 0.3s ease, visibility 0.6s ease;
+                        transition: opacity 0.2s ease, visibility 0.1s ease;
                         opacity: 0;
                         visibility: hidden;
 
@@ -513,7 +513,7 @@
                         justify-content: center;
                         align-items: center;
                         cursor: pointer;
-                        transition: opacity 0.3s ease, visibility 0.6s ease;
+                        transition: opacity 0.2s ease, visibility 0.1s ease;
                         opacity: 0;
                         visibility: hidden;
 
@@ -576,7 +576,7 @@
                         left: 0;
                         top: 100%;
                         margin-top: 10px;
-                        transition: opacity 0.3s ease, visibility 0.6s ease;
+                        transition: opacity 0.2s ease, visibility 0.1s ease;
                         opacity: 0;
                         visibility: hidden;
                         flex-direction: column;

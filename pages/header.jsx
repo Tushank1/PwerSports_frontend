@@ -166,16 +166,22 @@ function Header() {
               <i className="fa-solid fa-angle-down"></i>
               <div className="header_lower_inner_support_hover_content">
                 <div className="header_lower_inner_support_hover_content_first">
-                  <span>Contact Us</span>
+                  <span onClick={() => navigate("/pages/contact-us")}>
+                    Contact Us
+                  </span>
                 </div>
                 <div className="header_lower_inner_support_hover_content_second">
-                  <span>Shipping Policy</span>
+                  <span onClick={() => navigate("/pages/shipping-policy")}>
+                    Shipping Policy
+                  </span>
                 </div>
                 <div className="header_lower_inner_support_hover_content_third">
                   <span>Exchange, Returns & Cancellation</span>
                 </div>
                 <div className="header_lower_inner_support_hover_content_fourth">
-                  <span>Warranty Policy</span>
+                  <span onClick={() => navigate("/pages/warranty")}>
+                    Warranty Policy
+                  </span>
                 </div>
               </div>
             </div>

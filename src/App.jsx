@@ -8,6 +8,9 @@ import Form from "../pages/Form";
 import Login_page from "../pages/Login_page";
 import Create_account from "../pages/Create_account";
 import Track from "../pages/Track";
+import Contact from "../pages/contact";
+import Shipping from "../pages/Shipping";
+import Warranty from "../pages/Warranty";
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
           <Route path="/account/login" element={<Login_page />} />
           <Route path="/account/register" element={<Create_account />} />
           <Route path="/apps/tracktor/track" element={<Track />} />
+          <Route path="/pages/contact-us" element={<Contact />} />
+          <Route path="/pages/shipping-policy" element={<Shipping />} />
+          <Route path="/pages/warranty" element={<Warranty />} />
         </Routes>
       </Router>
     </>
