@@ -43,7 +43,7 @@ function Products() {
     const fetchData = async (id) => {
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/collections/${id}`
+          `http://127.0.0.1:8000/collection/${id}`
         );
         const response_data = response.data;
         // console.log(response_data.category.description);
@@ -348,7 +348,7 @@ function Products() {
           <div className="product_main_right_description">
             <span>{categoryData.category.description}</span>
           </div>
-          {category === "helmets" && (
+          {category === "HELMETS" && (
             <div className="product_main_right_helmets_sub">
               <div className="product_main_right_helmets_sub_first_container">
                 <div className="product_main_right_helmets_sub_first_container_img">

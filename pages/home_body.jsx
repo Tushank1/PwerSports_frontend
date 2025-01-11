@@ -140,7 +140,7 @@ function Home_body() {
           <div className="attributes_type_main_container_first_row">
             <div
               className="attributes_type_main_container_first"
-              onClick={() => routeChange("Helmets".toLowerCase())}
+              onClick={() => routeChange("Helmets".toUpperCase())}
             >
               <div className="attributes_type_main_container_first_img">
                 <img src="/helmets.png" alt="HELMETS" />

@@ -1,9 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import "../pages_css/header.css";
 import { IoSearch } from "react-icons/io5";
+import { useState } from "react";
 
 function Header() {
   const navigate = useNavigate();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [counter, setCounter] = useState(1);
+
+  const incrementCounter = () => {
+    setCounter(counter + 1);
+  };
+
+  const decrementCounter = () => {
+    if (counter !== 1) {
+      setCounter(counter - 1);
+    }
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+    if (isCartOpen) {
+      document.body.classList.remove("cart-open");
+    } else {
+      document.body.classList.add("cart-open");
+    }
+  };
   return (
     <div className="header">
       <div className="header_main">
@@ -24,8 +46,75 @@ function Header() {
                 onClick={() => navigate("/account/login")}
               ></i>
             </div>
-            <div className="header_upper_right">
+            <div className="header_upper_right" onClick={toggleCart}>
               <i className="fa-solid fa-cart-shopping"></i>
+            </div>
+            {/* Cart overlay */}
+            <div
+              className={`cart-overlay ${isCartOpen ? "visible" : ""}`}
+              onClick={toggleCart}
+            ></div>
+
+            {/* Cart */}
+            <div className={`cart ${isCartOpen ? "open" : ""}`}>
+              <div className="cart-header">
+                <h3>CART</h3>
+                <button onClick={toggleCart}>×</button>
+              </div>
+              <div className="cart-content">
+                {/* <p>Your cart is currently empty.!</p> */}
+                <div className="cart_item_outer">
+                  <div className="cart_item_outer_left">
+                    <img
+                      src="https://powersports.in/cdn/shop/files/MTTargoTorviGlossflourYellowHelmet02_0b6b9211-85fc-4c6d-8c3b-5577a6bdfc5d.jpg?v=1730798035&width=540"
+                      alt=""
+                    />
+                  </div>
+                  <div className="cart_item_outer_right">
+                    <div className="cart_item_outer_right_heading">
+                      <h5>SMK Typhoon Solid Gloss Black Helmet</h5>
+                    </div>
+                    <div className="cart_item_outer_right_colors">
+                      <div className="cart_item_outer_right_colors_head">
+                        <h6>Color:</h6>
+                      </div>
+                      <div className="cart_item_outer_right_colors_content">
+                        <span>Black</span>
+                      </div>
+                    </div>
+                    <div className="cart_item_outer_right_sizes">
+                      <div className="cart_item_outer_right_sizes_head">
+                        <h6>Size:</h6>
+                      </div>
+                      <div className="cart_item_outer_right_size_content">
+                        <span>S</span>
+                      </div>
+                    </div>
+                    <div className="cart_item_outer_right_down">
+                      <div className="cart_item_outer_right_down_add_qty">
+                        <div
+                          className="cart_item_outer_right_down_add_qty_decrement"
+                          onClick={decrementCounter}
+                        >
+                          <span>-</span>
+                        </div>
+                        <div className="cart_item_outer_right_down_add_qty_counter">
+                          <span>{counter}</span>
+                        </div>
+                        <div
+                          className="cart_item_outer_right_down_add_qty_increment"
+                          onClick={incrementCounter}
+                        >
+                          <span>+</span>
+                        </div>
+                      </div>
+                      <div className="cart_item_outer_right_down_price">
+                        <span>Rs. 4950.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

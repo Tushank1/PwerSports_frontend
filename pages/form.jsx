@@ -302,7 +302,7 @@ function Form() {
                   type="text"
                   placeholder="Enter new category"
                   value={newCategory}
-                  onChange={(e) => setNewCategory(e.target.value)}
+                  onChange={(e) => setNewCategory(e.target.value.toUpperCase())}
                   required
                 />
               </div>
@@ -545,7 +545,9 @@ function Form() {
               id={`size-${index + 1}`}
               type="text"
               value={size.toUpperCase()}
-              onChange={(e) => handleSizeChange(index, e.target.value)}
+              onChange={(e) =>
+                handleSizeChange(index, e.target.value.toUpperCase())
+              }
               placeholder="Enter a size like: S, L , M etc..."
               required
             />

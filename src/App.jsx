@@ -11,6 +11,7 @@ import Track from "../pages/Track";
 import Contact from "../pages/contact";
 import Shipping from "../pages/Shipping";
 import Warranty from "../pages/Warranty";
+import Protected from "../pages/Protected";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/pages/contact-us" element={<Contact />} />
           <Route path="/pages/shipping-policy" element={<Shipping />} />
           <Route path="/pages/warranty" element={<Warranty />} />
+          <Route path="/protected" element={<Protected />} />
         </Routes>
       </Router>
     </>

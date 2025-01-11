@@ -34,7 +34,7 @@ function Product_item() {
     const fetchData = async (id) => {
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/productItem/${id}`
+          `http://127.0.0.1:8000/collection/productItem/${id}`
         );
         const response_data = response.data;
         setProductData(response_data);
