@@ -302,7 +302,11 @@ function Form() {
                   type="text"
                   placeholder="Enter new category"
                   value={newCategory}
-                  onChange={(e) => setNewCategory(e.target.value.toUpperCase())}
+                  onChange={(e) =>
+                    setNewCategory(
+                      e.target.value.toUpperCase().replace(" ", "-")
+                    )
+                  }
                   required
                 />
               </div>
@@ -513,8 +517,10 @@ function Form() {
             <input
               id={`color-${index + 1}`}
               type="text"
-              value={color.toUpperCase()}
-              onChange={(e) => handleColorChange(index, e.target.value)}
+              value={color}
+              onChange={(e) =>
+                handleColorChange(index, e.target.value.toUpperCase())
+              }
               placeholder="Enter a color like: Green, Red etc..."
               required
             />
@@ -544,7 +550,7 @@ function Form() {
             <input
               id={`size-${index + 1}`}
               type="text"
-              value={size.toUpperCase()}
+              value={size}
               onChange={(e) =>
                 handleSizeChange(index, e.target.value.toUpperCase())
               }

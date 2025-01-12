@@ -1,12 +1,13 @@
 import "../pages_css/product_page.css";
 import Header from "./Header";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { LuStar } from "react-icons/lu";
 import { LiaTapeSolid } from "react-icons/lia";
 import { FiTruck } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
+import CartContext from "./CartContext";
 
 function Product_item() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -17,6 +18,8 @@ function Product_item() {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const navigate = useNavigate();
+  const { addToCart } = useContext(CartContext);
+  const [isAdded, setIsAdded] = useState(false);
 
   const location = useLocation();
   const productID = location.state?.productID;
@@ -77,6 +80,34 @@ function Product_item() {
 
   const handleSizeSelect = (id) => {
     setSelectedSize(id);
+  };
+
+  const handleAddToCart = () => {
+    // Find the selected color and size objects
+    const selectedColorObj = productData.Color.find(
+      (col) => col.id === selectedColor
+    );
+    const selectedSizeObj = productData.Size.find(
+      (size) => size.id === selectedSize
+    );
+    const product = {
+      id: productData.Product.id,
+      name: productData.Product.name,
+      price: productData.Product.price,
+      image: selectedImage,
+      color: selectedColorObj ? selectedColorObj.available_colors : "N/A", // Get the color name
+      size: selectedSizeObj ? selectedSizeObj.sizes : "N/A", // Get the size label
+      qty: productData.Product_item.quantity,
+    };
+
+    addToCart(product);
+
+    setIsAdded(true); // Change button to "Added"
+
+    // Revert back to "Add to Cart" after 3 seconds
+    setTimeout(() => {
+      setIsAdded(false);
+    }, 2000);
   };
 
   return (
@@ -219,8 +250,11 @@ function Product_item() {
             </div>
           </div>
           <div className="product_right_container_other_stuff_button">
-            <div className="product_right_container_other_stuff_button_cart">
-              <span>ADD TO CART</span>
+            <div
+              className="product_right_container_other_stuff_button_cart"
+              onClick={handleAddToCart}
+            >
+              <span>{isAdded ? "ADDED" : "ADD TO CART"}</span>
             </div>
             <div className="product_right_container_other_stuff_button_buy">
               <span>BUY IT NOW</span>

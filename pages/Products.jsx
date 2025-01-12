@@ -353,7 +353,7 @@ function Products() {
               <div className="product_main_right_helmets_sub_first_container">
                 <div className="product_main_right_helmets_sub_first_container_img">
                   <img
-                    src="https://powersports.in/cdn/shop/collections/axxis-mobile.jpg?v=1677575261&width=540"
+                    src="https://powersports.in/cdn/shop/collections/axxis-mobile.jpg"
                     alt=""
                   />
                 </div>
@@ -364,7 +364,7 @@ function Products() {
               <div className="product_main_right_helmets_sub_first_container">
                 <div className="product_main_right_helmets_sub_first_container_img">
                   <img
-                    src="https://powersports.in/cdn/shop/collections/Mt-viale-helmet.jpg?v=1679484258&width=540"
+                    src="https://powersports.in/cdn/shop/collections/Mt-viale-helmet.jpg"
                     alt=""
                   />
                 </div>
@@ -375,7 +375,7 @@ function Products() {
               <div className="product_main_right_helmets_sub_first_container">
                 <div className="product_main_right_helmets_sub_first_container_img">
                   <img
-                    src="https://powersports.in/cdn/shop/collections/korda_discovery_mobile.jpg?v=1677575889&width=540"
+                    src="https://powersports.in/cdn/shop/collections/korda_discovery_mobile.jpg"
                     alt=""
                   />
                 </div>
@@ -396,9 +396,46 @@ function Products() {
               </div>
             </div>
           )}
+          {category === "riding-jackets" && (
+            <div className="product_main_right_jackets_sub">
+              <div className="product_main_right_jackets_sub_first_container">
+                <div className="product_main_right_jackets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/Korda_cosmo_riding_jacket-black_12.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_jackets_sub_first_container_content">
+                  <span>URBAN</span>
+                </div>
+              </div>
+              <div className="product_main_right_jackets_sub_first_container">
+                <div className="product_main_right_jackets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/KORDA_EDGE_RIDING_JACKET_9.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_jackets_sub_first_container_content">
+                  <span>SPORTS</span>
+                </div>
+              </div>
+              <div className="product_main_right_jackets_sub_first_container">
+                <div className="product_main_right_jackets_sub_first_container_img">
+                  <img
+                    src="https://powersports.in/cdn/shop/collections/KORDA_SUMMIT_RIDING_JACKET_GREY_7_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="product_main_right_jackets_sub_first_container_content">
+                  <span>ADVENTURE/TOURING</span>
+                </div>
+              </div>
+            </div>
+          )}
           <>
             <div className="product_main_right_product">
-              {filteredProducts.map((product) => {
+              {currentProducts.map((product) => {
                 // Filter images for each product by product_id
                 const product_image = categoryData.img.filter(
                   (image) => image.product_id === product.id
@@ -416,12 +453,6 @@ function Products() {
                   <div
                     className="product_main_right_product_cart"
                     key={product.id}
-                    // onClick={() =>
-                    //   routeChange(
-                    //     product.name.replace(/ /g, "-").toLowerCase(),
-                    //     product.id
-                    //   )
-                    // }
                   >
                     <div
                       className="product_main_right_product_cart_img"
