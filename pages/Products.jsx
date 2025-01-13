@@ -14,7 +14,6 @@ function Products() {
     price: false,
   });
 
-  const [hovered, setHovered] = useState(false);
   const [categoryData, setCategoryData] = useState(null);
   const { category } = useParams();
   const location = useLocation();
@@ -454,11 +453,7 @@ function Products() {
                     className="product_main_right_product_cart"
                     key={product.id}
                   >
-                    <div
-                      className="product_main_right_product_cart_img"
-                      onMouseEnter={() => setHovered(true)}
-                      onMouseLeave={() => setHovered(false)}
-                    >
+                    <div className="product_main_right_product_cart_img">
                       <img
                         src={firstImage}
                         alt={`Image of ${product.name}`}

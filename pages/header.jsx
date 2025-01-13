@@ -69,7 +69,10 @@ function Header() {
                   <p>Your cart is currently empty.!</p>
                 ) : (
                   cartItems.map((item) => (
-                    <div className="cart_item_outer" key={item.id}>
+                    <div
+                      className="cart_item_outer"
+                      key={`${item.id}-${item.size}-${item.color}`}
+                    >
                       <div className="cart_item_outer_left">
                         <img src={item.image} alt={item.name} />
                       </div>
@@ -97,7 +100,9 @@ function Header() {
                           <div className="cart_item_outer_right_down_add_qty">
                             <div
                               className="cart_item_outer_right_down_add_qty_decrement"
-                              onClick={() => decrementItem(item.id)}
+                              onClick={() =>
+                                decrementItem(item.id, item.size, item.color)
+                              }
                             >
                               <span>-</span>
                             </div>
@@ -106,7 +111,9 @@ function Header() {
                             </div>
                             <div
                               className="cart_item_outer_right_down_add_qty_increment"
-                              onClick={() => incrementItem(item.id)}
+                              onClick={() =>
+                                incrementItem(item.id, item.size, item.color)
+                              }
                             >
                               <span>+</span>
                             </div>

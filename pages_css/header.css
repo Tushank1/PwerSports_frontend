@@ -135,6 +135,7 @@
 
                         span {
                             font-size: 8px;
+                            font-weight: 800;
                         }
                     }
                 }
@@ -221,10 +222,11 @@
                         overflow-y: auto;
                         flex-direction: column;
                         gap: 20px;
+                        overflow-x: hidden;
 
-                        /* &::-webkit-scrollbar {
+                        &::-webkit-scrollbar {
                             display: none;
-                        } */
+                        }
 
                         .cart_item_outer {
                             display: flex;
@@ -232,7 +234,6 @@
                             height: 140px;
                             /* border: 1px solid yellow; */
                             flex-direction: row;
-                            overflow: hidden;
 
                             .cart_item_outer_left {
                                 display: flex;
@@ -264,6 +265,7 @@
                                     padding-left: 10px;
                                     line-height: 25px;
                                     margin-bottom: 10px;
+                                    align-items: center;
 
                                     h5 {
                                         font-weight: 300;

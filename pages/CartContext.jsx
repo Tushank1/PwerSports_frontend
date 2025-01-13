@@ -19,19 +19,28 @@ export const CartProvider = ({ children }) => {
   // Function to add item to the cart
   const addToCart = (product) => {
     setCartItems((prevItems) => {
-      // Check if the product is already in the cart
-      const existingProduct = prevItems.find((item) => item.id === product.id);
+      // Check if the product with the same id, size, and color is already in the cart
+      const existingProduct = prevItems.find(
+        (item) =>
+          item.id === product.id &&
+          item.size === product.size &&
+          item.color === product.color
+      );
+
       if (existingProduct) {
-        // Increment quantity if already exists
+        // Increment quantity if the exact product already exists
         const updatedItems = prevItems.map((item) =>
-          item.id === product.id
+          item.id === product.id &&
+          item.size === product.size &&
+          item.color === product.color
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
         updateCart(updatedItems);
         return updatedItems;
       }
-      // Add new product to the cart
+
+      // Add new product with different configuration to the cart
       const updatedItems = [...prevItems, { ...product, quantity: 1 }];
       updateCart(updatedItems);
       return updatedItems;
@@ -39,10 +48,10 @@ export const CartProvider = ({ children }) => {
   };
 
   // Increment item quantity
-  const incrementItem = (id) => {
+  const incrementItem = (id, size, color) => {
     setCartItems((prevItems) => {
       const updatedItems = prevItems.map((item) => {
-        if (item.id === id) {
+        if (item.id === id && item.size === size && item.color === color) {
           if (item.qty > item.quantity) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
@@ -58,18 +67,20 @@ export const CartProvider = ({ children }) => {
   };
 
   // Decrement item quantity or remove from cart if quantity is 0
-  const decrementItem = (id) => {
+  const decrementItem = (id, size, color) => {
     setCartItems((prevItems) => {
       const updatedItems = prevItems
         .map((item) => {
-          // If the item is the one being decremented and its quantity > 1, decrement
-          if (item.id === id && item.quantity > 0) {
-            return { ...item, quantity: item.quantity - 1 };
+          if (item.id === id && item.size === size && item.color === color) {
+            if (item.quantity > 1) {
+              return { ...item, quantity: item.quantity - 1 };
+            }
+            // If quantity is 1, the item will be removed in the filter step
+            return null;
           }
-          // If the item has quantity 1, remove it from the cart
           return item;
         })
-        .filter((item) => item.quantity > 0); // Remove products with 0 quantity from the cart
+        .filter((item) => item !== null); // Remove products with quantity 0
       updateCart(updatedItems);
       return updatedItems;
     });
