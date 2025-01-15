@@ -68,7 +68,12 @@ function Products() {
 
   // Render based on the data
   if (!categoryData) {
-    return <div>Loading...</div>; // Or any loading spinner/placeholder
+    return (
+      <>
+        {/* Loading spinner */}
+        <div className="loader"></div>
+      </>
+    );
   }
 
   const toggleVisibility = (section) => {
@@ -82,7 +87,7 @@ function Products() {
   const handleBrandSelection = (brandId) => {
     setSelectedBrands(
       (prev) =>
-        prev.includes(brandId)
+        prev.includes(brandId) // checks if a specific value exists in the array.
           ? prev.filter((id) => id !== brandId) // Remove if already selected
           : [...prev, brandId] // Add if not selected
     );

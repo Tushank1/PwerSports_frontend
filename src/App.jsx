@@ -12,6 +12,8 @@ import Contact from "../pages/contact";
 import Shipping from "../pages/Shipping";
 import Warranty from "../pages/Warranty";
 import Protected from "../pages/Protected";
+import Warranty_activation from "../pages/Warranty_activation";
+import Exchange from "../pages/Exchange";
 
 function App() {
   return (
@@ -34,6 +36,14 @@ function App() {
           <Route path="/pages/shipping-policy" element={<Shipping />} />
           <Route path="/pages/warranty" element={<Warranty />} />
           <Route path="/protected" element={<Protected />} />
+          <Route
+            path="/pages/warranty-activation"
+            element={<Warranty_activation />}
+          />
+          <Route
+            path="/pages/exchange-returns-refund-cancellation-policy"
+            element={<Exchange />}
+          />
         </Routes>
       </Router>
     </>

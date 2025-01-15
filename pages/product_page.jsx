@@ -52,7 +52,11 @@ function Product_item() {
   }, []);
 
   if (!productData) {
-    return <div>...Loading...</div>;
+    return (
+      <>
+        <div className="loader"></div>
+      </>
+    );
   }
 
   useEffect(() => {

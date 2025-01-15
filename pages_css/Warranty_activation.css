@@ -1,0 +1,495 @@
+.warranty_activation_main_container {
+    display: flex;
+    height: 1200px;
+    width: 100vw;
+    /* border: 1px solid red; */
+    justify-content: center;
+
+    .warranty_activation_inner {
+        display: flex;
+        height: 100%;
+        width: 900px;
+        /* border: 1px solid red; */
+        align-items: center;
+
+        .warranty_activation_working {
+            display: flex;
+            height: 90%;
+            width: 100%;
+            /* border: 1px solid green; */
+            flex-direction: column;
+
+            .warranty_activation_working_heading {
+                display: flex;
+                height: 30px;
+                width: 100%;
+                /* border: 1px solid yellowgreen; */
+                justify-content: center;
+                align-items: center;
+                letter-spacing: 1px;
+
+                h1 {
+                    font-weight: 500;
+                }
+            }
+
+            .warranty_activation_working_content {
+                display: flex;
+                height: 40px;
+                width: 100%;
+                /* border: 1px solid purple; */
+                margin-top: 20px;
+                letter-spacing: 1px;
+
+                .warranty-link {
+                    color: black;
+                    text-decoration: none;
+                    font-weight: bold;
+                    cursor: pointer;
+                  }
+            }
+
+            .warranty_activation_working_form {
+                display: flex;
+                height: 900px;
+                width: 100%;
+                /* border: 1px solid green; */
+                margin-top: 40px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.3);
+                flex-direction: column;
+
+                .warranty_activation_working_form_headinng {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 30px;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 10px;
+                    /* border: 1px solid blue; */
+                }
+
+                .warranty_activation_working_form_detail {
+                    display: flex;
+                    width: 100%;
+                    /* border: 1px solid gray; */
+                    border-top: 1px solid rgb(198, 196, 196);
+                    margin-top: 40px;
+                    height: 200px;
+                    flex-direction: row;
+
+                    .warranty_activation_working_form_detail_left {
+                        display: flex;
+                        width: 50%;
+                        /* border: 1px solid green; */
+                        flex-direction: column;
+
+                        .warranty_activation_working_form_detail_left_upper {
+                            display: flex;
+                            width: 100%;
+                            height: 50%;
+                            /* border: 1px solid orange; */
+                            flex-direction: column;
+
+                            .warranty_activation_working_form_detail_left_upper_heading {
+                                display: flex;
+                                width: 100%;
+                                height: 20px;
+                                /* border: 1px solid red; */
+                                letter-spacing: 1px;
+                                margin-top: 10px;
+
+                                h5 {
+                                    font-size: medium;
+                                    font-weight: 400;
+                                    padding-left: 20px;
+                                }
+                            }
+
+                            .warranty_activation_working_form_detail_left_upper_input {
+                                display: flex;
+                                width: 100%;
+                                height: 30px;
+                                margin-top: 10px;
+                                /* border: 1px solid red; */
+                                
+                                input {
+                                    width: 80%;
+                                    margin-left: 30px;
+                                    border: 1px solid rgba(185, 180, 180, 0.762);
+                                    height: 100%;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+
+                        .warranty_activation_working_form_detail_left_down {
+                            display: flex;
+                            width: 100%;
+                            height: 50%;
+                            /* border: 1px solid black; */
+                            flex-direction: column;
+
+                            .warranty_activation_working_form_detail_left_down_heading {
+                                display: flex;
+                                width: 100%;
+                                height: 20px;
+                                /* border: 1px solid red; */
+                                letter-spacing: 1px;
+                                margin-top: 10px;
+
+                                h5 {
+                                    font-size: medium;
+                                    font-weight: 400;
+                                    padding-left: 20px;
+                                }
+                            }
+
+                            .warranty_activation_working_form_detail_left_down_input {
+                                display: flex;
+                                width: 100%;
+                                height: 30px;
+                                margin-top: 10px;
+                                /* border: 1px solid red; */
+                                
+                                input {
+                                    width: 80%;
+                                    margin-left: 30px;
+                                    border: 1px solid rgba(185, 180, 180, 0.762);
+                                    border-radius: 5px;
+                                    height: 100%;
+                                    font-size: 14px;
+                                }
+
+                                input[type=number]::-webkit-inner-spin-button, 
+                                input[type=number]::-webkit-outer-spin-button { 
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    margin: 0; 
+                                }
+                            }
+                        }
+                    }
+
+                    .warranty_activation_working_form_detail_right {
+                        display: flex;
+                        width: 50%;
+                        /* border: 1px solid red; */
+                        flex-direction: column;
+
+                        .warranty_activation_working_form_detail_right_upper {
+                            display: flex;
+                            width: 100%;
+                            height: 50%;
+                            /* border: 1px solid orange; */
+                            flex-direction: column;
+
+                            .warranty_activation_working_form_detail_right_upper_heading {
+                                display: flex;
+                                width: 100%;
+                                height: 20px;
+                                /* border: 1px solid red; */
+                                letter-spacing: 1px;
+                                margin-top: 10px;
+
+                                h5 {
+                                    font-size: medium;
+                                    font-weight: 400;
+                                    padding-left: 20px;
+                                }
+                            }
+
+                            .warranty_activation_working_form_detail_right_upper_input {
+                                display: flex;
+                                width: 100%;
+                                height: 30px;
+                                margin-top: 10px;
+                                /* border: 1px solid red; */
+                                
+                                input {
+                                    width: 80%;
+                                    margin-left: 30px;
+                                    border: 1px solid rgba(185, 180, 180, 0.762);
+                                    height: 100%;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+
+                        .warranty_activation_working_form_detail_right_down {
+                            display: flex;
+                            width: 100%;
+                            height: 50%;
+                            /* border: 1px solid black; */
+                            flex-direction: column;
+
+                            .warranty_activation_working_form_detail_right_down_heading {
+                                display: flex;
+                                width: 100%;
+                                height: 20px;
+                                /* border: 1px solid red; */
+                                letter-spacing: 1px;
+                                margin-top: 10px;
+
+                                h5 {
+                                    font-size: medium;
+                                    font-weight: 400;
+                                    padding-left: 20px;
+                                }
+                            }
+
+                            .warranty_activation_working_form_detail_right_down_input {
+                                display: flex;
+                                width: 100%;
+                                height: 30px;
+                                margin-top: 10px;
+                                /* border: 1px solid red; */
+                                
+                                input {
+                                    width: 80%;
+                                    margin-left: 30px;
+                                    border: 1px solid rgba(185, 180, 180, 0.762);
+                                    border-radius: 5px;
+                                    height: 100%;
+                                    font-size: 14px;
+                                    padding-left: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .warranty_activation_working_form_other {
+                    display: flex;
+                    /* border: 1px solid red; */
+                    margin-top: 10px;
+                    width: 100%;
+                    height: 280px;
+                    flex-direction: column;
+
+                    .warranty_activation_working_form_other_product_type {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 80px;
+                        /* border: 1px solid green; */
+
+                        .warranty_activation_working_form_other_product_type_heading {
+                            display: flex;
+                            width: 100%;
+                            height: 20px;
+                            /* border: 1px solid purple; */
+
+                            h5 {
+                                font-size: 17px;
+                                font-weight: 300;
+                                letter-spacing: 1px;
+                                padding-left: 20px;
+                            }
+                        }
+
+                        .warranty_activation_working_form_other_product_type_input {
+                            display: flex;
+                            width: 100%;
+                            height: 35px;
+                            margin-top: 10px;
+                            /* border: 1px solid red; */
+                            
+                            select {
+                                width: 88%;
+                                margin-left: 30px;
+                                border: 1px solid rgba(185, 180, 180, 0.762);
+                                height: 100%;
+                                /* font-size: 14px; */
+                            }
+                        }
+                    }
+
+                    .warranty_activation_working_form_other_product_title {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 80px;
+                        /* border: 1px solid green; */
+                        margin-top: 10px;
+
+                        .warranty_activation_working_form_other_product_title_heading {
+                            display: flex;
+                            width: 100%;
+                            height: 20px;
+                            /* border: 1px solid purple; */
+
+                            h5 {
+                                font-size: 17px;
+                                font-weight: 300;
+                                letter-spacing: 1px;
+                                padding-left: 20px;
+                            }
+                        }
+
+                        .warranty_activation_working_form_other_product_title_input {
+                            display: flex;
+                                width: 100%;
+                                height: 35px;
+                                margin-top: 10px;
+                                /* border: 1px solid red; */
+                                
+                                input {
+                                    width: 88%;
+                                    margin-left: 30px;
+                                    border: 1px solid rgba(185, 180, 180, 0.762);
+                                    font-size: 14px;
+                                }
+                        }
+                    }
+                    .warranty_activation_working_form_other_barcode_num {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 80px;
+                        /* border: 1px solid green; */
+                        margin-top: 10px;
+
+                        .warranty_activation_working_form_other_barcode_num_heading {
+                            display: flex;
+                            width: 100%;
+                            height: 20px;
+                            /* border: 1px solid purple; */
+
+                            h5 {
+                                font-size: 17px;
+                                font-weight: 300;
+                                letter-spacing: 1px;
+                                padding-left: 20px;
+                            }
+                        }
+
+                        .warranty_activation_working_form_other_barcode_num_input {
+                            display: flex;
+                            width: 100%;
+                            height: 35px;
+                            margin-top: 10px;
+                            /* border: 1px solid red; */
+                            
+                            input {
+                                width: 88%;
+                                margin-left: 30px;
+                                border: 1px solid rgba(185, 180, 180, 0.762);
+                                font-size: 14px;
+                                border-radius: 5px;
+                            }
+
+                            input[type=number]::-webkit-inner-spin-button, 
+                            input[type=number]::-webkit-outer-spin-button { 
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+                                margin: 0; 
+                            }
+                        }
+                    }
+                }
+
+                .invoice_upload_container {
+                    display: flex;
+                    flex-direction: column;
+                    width: 400px;
+                    border: 1px solid #ccc;
+                    /* border: 1px solid red; */
+                    padding: 20px;
+                    border-radius: 8px;
+                    font-family: Arial, sans-serif;
+                    margin: 20px 30px;
+
+                    h3 {
+                        margin: 0 0 10px 0;
+                    }
+
+                    p {
+                        font-size: 12px;
+                        color: #666;
+                        margin: 0 0 15px 0;
+                    }
+
+                    .upload-btn {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #f4f4f4;
+                        color: #333;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        text-align: center;
+
+                        &:hover {
+                            background-color: #e6e6e6;
+                        }
+                    }
+
+                    .file-list {
+                        margin-top: 15px;
+
+                        .file-item {
+                            display: flex;
+                            align-items: center;
+                            margin-bottom: 10px;
+
+                            .file-name {
+                                flex: 2;
+                                font-size: 14px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+
+                            .progress-bar {
+                                flex: 1;
+                                height: 10px;
+                                background: linear-gradient(to right, #4caf50, #81c784);
+                                border-radius: 5px;
+                                margin: 0 10px;
+                            }
+
+                            .remove-btn {
+                                font-size: 12px;
+                                /* color: #007bff; */
+                                color: #ddd;
+                                cursor: pointer;
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .warranty_activation_working_submit_button {
+                    display: flex;
+                    width: 100%;
+                    height: 40px;
+                    /* border: 1px solid black; */
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 30px;
+                    margin-bottom: 20px;
+                    bottom: 0;
+
+                    button {
+                        width: 100px;
+                        height: 100%;
+                        font-size: 15px;
+                        letter-spacing: 0.5px;
+                        background-color: rgb(55, 97, 149);
+                        color: aliceblue;
+                        border-color: rgb(55, 97, 149);
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

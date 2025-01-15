@@ -292,7 +292,15 @@ function Header() {
                   </span>
                 </div>
                 <div className="header_lower_inner_support_hover_content_third">
-                  <span>Exchange, Returns & Cancellation</span>
+                  <span
+                    onClick={() =>
+                      navigate(
+                        "/pages/exchange-returns-refund-cancellation-policy"
+                      )
+                    }
+                  >
+                    Exchange, Returns & Cancellation
+                  </span>
                 </div>
                 <div className="header_lower_inner_support_hover_content_fourth">
                   <span onClick={() => navigate("/pages/warranty")}>
@@ -302,7 +310,9 @@ function Header() {
               </div>
             </div>
             <div className="header_lower_inner_warranty">
-              <span>Warranty Activation</span>
+              <span onClick={() => navigate("/pages/warranty-activation")}>
+                Warranty Activation
+              </span>
             </div>
           </div>
         </div>
