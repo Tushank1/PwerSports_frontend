@@ -232,11 +232,12 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 10px;
+                /* border: 1px solid red; */
 
                 .product_popup_right_container_other_stuff_size_box {
                     display: flex;
                     border: 2px dotted black;
-                    width: 10px;
+                    /* width: 20px; */
                     padding: 0px 10px;
                     height: 30px;
                     align-items: center;

@@ -14,6 +14,7 @@ import Warranty from "../pages/Warranty";
 import Protected from "../pages/Protected";
 import Warranty_activation from "../pages/Warranty_activation";
 import Exchange from "../pages/Exchange";
+import F from "../pages/F";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             path="/pages/exchange-returns-refund-cancellation-policy"
             element={<Exchange />}
           />
+          <Route path="/f" element={<F />} />
         </Routes>
       </Router>
     </>
