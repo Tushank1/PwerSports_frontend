@@ -40,6 +40,7 @@ const F = () => {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
+  const [image, setImage] = useState([""]);
 
   const [imageInputs, setImageInputs] = useState([
     { id: Date.now(), name: "" },
@@ -316,9 +317,9 @@ const F = () => {
   };
 
   const handleImageChange = (index, value) => {
-    const newImages = [...images];
+    const newImages = [...image];
     newImages[index] = value;
-    setImages(newImages);
+    setImage(newImage);
   };
 
   return (
