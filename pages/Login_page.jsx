@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../pages_css/Login.css";
@@ -8,10 +8,18 @@ import axios from "axios";
 const Login_page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is already authenticated (token present)
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true); // If token exists, user is authenticated
+    }
+  }, []);
 
   const validateForm = () => {
     if (!email || !password) {
@@ -64,6 +72,12 @@ const Login_page = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove token on logout
+    setIsAuthenticated(false); // Update state to show login page
+    navigate("/account/login"); // Redirect to login page
+  };
+
   return (
     <>
       <Header />
@@ -71,48 +85,56 @@ const Login_page = () => {
         <div className="login_main_container_inner">
           <div className="login_working_container">
             <div className="login_working_container_heading">
-              <h1>LOGIN</h1>
+              <h1>{isAuthenticated ? "Welcome Back!" : "LOGIN"}</h1>
             </div>
-            <div className="login_working_container_email">
-              <div className="login_working_container_email_heading">
-                <span>EMAIL</span>
+            {isAuthenticated ? (
+              <div className="logout_container">
+                <button onClick={handleLogout}>LOGOUT</button>
               </div>
-              <input
-                type="email"
-                placeholder="walker@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="login_working_container_password">
-              <div className="login_working_container_password_heading">
-                <div className="login_working_container_password_heading_left">
-                  <span>PASSWORD</span>
+            ) : (
+              <>
+                <div className="login_working_container_email">
+                  <div className="login_working_container_email_heading">
+                    <span>EMAIL</span>
+                  </div>
+                  <input
+                    type="email"
+                    placeholder="walker@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
-                <div className="login_working_container_password_heading_right">
-                  <span>Forgot password?</span>
+                <div className="login_working_container_password">
+                  <div className="login_working_container_password_heading">
+                    <div className="login_working_container_password_heading_left">
+                      <span>PASSWORD</span>
+                    </div>
+                    <div className="login_working_container_password_heading_right">
+                      <span>Forgot password?</span>
+                    </div>
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </div>
-              </div>
-              <input
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button
-              className="login_working_container_sign_button"
-              disabled={loading}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              {loading ? "Loading..." : "SIGN IN"}
-            </button>
-            <div className="login_working_container_account">
-              <span onClick={() => navigate("/account/register")}>
-                Create account
-              </span>
-            </div>
+                <button
+                  className="login_working_container_sign_button"
+                  disabled={loading}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  {loading ? "Loading..." : "SIGN IN"}
+                </button>
+                <div className="login_working_container_account">
+                  <span onClick={() => navigate("/account/register")}>
+                    Create account
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -40,15 +40,20 @@ const F = () => {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
-  const [image, setImage] = useState([""]);
+  const [image, setImage] = useState(""); // Single main image input
+  const [imageInputs, setImageInputs] = useState([]); // Additional images in popup
+  const [color, setColor] = useState("");
+  const [colorInput, setColorInput] = useState([]);
+  const [size, setSize] = useState("");
+  const [sizeInput, setSizeInput] = useState([]);
 
-  const [imageInputs, setImageInputs] = useState([
-    { id: Date.now(), name: "" },
-  ]);
-  const [colorInputs, setColorInputs] = useState([
-    { id: Date.now(), color: "" },
-  ]);
-  const [sizeInputs, setSizeInputs] = useState([{ id: Date.now(), name: "" }]);
+  // const [imageInputs, setImageInputs] = useState([
+  //   { id: Date.now(), name: "" },
+  // ]);
+  // const [colorInputs, setColorInputs] = useState([
+  //   { id: Date.now(), color: "" },
+  // ]);
+  // const [sizeInputs, setSizeInputs] = useState([{ id: Date.now(), name: "" }]);
 
   const handleAddImage = () => {
     setImageInputs([...imageInputs, { id: Date.now(), name: "" }]);
@@ -60,25 +65,33 @@ const F = () => {
 
     // Close popup if the last input is removed
     if (updatedInputs.length === 0) {
-      setOpen({ image: false });
+      setOpen({ ...open, image: false });
     }
   };
 
+  // const handleInputChange = (id, value) => {
+  //   setImageInputs(
+  //     imageInputs.map((input) =>
+  //       input.id === id ? { ...input, name: value } : input
+  //     )
+  //   );
+  // };
+
   const handleInputChange = (id, value) => {
-    setImageInputs(
-      imageInputs.map((input) =>
+    setImageInputs((prevState) =>
+      prevState.map((input) =>
         input.id === id ? { ...input, name: value } : input
       )
     );
   };
 
   const handleAddColor = () => {
-    setColorInputs([...colorInputs, { id: Date.now(), color: "" }]);
+    setColorInput([...colorInput, { id: Date.now(), color: "" }]);
   };
 
   const handleRemoveColor = (id) => {
-    const updatedInputs = colorInputs.filter((input) => input.id !== id);
-    setColorInputs(updatedInputs);
+    const updatedInputs = colorInput.filter((input) => input.id !== id);
+    setColorInput(updatedInputs);
 
     // Optional: Handle any specific behavior when all colors are removed
     if (updatedInputs.length === 0) {
@@ -87,20 +100,20 @@ const F = () => {
   };
 
   const handleColorChange = (id, value) => {
-    setColorInputs(
-      colorInputs.map((input) =>
+    setColorInput(
+      colorInput.map((input) =>
         input.id === id ? { ...input, color: value } : input
       )
     );
   };
 
   const handleAddSize = () => {
-    setSizeInputs([...sizeInputs, { id: Date.now(), size: "" }]);
+    setSizeInput([...sizeInput, { id: Date.now(), size: "" }]);
   };
 
   const handleRemoveSize = (id) => {
-    const updatedInputs = sizeInputs.filter((input) => input.id !== id);
-    setSizeInputs(updatedInputs);
+    const updatedInputs = sizeInput.filter((input) => input.id !== id);
+    setSizeInput(updatedInputs);
 
     // Optional: Handle any specific behavior when all sizes are removed
     if (updatedInputs.length === 0) {
@@ -109,8 +122,8 @@ const F = () => {
   };
 
   const handleSizeChange = (id, value) => {
-    setSizeInputs(
-      sizeInputs.map((input) =>
+    setSizeInput(
+      sizeInput.map((input) =>
         input.id === id ? { ...input, size: value } : input
       )
     );
@@ -125,14 +138,14 @@ const F = () => {
       return prevInputs;
     });
 
-    setColorInputs((prevInputs) => {
+    setColorInput((prevInputs) => {
       if (prevInputs.length === 0) {
         return [{ id: Date.now(), name: "" }];
       }
       return prevInputs;
     });
 
-    setSizeInputs((prevInputs) => {
+    setSizeInput((prevInputs) => {
       if (prevInputs.length === 0) {
         return [{ id: Date.now(), name: "" }];
       }
@@ -316,10 +329,48 @@ const F = () => {
     }
   };
 
-  const handleImageChange = (index, value) => {
-    const newImages = [...image];
-    newImages[index] = value;
-    setImage(newImage);
+  // const handleImageChange = (index, value) => {
+  //   const newImages = [...image];
+  //   newImages[index] = value;
+  //   setImage(newImage);
+  // };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const form_data = {
+        category_id: selectedCategory,
+        brand_id: selectedBrand,
+        model_id: selectedModel,
+        name: productName,
+        price: parseFloat(productPrice.replace(",", "")),
+        stock_qty: productQuantity,
+        // images: imageInputs.filter((input) => input.name.trim() !== ""),
+        // colors: colorInput.filter((input) => input.color.trim() !== ""),
+        // sizes: sizeInput.filter((input) => input.name.trim() !== ""),
+        images: imageInputs.map((input) => input.name), // Get all image names
+        colors: colorInput.map((input) => input.name), // Get all color names
+        sizes: sizeInput.map((input) => input.name), // Get all size names
+      };
+
+      console.log("Submitting form data:", form_data);
+
+      const response = await axios.post(
+        "http://127.0.0.1:8000/dashboard",
+        form_data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response:", response.data);
+    } catch (error) {
+      console.error("Error:", error.message || error);
+      alert("An error occurred while submitting the form.");
+    }
   };
 
   return (
@@ -609,7 +660,7 @@ const F = () => {
                   type="number"
                   placeholder="Quantity must be greater than 1"
                   value={productQuantity}
-                  onChange={setProductQuantity}
+                  onChange={(e) => setProductQuantity(e.target.value)}
                 />
               </div>
             </div>
@@ -626,7 +677,7 @@ const F = () => {
                   type="url"
                   placeholder="Image URL"
                   value={image}
-                  onChange={(e) => handleImageChange(index, e.target.value)}
+                  onChange={(e) => setImage(e.target.value)}
                 />
                 <div className="form_working_container_image_select_plus_container">
                   <FaPlus
@@ -699,6 +750,8 @@ const F = () => {
                 <input
                   type="text"
                   placeholder="Enter a color like: Green, Red etc..."
+                  value={color}
+                  onChange={(e) => setColor(e.target.value)}
                 />
                 <div className="form_working_container_color_select_plus_container">
                   <FaPlus
@@ -725,7 +778,7 @@ const F = () => {
                       <h4>Color</h4>
                       <span style={{ color: "red" }}>*</span>
                     </div>
-                    {colorInputs.map((input) => (
+                    {colorInput.map((input) => (
                       <div
                         key={input.id}
                         className="form_working_container_category_new_color_content_input"
@@ -771,6 +824,8 @@ const F = () => {
                 <input
                   type="text"
                   placeholder="Enter a size like: S, M etc..."
+                  value={size}
+                  onChange={(e) => setSize(e.target.value)}
                 />
                 <div className="form_working_container_size_select_plus_container">
                   <FaPlus
@@ -797,7 +852,7 @@ const F = () => {
                       <h4>Size</h4>
                       <span style={{ color: "red" }}>*</span>
                     </div>
-                    {sizeInputs.map((input) => (
+                    {sizeInput.map((input) => (
                       <div
                         key={input.id}
                         className="form_working_container_category_new_size_content_input"
@@ -831,7 +886,10 @@ const F = () => {
                 </div>
               </div>
             )}
-            <div className="form_working_container_submit_button">
+            <div
+              className="form_working_container_submit_button"
+              onClick={handleSubmit}
+            >
               <button>Submit</button>
             </div>
           </div>

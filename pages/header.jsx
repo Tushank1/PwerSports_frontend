@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import "../pages_css/header.css";
 import { IoSearch } from "react-icons/io5";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import CartContext from "./CartContext";
 
 function Header() {
   const navigate = useNavigate();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItems, incrementItem, decrementItem } = useContext(CartContext);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -24,6 +25,13 @@ function Header() {
       0
     );
   };
+
+  useEffect(() => {
+    // Check if a valid token exists in localStorage
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // Set to true if token exists, otherwise false
+  }, []);
+
   return (
     <div className="header">
       <div className="header_main">
@@ -138,7 +146,16 @@ function Header() {
                     </div>
                   </div>
                   <div className="cart_total_lower">
-                    <button>CHECK OUT</button>
+                    {/* <button>CHECK OUT</button> */}
+                    {isAuthenticated ? (
+                      <button onClick={() => navigate("/checkout")}>
+                        CHECK OUT
+                      </button>
+                    ) : (
+                      <button onClick={() => navigate("/account/login")}>
+                        LOGIN
+                      </button>
+                    )}
                   </div>
                 </div>
               )}

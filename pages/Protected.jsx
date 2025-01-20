@@ -11,7 +11,7 @@ const Protected = () => {
       console.log("Token:", token);
 
       if (!token) {
-        navigate("/"); // Redirect to login if no token is found
+        navigate("/account/login"); // Redirect to login if no token is found
         return;
       }
 
@@ -28,19 +28,20 @@ const Protected = () => {
 
         if (response.status === 200) {
           console.log("Token is valid:", response.data);
+          navigate("/");
           // Handle successful token verification here
         }
       } catch (error) {
         console.error("Error verifying token:", error);
         localStorage.removeItem("token"); // Remove invalid token
-        navigate("/"); // Redirect to login
+        navigate("/account/login"); // Redirect to login
       }
     };
 
     verifytoken();
   }, [navigate]);
 
-  return <div>Protected</div>;
+  // return <div>Protected</div>;
 };
 
 export default Protected;

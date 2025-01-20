@@ -57,7 +57,7 @@
                     width: auto;
                     border-radius: 2px;
                     padding: 0 10px;
-                    height: 30px;
+                    height: 35px;
                     border: 1px solid rgb(175, 172, 172);
                 }
             }
@@ -82,7 +82,7 @@
                     width: auto;
                     border-radius: 2px;
                     padding: 0 10px;
-                    height: 30px;
+                    height: 35px;
                     border: 1px solid rgb(175, 172, 172);
                 }
             }
@@ -108,7 +108,7 @@
                 input {
                     width: auto ;
                     border: 1px solid rgb(175, 172, 172);
-                    height: 30px;
+                    height: 35px;
                     border-radius: 2px;
                     padding: 0 10px;
                 }
@@ -156,7 +156,7 @@
 
                 input {
                     width: auto;
-                    height: 30px;
+                    height: 47px;
                     border-radius: 2px;
                     padding: 0 10px;
                     border: 1px solid rgb(175, 172, 172);
