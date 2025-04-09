@@ -349,7 +349,8 @@ const F = () => {
         // images: imageInputs.filter((input) => input.name.trim() !== ""),
         // colors: colorInput.filter((input) => input.color.trim() !== ""),
         // sizes: sizeInput.filter((input) => input.name.trim() !== ""),
-        images: imageInputs.map((input) => input.name), // Get all image names
+        // images: imageInputs.map((input) => input.name), // Get all image names
+        images: image,
         colors: colorInput.map((input) => input.name), // Get all color names
         sizes: sizeInput.map((input) => input.name), // Get all size names
       };

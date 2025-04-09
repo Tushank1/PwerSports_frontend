@@ -15,6 +15,7 @@ import Protected from "../pages/Protected";
 import Warranty_activation from "../pages/Warranty_activation";
 import Exchange from "../pages/Exchange";
 import F from "../pages/F";
+import Checkout from "../pages/Checkout";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             element={<Exchange />}
           />
           <Route path="/f" element={<F />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </>

@@ -1,0 +1,507 @@
+.checkout_outer_container {
+    /* display: flex; */
+    width: 100vw;
+    height: 100vh;
+    /* flex-direction: column; */
+    scroll-behavior: smooth;
+    overflow-y: auto; 
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .checkout_header {
+        display: flex;
+        width: 100vw;
+        height: 130px;
+        /* border: 1px solid red; */
+        border-bottom: 1px solid rgba(207, 203, 203, 0.54);
+        justify-content: space-evenly;
+        align-items: center;
+    
+        .checkout_header_img {
+            display: flex;
+            width: 300px;
+            height: 70%;
+            /* border: 1px solid black; */
+            margin-left: 280px;
+    
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    
+        .checkout_header_cart {
+            display: flex;
+            width: 30px;
+            height: 30px;
+            /* border: 1px solid black; */
+            justify-content: center;
+            align-items: center;
+    
+            i {
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .checkout_left_container {
+        width: 55vw;
+        height: 1500px;
+        border: 1px solid red;
+        float: left;
+        scroll-behavior: auto;
+
+        .checkout_left_container_inner_container {
+            display: flex;
+            width: 80%;
+            height: 98%;
+            border: 1px solid black;
+            margin-left: auto;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+
+            .checkout_left_container_inner_container_user_details {
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                height: 160px;
+                border: 1px solid green;
+                margin-top: 20px;
+                gap: 10px;
+
+                .checkout_left_container_inner_container_user_details_delivery_heading {
+                    display: flex;
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid black;
+
+                    h1 {
+                        font-size: 28px;
+                        font-weight: 550;
+                    }
+                }
+
+                .checkout_left_container_inner_container_user_details_ship_and_pickup {
+                    display: flex;
+                    width: 100%;
+                    height: 100px;
+                    border: 1px solid purple;
+                    flex-direction: column;
+                    border-radius: 10px;
+
+                    .checkout_left_container_inner_container_user_details_ship_and_pickup_upper {
+                        display: flex;
+                        width: 100%;
+                        height: 50px;
+                        /* border: 1px solid green; */
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left {
+                            display: flex;
+                            height: 100%;
+                            width: 100px;
+                            /* border: 1px solid red; */
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+
+                            .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left {
+                                border: 1px solid black;
+                                height: 20px;
+                                width: 20px;
+                                border-radius: 50%;
+                            }
+
+                            .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_right {
+                                font-size: 15px;
+                                align-items: center;
+                                display: flex;
+                            }
+                        }
+
+                        .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_right {
+                            display: flex;
+                            height: 100%;
+                            width: 50px;
+                            /* border: 1px solid blue; */
+                            align-items: center;
+                            justify-content: center;
+
+                            .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_right_icon {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+
+                    .checkout_left_container_inner_container_user_details_ship_and_pickup_lower {
+                        display: flex;
+                        width: 100%;
+                        height: 50px;
+                        /* border: 1px solid red; */
+                        justify-content: space-between;
+
+                        .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left {
+                            display: flex;
+                            width: 170px;
+                            height: 100%;
+                            /* border: 1px solid blue; */
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+
+                            .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left {
+                                border: 1px solid black;
+                                height: 20px;
+                                width: 20px;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_right {
+                            display: flex;
+                            height: 100%;
+                            width: 50px;
+                            /* border: 1px solid green; */
+                            align-items: center;
+                            justify-content: center;
+
+                            .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_right_icon {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .checkout_left_container_inner_container_billing_container {
+                display: flex;
+                width: 90%;
+                height: 300px;
+                border: 1px solid red;
+                flex-direction: column;
+                gap: 10px;
+
+                .checkout_left_container_inner_container_billing_container_heading {
+                    display: flex;
+                    width: 100%;
+                    height: 30px;
+                    /* border: 1px solid green; */
+                    align-items: center;
+                }
+
+                .checkout_left_container_inner_container_billing_container_detail_form_container {
+                    display: flex;
+                    width: 100%;
+                    height: 260px;
+                    /* border: 1px solid blueviolet; */
+
+                    .checkout_left_container_inner_container_billing_container_detail_form_container_country {
+                        display: flex;
+                        width: 603px;
+                        height: 40px;
+                        /* border: 1px solid red; */
+
+                        input {
+                            width: 100%;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .checkout_left_container_inner_container_billing_container_detail_form_container_name {
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        height: 40px;
+                        /* border: 1px solid green; */
+                        margin-top: 10px;
+                        justify-content: space-between;
+                        /* gap: 13px; */
+
+                        .checkout_left_container_inner_container_billing_container_detail_form_container_name_first {
+                            display: flex;
+                            height: 100%;
+                            width: 295px;
+
+                            input {
+                                width: 100%;
+                            }
+                        }
+
+                        .checkout_left_container_inner_container_billing_container_detail_form_container_name_last {
+                            display: flex;
+                            height: 100%;
+                            width: 295px;
+
+                            input {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .checkout_left_container_inner_container_billing_container_detail_form_container_address {
+                        display: flex;
+                        width: 603px;
+                        height: 40px;
+                        /* border: 1px solid red; */
+                        margin-top: 10px;
+
+                        input {
+                            width: 100%;
+                        }
+                    }
+
+                    .checkout_left_container_inner_container_billing_container_detail_form_container_critical {
+                        display: flex;
+                        width: 100%;
+                        height: 40px;
+                        /* border: 1px solid red; */
+                        margin-top: 10px;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .checkout_left_container_inner_container_billing_container_detail_form_container_critical_city {
+                            display: flex;
+                            height: 100%;
+                            width: 180px;
+
+                            input {
+                                width: 100%;
+                            }
+                        }
+
+                        .checkout_left_container_inner_container_billing_container_detail_form_container_critical_state {
+                            display: flex;
+                            height: 100%;
+                            width: 180px;
+
+                            input {
+                                width: 100%;
+                            }
+                        }
+
+                        .checkout_left_container_inner_container_billing_container_detail_form_container_critical_pincode {
+                            display: flex;
+                            height: 100%;
+                            width: 180px;
+
+                            input {
+                                width: 100%;
+                                font-size: 14px;
+                            }
+
+                            input[type=number]::-webkit-inner-spin-button, 
+                            input[type=number]::-webkit-outer-spin-button { 
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+                                margin: 0; 
+                            }
+                        }
+                    }
+
+                    .checkout_left_container_inner_container_billing_container_detail_form_container__phone {
+                        display: flex;
+                        width: 603px;
+                        height: 40px;
+                        /* border: 1px solid red; */
+                        margin-top: 10px;
+
+                        input {
+                            width: 100%;
+                            font-size: 14px;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button, 
+                        input[type=number]::-webkit-outer-spin-button { 
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            margin: 0; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .checkout_right_container {
+        width: 45vw;
+        height: auto;
+        border: 1px solid green;
+        float: right;
+        position: sticky;
+        top: 0;
+
+        .checkout_right_container_inner {
+            display: flex;
+            width: 30vw;
+            height: auto;
+            /* border: 1px solid black; */
+            margin-left: 50px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            flex-direction: column;
+
+            .checkout_right_container_inner_product {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 70px;
+                /* border: 1px solid red; */
+                align-items: center;
+
+                .checkout_right_container_inner_product_image {
+                    display: flex;
+                    width: 70px;
+                    height: 100%;
+                    /* border: 1px solid green; */
+                    border: 1px solid rgb(168, 168, 168);
+                    border-radius: 5px;
+                    justify-content: flex-end;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        mix-blend-mode: multiply
+                    }
+
+                    .checkout_right_container_inner_product_image_count {
+                        display: flex;
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background-color: rgba(0, 0, 0, 0.544);
+                        color: white;
+                        justify-content: center;
+                        align-items: center;
+                        
+                        span {
+                            font-size: 10px;
+                        }
+                    }
+                }
+
+                .checkout_right_container_inner_product_details {
+                    display: flex;
+                    width: 60%;
+                    height: 61%;
+                    /* border: 1px solid black; */
+                    margin-left: 10px;
+                    flex-direction: column;
+
+                    .checkout_right_container_inner_product_details_name {
+                        display: flex;
+                        width: 100%;
+                        height: 20px;
+                        /* border: 1px solid green; */
+
+                        span {
+                            color: rgb(43, 43, 43);
+                            font-size: 15px;
+                        }
+                    }
+
+                    .checkout_right_container_inner_product_details_size_and_color {
+                        display: flex;
+                        width: 100%;
+                        height: 20px;
+                        /* border: 1px solid green; */
+
+                        span {
+                            color: rgba(118, 118, 118, 0.933);
+                            font-size: 15px;
+                        }
+                    }
+                }
+
+                .checkout_right_container_inner_product_price {
+                    display: flex;
+                    width: 20%;
+                    height: 70%;
+                    /* border: 1px solid black; */
+                    margin-left: 10px;
+                    justify-content: center;
+                }
+            }
+
+            .checkout_right_container_inner_down {
+                display: flex;
+                width: 100%;
+                height: auto;
+                /* border: 1px solid red; */
+                margin-top: 20px;
+                flex-direction: column;
+
+                .checkout_right_container_inner_down_subtotal_container {
+                    display: flex;
+                    width: 100%;
+                    height: 30px;
+                    /* border: 1px solid black; */
+                    justify-content: space-between;
+                    align-items: center;
+                    letter-spacing: 0.5px;
+                }
+
+                .checkout_right_container_inner_down_shipping_container {
+                    display: flex;
+                    width: 100%;
+                    height: 30px;
+                    /* border: 1px solid green; */
+                    justify-content: space-between;
+                    align-items: center;
+                    letter-spacing: 0.5px;
+                }
+
+                .checkout_right_container_inner_down_total_container {
+                    display: flex;
+                    width: 100%;
+                    height: 30px;
+                    /* border: 1px solid black; */
+                    margin-top: 10px;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    h1 {
+                        font-size: 20px;
+                    }
+
+                    .checkout_right_container_inner_down_total_container_inr {
+                        display: flex;
+                        width: auto;
+                        height: 100%;
+                        /* border: 1px solid black; */
+                        align-items: center;
+
+                        span {
+                            font-size: 12px;
+                            margin-right: 10px;
+                            color: rgba(118, 118, 118, 0.933);
+                        }
+
+                        h1 {
+                            font-size: 20px;
+                        }
+                    }
+                }
+
+                .checkout_right_container_inner_down_taxes_container {
+                    display: flex;
+                    width: 100%;
+                    height: 20px;
+                    /* border: 1px solid green; */
+                    color: rgba(118, 118, 118, 0.933);
+                }
+            }
+        }
+    }
+}
+

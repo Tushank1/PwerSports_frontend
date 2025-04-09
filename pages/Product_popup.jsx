@@ -4,7 +4,7 @@ import axios from "axios";
 import { LuStar } from "react-icons/lu";
 import { LiaTapeSolid } from "react-icons/lia";
 import { FiTruck } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import CartContext from "./CartContext";
 
 function Product_popup({ productID: propProductID }) {
@@ -18,7 +18,7 @@ function Product_popup({ productID: propProductID }) {
   const { addToCart } = useContext(CartContext);
   const [isAdded, setIsAdded] = useState(false);
 
-  const location = useLocation();
+  // const location = useLocation();
   const productID = propProductID;
 
   // console.log("Loaction:", location);
