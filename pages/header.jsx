@@ -127,7 +127,12 @@ function Header() {
                             </div>
                           </div>
                           <div className="cart_item_outer_right_down_price">
-                            <span>Rs. {item.price}.00</span>
+                            <span>
+                              Rs.{" "}
+                              {item.price.toLocaleString("en-IN", {
+                                minimumFractionDigits: 2,
+                              })}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -142,7 +147,12 @@ function Header() {
                       <span>SUBTOTAL</span>
                     </div>
                     <div className="cart_total_upper_right">
-                      <span>Rs. {calculateSubtotal()}.00</span>
+                      <span>
+                        Rs.{" "}
+                        {calculateSubtotal().toLocaleString("en-IN", {
+                          minimumFractionDigits: 2,
+                        })}
+                      </span>
                     </div>
                   </div>
                   <div className="cart_total_lower">

@@ -1,11 +1,21 @@
-import React from "react";
-import Footer from "./Footer";
+import React, { useState, useContext } from "react";
 import "../pages_css/Checkout.css";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { IoStorefrontOutline } from "react-icons/io5";
 import { BsCashCoin } from "react-icons/bs";
+import CartContext from "./CartContext";
 
 const Checkout = () => {
+  const [selectedOption, setSelectedOption] = useState("ship");
+  const [selectedStoreLocation, setSelectedStoreLocation] = useState("lalbagh");
+
+  const { cartItems } = useContext(CartContext);
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
   return (
     <>
       <div className="checkout_outer_container">
@@ -24,10 +34,23 @@ const Checkout = () => {
                 <h1>Delivery</h1>
               </div>
               <div className="checkout_left_container_inner_container_user_details_ship_and_pickup">
-                <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_upper">
+                <div
+                  className={`checkout_left_container_inner_container_user_details_ship_and_pickup_upper ${
+                    selectedOption === "ship" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedOption("ship")}
+                >
                   <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left">
-                    <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left">
-                      <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left_inner"></div>
+                    <div
+                      className={`checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left ${
+                        selectedOption === "ship" ? "selected" : ""
+                      }`}
+                    >
+                      <div
+                        className={`checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left_inner ${
+                          selectedOption === "ship" ? "visible" : "hidden"
+                        }`}
+                      ></div>
                     </div>
                     <span>Ship</span>
                   </div>
@@ -35,10 +58,23 @@ const Checkout = () => {
                     <LiaShippingFastSolid className="checkout_left_container_inner_container_user_details_ship_and_pickup_upper_right_icon" />
                   </div>
                 </div>
-                <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_lower">
+                <div
+                  className={`checkout_left_container_inner_container_user_details_ship_and_pickup_lower ${
+                    selectedOption === "pickup" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedOption("pickup")}
+                >
                   <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left">
-                    <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left">
-                      <div className="checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left_inner"></div>
+                    <div
+                      className={`checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left ${
+                        selectedOption === "pickup" ? "selected" : ""
+                      }`}
+                    >
+                      <div
+                        className={`checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left_inner ${
+                          selectedOption === "pickup" ? "visible" : "hidden"
+                        }`}
+                      ></div>
                     </div>
                     <span>Pickup in store</span>
                   </div>
@@ -85,17 +121,38 @@ const Checkout = () => {
                 </form>
               </div>
             </div>
-            <div className="checkout_left_container_inner_container_store_location_container">
+            <div
+              className={`checkout_left_container_inner_container_store_location_container ${
+                selectedOption === "pickup" ? "visible" : "hidden"
+              }`}
+            >
               <div className="checkout_left_container_inner_container_store_location_container_heading">
                 <h3>Store locations</h3>
               </div>
               <div className="checkout_left_container_inner_container_store_location_container_location_main_container">
-                <div className="checkout_left_container_inner_container_store_location_container_location_main_container_first">
+                <div
+                  className={`checkout_left_container_inner_container_store_location_container_location_main_container_first ${
+                    selectedStoreLocation === "lalbagh" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedStoreLocation("lalbagh")}
+                >
                   <div className="checkout_left_container_inner_container_store_location_container_location_main_container_first_inner">
                     <div className="checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top">
                       <div className="checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top_left">
-                        <div className="checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top_left_left">
-                          <div className="checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top_left_left_inner"></div>
+                        <div
+                          className={`checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top_left_left ${
+                            selectedStoreLocation === "lalbagh"
+                              ? "selected"
+                              : ""
+                          }`}
+                        >
+                          <div
+                            className={`checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top_left_left_inner ${
+                              selectedStoreLocation === "lalbagh"
+                                ? "visible"
+                                : "hidden"
+                            }`}
+                          ></div>
                         </div>
                         <span>Bengaluru - Lalbagh (1,746.1 km)</span>
                       </div>
@@ -116,12 +173,29 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-                <div className="checkout_left_container_inner_container_store_location_container_location_main_container_second">
+                <div
+                  className={`checkout_left_container_inner_container_store_location_container_location_main_container_second ${
+                    selectedStoreLocation === "jaynagar" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedStoreLocation("jaynagar")}
+                >
                   <div className="checkout_left_container_inner_container_store_location_container_location_main_container_second_inner">
                     <div className="checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top">
                       <div className="checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top_left">
-                        <div className="checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top_left_left">
-                          <div className="checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top_left_left_inner"></div>
+                        <div
+                          className={`checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top_left_left ${
+                            selectedStoreLocation === "jaynagar"
+                              ? "selected"
+                              : ""
+                          }`}
+                        >
+                          <div
+                            className={`checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top_left_left_inner ${
+                              selectedStoreLocation === "jaynagar"
+                                ? "visible"
+                                : "hidden"
+                            }`}
+                          ></div>
                         </div>
                         <span>Bengaluru - Jayanagar (1,750.6 km)</span>
                       </div>
@@ -142,12 +216,27 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-                <div className="checkout_left_container_inner_container_store_location_container_location_main_container_third">
+                <div
+                  className={`checkout_left_container_inner_container_store_location_container_location_main_container_third ${
+                    selectedStoreLocation === "lights" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedStoreLocation("lights")}
+                >
                   <div className="checkout_left_container_inner_container_store_location_container_location_main_container_third_inner">
                     <div className="checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top">
                       <div className="checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top_left">
-                        <div className="checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top_left_left">
-                          <div className="checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top_left_left_inner"></div>
+                        <div
+                          className={`checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top_left_left ${
+                            selectedStoreLocation === "lights" ? "selected" : ""
+                          }`}
+                        >
+                          <div
+                            className={`checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top_left_left_inner ${
+                              selectedStoreLocation === "lights"
+                                ? "visible"
+                                : "hidden"
+                            }`}
+                          ></div>
                         </div>
                         <span>Thousand Lights - Chennai (1,762.4 km)</span>
                       </div>
@@ -167,12 +256,27 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-                <div className="checkout_left_container_inner_container_store_location_container_location_main_container_fourth">
+                <div
+                  className={`checkout_left_container_inner_container_store_location_container_location_main_container_fourth ${
+                    selectedStoreLocation === "ecr" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedStoreLocation("ecr")}
+                >
                   <div className="checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner">
                     <div className="checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top">
                       <div className="checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top_left">
-                        <div className="checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top_left_left">
-                          <div className="checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top_left_left_inner"></div>
+                        <div
+                          className={`checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top_left_left ${
+                            selectedStoreLocation === "ecr" ? "selected" : ""
+                          }`}
+                        >
+                          <div
+                            className={`checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top_left_left_inner ${
+                              selectedStoreLocation === "ecr"
+                                ? "visible"
+                                : "hidden"
+                            }`}
+                          ></div>
                         </div>
                         <span>ECR Store (1,780.8 km)</span>
                       </div>
@@ -193,12 +297,27 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-                <div className="checkout_left_container_inner_container_store_location_container_location_main_container_five">
+                <div
+                  className={`checkout_left_container_inner_container_store_location_container_location_main_container_five ${
+                    selectedStoreLocation === "omr" ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedStoreLocation("omr")}
+                >
                   <div className="checkout_left_container_inner_container_store_location_container_location_main_container_five_inner">
                     <div className="checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top">
                       <div className="checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top_left">
-                        <div className="checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top_left_left">
-                          <div className="checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top_left_left_inner"></div>
+                        <div
+                          className={`checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top_left_left ${
+                            selectedStoreLocation === "omr" ? "selected" : ""
+                          }`}
+                        >
+                          <div
+                            className={`checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top_left_left_inner ${
+                              selectedStoreLocation === "omr"
+                                ? "visible"
+                                : "hidden"
+                            }`}
+                          ></div>
                         </div>
                         <span>Chennai - OMR (1,786.2 km)</span>
                       </div>
@@ -245,32 +364,46 @@ const Checkout = () => {
         </div>
         <div className="checkout_right_container">
           <div className="checkout_right_container_inner">
-            <div className="checkout_right_container_inner_product">
-              <div className="checkout_right_container_inner_product_image">
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0578/7287/5696/files/MTTargoTorviGlossflourYellowHelmet02_0b6b9211-85fc-4c6d-8c3b-5577a6bdfc5d_64x64.jpg?v=1730798035"
-                  alt=""
-                />
-                <div className="checkout_right_container_inner_product_image_count">
-                  <span>1</span>
+            {cartItems.map((item, index) => (
+              <div
+                className="checkout_right_container_inner_product"
+                key={index}
+              >
+                <div className="checkout_right_container_inner_product_image">
+                  <img src={item.image} alt={item.name} />
+                  <div className="checkout_right_container_inner_product_image_count">
+                    <span>{item.quantity}</span>
+                  </div>
+                </div>
+                <div className="checkout_right_container_inner_product_details">
+                  <div className="checkout_right_container_inner_product_details_name">
+                    <span>{item.name}</span>
+                  </div>
+                  <div className="checkout_right_container_inner_product_details_size_and_color">
+                    <span>
+                      {item.color} / {item.size}
+                    </span>
+                  </div>
+                </div>
+                <div className="checkout_right_container_inner_product_price">
+                  <span>
+                    ₹
+                    {(item.price * item.quantity).toLocaleString("en-IN", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
               </div>
-              <div className="checkout_right_container_inner_product_details">
-                <div className="checkout_right_container_inner_product_details_name">
-                  <span>MT Targo Torvi Helmet</span>
-                </div>
-                <div className="checkout_right_container_inner_product_details_size_and_color">
-                  <span>color / S</span>
-                </div>
-              </div>
-              <div className="checkout_right_container_inner_product_price">
-                <span>₹3,999.00</span>
-              </div>
-            </div>
+            ))}
             <div className="checkout_right_container_inner_down">
               <div className="checkout_right_container_inner_down_subtotal_container">
                 <span>Subtotal</span>
-                <span>₹3,999.00</span>
+                <span>
+                  ₹
+                  {subtotal.toLocaleString("en-IN", {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
               </div>
               <div className="checkout_right_container_inner_down_shipping_container">
                 <span>Shippping</span>
@@ -280,7 +413,12 @@ const Checkout = () => {
                 <h1>Total</h1>
                 <div className="checkout_right_container_inner_down_total_container_inr">
                   <span>INR</span>
-                  <h1>₹3,999.00</h1>
+                  <h1>
+                    ₹
+                    {subtotal.toLocaleString("en-IN", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </h1>
                 </div>
               </div>
               <div className="checkout_right_container_inner_down_taxes_container">

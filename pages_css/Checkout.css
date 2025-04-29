@@ -50,8 +50,9 @@
     
     .checkout_left_container {
         width: 55vw;
-        height: 1300px;
+        height: auto;
         /* border: 1px solid red; */
+        border-right: 1px solid rgba(207, 203, 203, 0.54);
         float: left;
         scroll-behavior: auto;
 
@@ -65,6 +66,7 @@
             flex-direction: column;
             gap: 10px;
             border-bottom: 1px solid rgb(220, 220, 220);
+            margin-bottom: 2%;
 
             .checkout_left_container_inner_container_user_details {
                 display: flex;
@@ -91,7 +93,7 @@
                     display: flex;
                     width: 100%;
                     height: 100px;
-                    border: 1px solid purple;
+                    border: 1px solid rgba(207, 203, 203, 0.54);
                     flex-direction: column;
                     border-radius: 10px;
 
@@ -102,6 +104,16 @@
                         /* border: 1px solid green; */
                         flex-direction: row;
                         justify-content: space-between;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+
+                        &.selected {
+                            background-color: #f0f0f0; /* Light grey */
+                            cursor: pointer;
+                            border-top-left-radius: 8px;
+                            border-top-right-radius: 8px;
+                        }
 
                         .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left {
                             display: flex;
@@ -115,13 +127,18 @@
 
                             .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left {
                                 display: flex;
-                                border: 1px solid black;
+                                border: 1px solid #f0f0f0;
                                 height: 20px;
                                 width: 20px;
                                 border-radius: 50%;
-                                background-color: black;
+                                /* background-color: black; */
                                 justify-content: center;
                                 align-items: center;
+
+                                &.selected {
+                                    transition: background-color 0.3s ease;
+                                    background-color: black;
+                                }
 
                                 .checkout_left_container_inner_container_user_details_ship_and_pickup_upper_left_left_inner {
                                     display: flex;
@@ -130,6 +147,14 @@
                                     background-color: white;
                                     border: 1px solid black;
                                     border-radius: 50%;
+
+                                    &.visible {
+                                        display: flex;
+                                    }
+
+                                    &.hidden {
+                                        display: none;
+                                    }
                                 }
                             }
 
@@ -160,6 +185,15 @@
                         height: 50px;
                         /* border: 1px solid red; */
                         justify-content: space-between;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+                        &.selected {
+                            background-color: #f0f0f0; /* Light grey */
+                            cursor: pointer;
+                            border-bottom-left-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                        }
 
                         .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left {
                             display: flex;
@@ -171,14 +205,19 @@
                             gap: 10px;
 
                             .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left {
-                                border: 1px solid black;
+                                border: 1px solid #f0f0f0;
                                 height: 20px;
                                 width: 20px;
                                 border-radius: 50%;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                background-color: black;
+                                /* background-color: black; */
+
+                                &.selected {
+                                    background-color: black;
+                                    transition: background-color 0.3s ease;
+                                }
 
                                 .checkout_left_container_inner_container_user_details_ship_and_pickup_lower_left_left_inner {
                                     display: flex;
@@ -187,6 +226,14 @@
                                     border: 1px solid black;
                                     background-color: white;
                                     border-radius: 50%;
+
+                                    &.visible {
+                                        display: flex;
+                                    }
+
+                                    &.hidden {
+                                        display: none;
+                                    }
                                 }
                             }
                         }
@@ -364,6 +411,13 @@
                 flex-direction: column;
                 gap: 10px;
 
+                &.visible {
+                    display: flex;  
+                }
+                &.hidden {
+                    display: none;
+                }
+
                 .checkout_left_container_inner_container_store_location_container_heading {
                     display: flex;
                     width: 100%;
@@ -376,7 +430,7 @@
                     display: flex;
                     width: 100%;
                     height: 480px;
-                    border: 1px solid green;
+                    border: 1px solid #f0f0f0;
                     border-radius: 10px;
                     flex-direction: column;
 
@@ -387,6 +441,16 @@
                         /* border: 1px solid red; */
                         justify-content: center;
                         align-items: center;
+                        border-bottom: 1px solid #f0f0f0;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+                        &.selected {
+                            background-color: #f0f0f0;
+                            border-top-right-radius: 10px;
+                            border-top-left-radius: 10px;
+                            border: 1px solid black;
+                        }
 
                         .checkout_left_container_inner_container_store_location_container_location_main_container_first_inner {
                             display: flex;
@@ -415,11 +479,16 @@
                                         display: flex;
                                         width: 20px;
                                         height: 20px;
-                                        border: 1px solid black;
+                                        border: 1px solid #f0f0f0;
                                         border-radius: 50%;
-                                        background-color: black;
+                                        /* background-color: black; */
                                         justify-content: center;
                                         align-items: center;
+
+                                        &.selected {
+                                            background-color: black;
+                                            transition: background-color 0.3s ease;
+                                        }
 
 
                                         .checkout_left_container_inner_container_store_location_container_location_main_container_first_inner_top_left_left_inner {
@@ -429,6 +498,14 @@
                                             border: 1px solid black;
                                             background-color: white;
                                             border-radius: 50%;
+
+                                            &.visible {
+                                                display: flex;
+                                            }
+
+                                            &.hidden {
+                                                display: none;
+                                            }
                                         }
                                     }
                                 }
@@ -481,6 +558,14 @@
                         /* border: 1px solid red; */
                         justify-content: center;
                         align-items: center;
+                        border-bottom: 1px solid #f0f0f0;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+                        &.selected {
+                            background-color: #f0f0f0;
+                            border: 1px solid black;
+                        }
 
                         .checkout_left_container_inner_container_store_location_container_location_main_container_second_inner {
                             display: flex;
@@ -509,11 +594,16 @@
                                         display: flex;
                                         width: 20px;
                                         height: 20px;
-                                        border: 1px solid black;
+                                        border: 1px solid #f0f0f0;
                                         border-radius: 50%;
-                                        background-color: black;
+                                        /* background-color: black; */
                                         justify-content: center;
                                         align-items: center;
+
+                                        &.selected {
+                                            background-color: black;
+                                            transition: background-color 0.3s ease;
+                                        }
 
 
                                         .checkout_left_container_inner_container_store_location_container_location_main_container_second_inner_top_left_left_inner {
@@ -523,6 +613,14 @@
                                             border: 1px solid black;
                                             background-color: white;
                                             border-radius: 50%;
+
+                                            &.visible {
+                                                display: flex;
+                                            }
+
+                                            &.hidden {
+                                                display: none;
+                                            }
                                         }
                                     }
                                 }
@@ -575,6 +673,14 @@
                         /* border: 1px solid red; */
                         justify-content: center;
                         align-items: center;
+                        border-bottom: 1px solid #f0f0f0;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+                        &.selected {
+                            background-color: #f0f0f0;
+                            border: 1px solid black;
+                        }
 
                         .checkout_left_container_inner_container_store_location_container_location_main_container_third_inner {
                             display: flex;
@@ -603,11 +709,16 @@
                                         display: flex;
                                         width: 20px;
                                         height: 20px;
-                                        border: 1px solid black;
+                                        border: 1px solid #f0f0f0;
                                         border-radius: 50%;
-                                        background-color: black;
+                                        /* background-color: black; */
                                         justify-content: center;
                                         align-items: center;
+
+                                        &.selected {
+                                            background-color: black;
+                                            transition: background-color 0.3s ease;
+                                        }
 
 
                                         .checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_top_left_left_inner {
@@ -617,6 +728,14 @@
                                             border: 1px solid black;
                                             background-color: white;
                                             border-radius: 50%;
+
+                                            &.visible {
+                                                display: flex;
+                                            }
+        
+                                            &.hidden {
+                                                display: none;
+                                            }
                                         }
                                     }
                                 }
@@ -648,6 +767,8 @@
                                     font-size: 14px;
                                     color: grey;
                                     line-height: 19px;
+
+
                                 }
 
                                 .checkout_left_container_inner_container_store_location_container_location_main_container_third_inner_bottom_right {
@@ -669,6 +790,14 @@
                         /* border: 1px solid red; */
                         justify-content: center;
                         align-items: center;
+                        border-bottom: 1px solid #f0f0f0;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+                        &.selected {
+                            background-color: #f0f0f0;
+                            border: 1px solid black;
+                        }
 
                         .checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner {
                             display: flex;
@@ -697,11 +826,16 @@
                                         display: flex;
                                         width: 20px;
                                         height: 20px;
-                                        border: 1px solid black;
+                                        border: 1px solid #f0f0f0;
                                         border-radius: 50%;
-                                        background-color: black;
+                                        /* background-color: black; */
                                         justify-content: center;
                                         align-items: center;
+
+                                        &.selected {
+                                            background-color: black;
+                                            transition: background-color 0.3s ease;
+                                        }
 
 
                                         .checkout_left_container_inner_container_store_location_container_location_main_container_fourth_inner_top_left_left_inner {
@@ -711,6 +845,14 @@
                                             border: 1px solid black;
                                             background-color: white;
                                             border-radius: 50%;
+
+                                            &.visible {
+                                                display: flex;
+                                            }
+
+                                            &.hidden {
+                                                display: none;
+                                            }
                                         }
                                     }
                                 }
@@ -763,6 +905,16 @@
                         /* border: 1px solid red; */
                         justify-content: center;
                         align-items: center;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer;
+
+                        &.selected {
+                            background-color: #f0f0f0;
+                            cursor: pointer;
+                            border: 1px solid black;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                        }
 
                         .checkout_left_container_inner_container_store_location_container_location_main_container_five_inner {
                             display: flex;
@@ -791,11 +943,16 @@
                                         display: flex;
                                         width: 20px;
                                         height: 20px;
-                                        border: 1px solid black;
+                                        border: 1px solid #f0f0f0;
                                         border-radius: 50%;
-                                        background-color: black;
+                                        /* background-color: black; */
                                         justify-content: center;
                                         align-items: center;
+
+                                        &.selected {
+                                            background-color: black;
+                                            transition: background-color 0.3s ease;
+                                        }
 
 
                                         .checkout_left_container_inner_container_store_location_container_location_main_container_five_inner_top_left_left_inner {
@@ -805,6 +962,14 @@
                                             border: 1px solid black;
                                             background-color: white;
                                             border-radius: 50%;
+
+                                            &.visible {
+                                                display: flex;
+                                            }
+
+                                            &.hidden {
+                                                display: none;
+                                            }
                                         }
                                     }
                                 }
@@ -938,6 +1103,7 @@
                 border-radius: 7px;
                 background-color: rgb(210,236,21,1);
                 cursor: pointer;
+                margin-bottom: 30px;
 
                 &:hover {
                     background-color: rgb(184,207,17,1);
@@ -949,7 +1115,7 @@
     .checkout_right_container {
         width: 45vw;
         height: auto;
-        border: 1px solid green;
+        /* border: 1px solid green; */
         float: right;
         position: sticky;
         top: 0;
@@ -963,6 +1129,7 @@
             margin-top: 20px;
             margin-bottom: 20px;
             flex-direction: column;
+            gap: 10px;
 
             .checkout_right_container_inner_product {
                 display: flex;
