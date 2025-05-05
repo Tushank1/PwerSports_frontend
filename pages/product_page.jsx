@@ -170,7 +170,12 @@ function Product_item() {
               className="product_right_container_price"
               key={productData.Product.id}
             >
-              <span>Rs. {productData.Product.price}.00</span>
+              <span>
+                Rs.{" "}
+                {productData.Product.price.toLocaleString("en-IN", {
+                  minimumFractionDigits: 2,
+                })}
+              </span>
             </div>
           )}
           <div className="product_right_container_review_price_content">

@@ -4,10 +4,12 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 import { IoStorefrontOutline } from "react-icons/io5";
 import { BsCashCoin } from "react-icons/bs";
 import CartContext from "./CartContext";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [selectedOption, setSelectedOption] = useState("ship");
   const [selectedStoreLocation, setSelectedStoreLocation] = useState("lalbagh");
+  const navigate = useNavigate();
 
   const { cartItems } = useContext(CartContext);
 
@@ -23,7 +25,10 @@ const Checkout = () => {
           <div className="checkout_header_img">
             <img src="/web_img.png" alt="Web Img" />
           </div>
-          <div className="checkout_header_cart">
+          <div
+            className="checkout_header_cart"
+            onClick={() => navigate("/cart")}
+          >
             <i className="fa-solid fa-cart-shopping"></i>
           </div>
         </div>

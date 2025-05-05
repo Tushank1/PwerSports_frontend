@@ -16,6 +16,7 @@ import Warranty_activation from "../pages/Warranty_activation";
 import Exchange from "../pages/Exchange";
 import F from "../pages/F";
 import Checkout from "../pages/Checkout";
+import Cart from "../pages/Cart";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           />
           <Route path="/f" element={<F />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </>
