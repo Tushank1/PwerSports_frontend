@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import "../pages_css/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const Login_page = () => {
   const [email, setEmail] = useState("");
@@ -51,7 +52,12 @@ const Login_page = () => {
 
       if (response.status === 200) {
         const data = response.data;
-        localStorage.setItem("token", data.access_token);
+        const token = data.access_token;
+        const decoded = jwtDecode(token);
+        console.log("Decoded Token:", decoded); // should include user_id
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("user_id", decoded.user_id);
         navigate("/protected");
       } else {
         // setError(response.data.detail || "Authentication Failed");
@@ -74,6 +80,7 @@ const Login_page = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token on logout
+    localStorage.removeItem("user_id");
     setIsAuthenticated(false); // Update state to show login page
     navigate("/account/login"); // Redirect to login page
   };

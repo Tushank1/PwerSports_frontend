@@ -5,11 +5,25 @@ import { IoStorefrontOutline } from "react-icons/io5";
 import { BsCashCoin } from "react-icons/bs";
 import CartContext from "./CartContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Checkout = () => {
   const [selectedOption, setSelectedOption] = useState("ship");
   const [selectedStoreLocation, setSelectedStoreLocation] = useState("lalbagh");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("user_id");
+  const [formData, setFormData] = useState({
+    country: "",
+    first_name: "",
+    last_name: "",
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
+    phone_no: "",
+    user_id: userId,
+  });
 
   const { cartItems } = useContext(CartContext);
 
@@ -17,6 +31,35 @@ const Checkout = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(formData);
+      const res = await axios.post(
+        "http://localhost:8000/checkout_Billing",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Success:", res.data);
+      alert("Billing address submitted successfully");
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+      alert("Submission Failed");
+    }
+  };
 
   return (
     <>
@@ -96,32 +139,76 @@ const Checkout = () => {
               <div className="checkout_left_container_inner_container_billing_container_detail_form_container">
                 <form action="">
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container_country">
-                    <input type="text" placeholder="Country/Region" />
+                    <input
+                      type="text"
+                      placeholder="Country/Region"
+                      value={formData.country}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
+                    />
                   </div>
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container_name">
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_name_first">
-                      <input type="text" placeholder="First name" />
+                      <input
+                        type="text"
+                        placeholder="First name"
+                        value={formData.first_name}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
+                      />
                     </div>
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_name_last">
-                      <input type="text" placeholder="Last name" />
+                      <input
+                        type="text"
+                        placeholder="Last name"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container_address">
-                    <input type="text" placeholder="Address" />
+                    <input
+                      type="text"
+                      placeholder="Address"
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical">
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical_city">
-                      <input type="text" placeholder="City" />
+                      <input
+                        type="text"
+                        placeholder="City"
+                        onChange={handleChange}
+                      />
                     </div>
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical_state">
-                      <input type="text" placeholder="State" />
+                      <input
+                        type="text"
+                        placeholder="State"
+                        onChange={handleChange}
+                      />
                     </div>
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical_pincode">
-                      <input type="number" placeholder="Pincode" />
+                      <input
+                        type="number"
+                        placeholder="Pincode"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container__phone">
-                    <input type="number" placeholder="Phone" />
+                    <input
+                      type="number"
+                      placeholder="Phone"
+                      onChange={handleChange}
+                    />
                   </div>
                 </form>
               </div>
@@ -362,7 +449,10 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-            <div className="checkout_left_container_inner_container_button">
+            <div
+              className="checkout_left_container_inner_container_button"
+              onClick={handleSubmit}
+            >
               <span>Pay now</span>
             </div>
           </div>
