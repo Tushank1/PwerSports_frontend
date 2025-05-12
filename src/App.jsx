@@ -17,6 +17,7 @@ import Exchange from "../pages/Exchange";
 import F from "../pages/F";
 import Checkout from "../pages/Checkout";
 import Cart from "../pages/Cart";
+import Order_successfully from "../pages/order_successfully";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/f" element={<F />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order-successfully" element={<Order_successfully />} />
         </Routes>
       </Router>
     </>

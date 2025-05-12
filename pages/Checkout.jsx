@@ -25,19 +25,12 @@ const Checkout = () => {
     user_id: userId,
   });
 
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,10 +47,56 @@ const Checkout = () => {
         }
       );
       console.log("Success:", res.data);
-      alert("Billing address submitted successfully");
+
+      const billing_address_id = res.data.id;
+
+      await storeOrders(billing_address_id);
+
+      // alert("Billing address submitted successfully");
+      // Clear form fields
+      setFormData({
+        country: "",
+        first_name: "",
+        last_name: "",
+        address: "",
+        city: "",
+        state: "",
+        pincode: "",
+        phone_no: "",
+        user_id: userId,
+      });
+
+      // setCartItems([]); // clear the cart
+      navigate("/order-successfully");
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
       alert("Submission Failed");
+    }
+  };
+
+  const storeOrders = async (billing_address_id) => {
+    try {
+      for (const item of cartItems) {
+        const payload = {
+          img_link: item.image,
+          qty: item.quantity,
+          name: item.name,
+          color: item.color,
+          size: item.size,
+          price: item.price,
+          user_id: userId,
+          billing_address_id,
+        };
+
+        await axios.post("http://localhost:8000/add_order", payload);
+      }
+
+      // alert("Order stored successfully!");
+    } catch (error) {
+      console.error(
+        "Error storing orders:",
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -141,6 +180,7 @@ const Checkout = () => {
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container_country">
                     <input
                       type="text"
+                      name="country"
                       placeholder="Country/Region"
                       value={formData.country}
                       onChange={(e) =>
@@ -156,6 +196,7 @@ const Checkout = () => {
                       <input
                         type="text"
                         placeholder="First name"
+                        name="first_name"
                         value={formData.first_name}
                         onChange={(e) =>
                           setFormData({
@@ -169,7 +210,14 @@ const Checkout = () => {
                       <input
                         type="text"
                         placeholder="Last name"
-                        onChange={handleChange}
+                        name="last_name"
+                        value={formData.last_name}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                       />
                     </div>
                   </div>
@@ -177,7 +225,14 @@ const Checkout = () => {
                     <input
                       type="text"
                       placeholder="Address"
-                      onChange={handleChange}
+                      name="address"
+                      value={formData.address}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
                     />
                   </div>
                   <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical">
@@ -185,21 +240,42 @@ const Checkout = () => {
                       <input
                         type="text"
                         placeholder="City"
-                        onChange={handleChange}
+                        name="city"
+                        value={formData.city}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical_state">
                       <input
                         type="text"
                         placeholder="State"
-                        onChange={handleChange}
+                        name="state"
+                        value={formData.state}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="checkout_left_container_inner_container_billing_container_detail_form_container_critical_pincode">
                       <input
                         type="number"
                         placeholder="Pincode"
-                        onChange={handleChange}
+                        name="pincode"
+                        value={formData.pincode}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                       />
                     </div>
                   </div>
@@ -207,7 +283,14 @@ const Checkout = () => {
                     <input
                       type="number"
                       placeholder="Phone"
-                      onChange={handleChange}
+                      name="phone_no"
+                      value={formData.phone_no}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </form>
